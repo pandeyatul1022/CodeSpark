@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeSpark | Contact Us</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <!-- Google Fonts - Inter & Space Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <!-- Header / Navbar -->
+    <header>
+        <nav class="navbar navbar-expand-lg site-navbar" aria-label="Main navigation">
+            <div class="container">
+                <a class="navbar-brand fw-bold" href="index.html" aria-label="CodeSpark home">
+                    <span>CodeSpark</span>
+                </a>
+
+                <div class="d-flex align-items-center gap-2 d-lg-none ms-auto me-1">
+                    <button class="theme-toggle theme-toggle-mobile" type="button" aria-label="Switch to dark mode"
+                        aria-pressed="false">
+                        <i class="bi bi-moon-stars" aria-hidden="true"></i>
+                    </button>
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html"><i class="bi bi-house nav-link-icon"
+                                    aria-hidden="true"></i><span class="nav-link-text">Home</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html"><i class="bi bi-info-circle nav-link-icon"
+                                    aria-hidden="true"></i><span class="nav-link-text">About Us</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="courses.html"><i class="bi bi-journal-code nav-link-icon"
+                                    aria-hidden="true"></i><span class="nav-link-text">Courses</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="quiz.html"><i class="bi bi-question-circle nav-link-icon"
+                                    aria-hidden="true"></i><span class="nav-link-text">Quiz</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="coding_lab.html"><i class="bi bi-code-slash nav-link-icon"
+                                    aria-hidden="true"></i><span class="nav-link-text">Coding Lab</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html"><i class="bi bi-envelope nav-link-icon"
+                                    aria-hidden="true"></i><span class="nav-link-text">Contact Us</span></a>
+                        </li>
+                    </ul>
+
+                    <div class="navbar-actions-desktop d-none d-lg-flex align-items-center gap-3">
+                        <button class="theme-toggle theme-toggle-desktop" type="button" aria-label="Switch to dark mode"
+                            aria-pressed="false">
+                            <i class="bi bi-moon-stars" aria-hidden="true"></i>
+                        </button>
+
+                        <a href="login.html" class="btn btn-primary site-login-link">
+                            <i class="bi bi-box-arrow-in-right" aria-hidden="true"></i>
+                            <span>Login</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content / Contact Us Section -->
+    <main class="contact-section py-4 py-md-5">
+        <div class="container">
+
+            <!-- Page Hero Header -->
+            <div class="text-center mb-5" data-aos="fade-up">
+                <div class="auth-welcome-badge d-inline-flex align-items-center gap-2 mb-3 px-3 py-1.5 rounded-pill">
+                    <span class="badge-pulse-dot"></span>
+                    <i class="bi bi-headset me-1"></i>
+                    <span>Support & Contact</span>
+                </div>
+                <h1 class="fw-bold mb-3" style="font-size: clamp(1.8rem, 4vw, 2.6rem); color: var(--text-color);">
+                    We'd Love to <span class="gradient-text-accent">Hear From You</span>
+                </h1>
+                <p class="text-muted mx-auto mb-4" style="max-width: 620px; font-size: 1.05rem; line-height: 1.7;">
+                    Have questions about our coding courses, Scratch lab, or platform features? Our friendly team is
+                    here to assist students, parents, and educators.
+                </p>
+
+                <!-- Response Time Stat Badges -->
+                <div class="d-flex flex-wrap justify-content-center gap-3 gap-md-4">
+                    <div class="contact-stat-badge d-flex align-items-center gap-2 px-3 py-2 rounded-pill">
+                        <i class="bi bi-lightning-charge-fill text-warning"></i>
+                        <span class="small fw-semibold text-dark-heading">Avg. Response: <span class="text-primary">2
+                                hours</span></span>
+                    </div>
+                    <div class="contact-stat-badge d-flex align-items-center gap-2 px-3 py-2 rounded-pill">
+                        <i class="bi bi-emoji-smile-fill text-success"></i>
+                        <span class="small fw-semibold text-dark-heading">Satisfaction: <span
+                                class="text-primary">98%</span></span>
+                    </div>
+                    <div class="contact-stat-badge d-flex align-items-center gap-2 px-3 py-2 rounded-pill">
+                        <i class="bi bi-globe2 text-info"></i>
+                        <span class="small fw-semibold text-dark-heading">Support: <span
+                                class="text-primary">24/7</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Contact Info Cards Row -->
+            <div class="row g-4 mb-5">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
+                    <div class="contact-info-card p-4 rounded-4 h-100 text-center">
+                        <div class="contact-icon-wrap mx-auto mb-3">
+                            <i class="bi bi-envelope-paper-fill"></i>
+                        </div>
+                        <h5 class="fw-bold text-dark-heading mb-1">Email Us</h5>
+                        <p class="text-muted small mb-3">Send us an email and we'll reply within 24 hours.</p>
+                        <a href="mailto:support@codespark.com"
+                            class="contact-link fw-semibold text-decoration-none d-block mb-1">
+                            <i class="bi bi-envelope me-1 small"></i> support@codespark.com
+                        </a>
+                        <a href="mailto:hello@codespark.com" class="contact-link small text-muted text-decoration-none">
+                            <i class="bi bi-envelope me-1 small"></i> hello@codespark.com
+                        </a>
+                        <div class="mt-3">
+                            <span class="contact-status-pill online">
+                                <span class="status-dot"></span> Online Now
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="contact-info-card p-4 rounded-4 h-100 text-center">
+                        <div class="contact-icon-wrap contact-icon-teal mx-auto mb-3">
+                            <i class="bi bi-telephone-outbound-fill"></i>
+                        </div>
+                        <h5 class="fw-bold text-dark-heading mb-1">Call Us</h5>
+                        <p class="text-muted small mb-3">Speak directly with our learning support team.</p>
+                        <a href="tel:+18005557727" class="contact-link fw-semibold text-decoration-none d-block mb-1">
+                            <i class="bi bi-telephone me-1 small"></i> +1 (800) 555-SPARK
+                        </a>
+                        <span class="small text-muted d-block">Mon - Fri, 9:00 AM - 6:00 PM EST</span>
+                        <div class="mt-3">
+                            <span class="contact-status-pill available">
+                                <span class="status-dot"></span> Available
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="contact-info-card p-4 rounded-4 h-100 text-center">
+                        <div class="contact-icon-wrap contact-icon-amber mx-auto mb-3">
+                            <i class="bi bi-geo-alt-fill"></i>
+                        </div>
+                        <h5 class="fw-bold text-dark-heading mb-1">Visit Campus</h5>
+                        <p class="text-muted small mb-3">Stop by our main learning hub & innovation center.</p>
+                        <span class="fw-semibold text-dark-heading d-block small mb-1">
+                            <i class="bi bi-building me-1"></i> 100 CodeSpark Way, Suite 400
+                        </span>
+                        <span class="small text-muted d-block">Tech Valley, CA 94025</span>
+                        <div class="mt-3">
+                            <span class="contact-status-pill">
+                                <i class="bi bi-pin-map-fill me-1 small"></i> Get Directions
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Form & Sidebar -->
+            <div class="row g-4 g-lg-5 align-items-start">
+
+                <!-- Left Column: Contact Form -->
+                <div class="col-lg-7" data-aos="fade-right">
+                    <div class="auth-card contact-form-card p-4 p-sm-5">
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                            <div class="contact-icon-wrap flex-shrink-0">
+                                <i class="bi bi-pencil-square"></i>
+                            </div>
+                            <div>
+                                <h3 class="fw-bold mb-0" style="color: var(--text-color);">Send Us a Message</h3>
+                                <p class="text-muted small mb-0">Fill out the form below and our team will get back to
+                                    you shortly.</p>
+                            </div>
+                        </div>
+
+                        <form id="contactForm" novalidate>
+                            <div class="row g-3">
+                                <!-- Full Name -->
+                                <div class="col-md-6 mb-2">
+                                    <label for="contactName" class="form-label fw-semibold small">Full Name <span
+                                            class="text-danger">*</span></label>
+                                    <div class="input-group auth-input-group">
+                                        <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+                                        <input type="text" class="form-control auth-input" id="contactName"
+                                            placeholder="Enter your full name" required autocomplete="name">
+                                    </div>
+                                    <div class="invalid-feedback">Please enter your full name.</div>
+                                </div>
+
+                                <!-- Email Address -->
+                                <div class="col-md-6 mb-2">
+                                    <label for="contactEmail" class="form-label fw-semibold small">Email Address <span
+                                            class="text-danger">*</span></label>
+                                    <div class="input-group auth-input-group">
+                                        <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
+                                        <input type="email" class="form-control auth-input" id="contactEmail"
+                                            placeholder="Enter your email address" required autocomplete="email">
+                                    </div>
+                                    <div class="invalid-feedback">Please enter a valid email address.</div>
+                                </div>
+                            </div>
+
+                            <!-- Phone (optional) -->
+                            <div class="mb-2">
+                                <label for="contactPhone" class="form-label fw-semibold small">Phone Number <span
+                                        class="text-muted fw-normal">(Optional)</span></label>
+                                <div class="input-group auth-input-group">
+                                    <span class="input-group-text"><i class="bi bi-phone-fill"></i></span>
+                                    <input type="tel" class="form-control auth-input" id="contactPhone"
+                                        placeholder="Enter your phone number" autocomplete="tel">
+                                </div>
+                            </div>
+
+                            <!-- Subject / Topic Dropdown -->
+                            <div class="mb-2">
+                                <label for="contactSubject" class="form-label fw-semibold small">Topic / Inquiry Type
+                                    <span class="text-danger">*</span></label>
+                                <div class="input-group auth-input-group">
+                                    <span class="input-group-text"><i class="bi bi-tag-fill"></i></span>
+                                    <select class="form-select auth-input" id="contactSubject" required>
+                                        <option value="" selected disabled>Select a topic...</option>
+                                        <option value="courses">📚 Course Guidance & Enrollment</option>
+                                        <option value="lab">🧪 Scratch & Coding Lab Support</option>
+                                        <option value="account">🔐 Account & Technical Help</option>
+                                        <option value="school">🏫 School & Teacher Partnerships</option>
+                                        <option value="feedback">💡 Feedback & Suggestions</option>
+                                        <option value="other">💬 Other Questions</option>
+                                    </select>
+                                </div>
+                                <div class="invalid-feedback">Please select a topic.</div>
+                            </div>
+
+                            <!-- Message -->
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <label for="contactMessage" class="form-label fw-semibold small mb-0">Your Message
+                                        <span class="text-danger">*</span></label>
+                                    <span class="small text-muted" id="charCounter">0 / 1000</span>
+                                </div>
+                                <div class="input-group auth-input-group">
+                                    <span class="input-group-text align-items-start pt-2"><i
+                                            class="bi bi-chat-left-text-fill"></i></span>
+                                    <textarea class="form-control auth-input" id="contactMessage" rows="5"
+                                        maxlength="1000"
+                                        placeholder="How can we help you? Describe your question in detail..."
+                                        required></textarea>
+                                </div>
+                                <div class="invalid-feedback">Please enter your message.</div>
+                            </div>
+
+                            <!-- Privacy Note + Submit -->
+                            <div class="d-flex align-items-start gap-2 mb-3">
+                                <i class="bi bi-shield-lock-fill text-muted mt-1 small"></i>
+                                <p class="text-muted extra-small mb-0">Your information is safe with us. We'll never
+                                    share your data with third parties. By submitting, you agree to our <a href="#"
+                                        class="text-primary text-decoration-none">Privacy Policy</a>.</p>
+                            </div>
+
+                            <button type="submit" id="contactSubmitBtn"
+                                class="btn btn-primary w-100 auth-submit-btn fw-bold d-flex align-items-center justify-content-center gap-2">
+                                <span>Send Message</span>
+                                <i class="bi bi-send-fill"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Right Column: FAQ + Chat + Social -->
+                <div class="col-lg-5" data-aos="fade-left">
+                    <div class="d-flex flex-column gap-4">
+
+                        <!-- FAQ Card -->
+                        <div class="contact-faq-card p-4 rounded-4">
+                            <div class="d-flex align-items-center gap-2 mb-3">
+                                <div class="contact-icon-wrap flex-shrink-0"
+                                    style="width: 36px; height: 36px; font-size: 1rem;">
+                                    <i class="bi bi-question-lg"></i>
+                                </div>
+                                <h5 class="fw-bold text-dark-heading mb-0">Frequently Asked Questions</h5>
+                            </div>
+
+                            <div class="accordion accordion-custom" id="contactFaqAccordion">
+                                <div class="accordion-item border rounded-3 mb-2 overflow-hidden">
+                                    <h2 class="accordion-header" id="faqHeadingOne">
+                                        <button class="accordion-button fw-semibold" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#faqCollapseOne"
+                                            aria-expanded="true" aria-controls="faqCollapseOne">
+                                            <i class="bi bi-people-fill text-primary me-2"></i> Who can join CodeSpark
+                                            courses?
+                                        </button>
+                                    </h2>
+                                    <div id="faqCollapseOne" class="accordion-collapse collapse show"
+                                        aria-labelledby="faqHeadingOne" data-bs-parent="#contactFaqAccordion">
+                                        <div class="accordion-body text-muted small">
+                                            CodeSpark is designed for young learners (ages 8+), beginners, and students
+                                            looking for a friendly, step-by-step introduction to web development and
+                                            programming concepts.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item border rounded-3 mb-2 overflow-hidden">
+                                    <h2 class="accordion-header" id="faqHeadingTwo">
+                                        <button class="accordion-button collapsed fw-semibold" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#faqCollapseTwo"
+                                            aria-expanded="false" aria-controls="faqCollapseTwo">
+                                            <i class="bi bi-code-slash text-info me-2"></i> Is the Scratch & Coding Lab
+                                            free?
+                                        </button>
+                                    </h2>
+                                    <div id="faqCollapseTwo" class="accordion-collapse collapse"
+                                        aria-labelledby="faqHeadingTwo" data-bs-parent="#contactFaqAccordion">
+                                        <div class="accordion-body text-muted small">
+                                            Yes! The Scratch visual lab and web code playground are completely free.
+                                            Build and experiment with code blocks without any subscription.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item border rounded-3 mb-2 overflow-hidden">
+                                    <h2 class="accordion-header" id="faqHeadingThree">
+                                        <button class="accordion-button collapsed fw-semibold" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#faqCollapseThree"
+                                            aria-expanded="false" aria-controls="faqCollapseThree">
+                                            <i class="bi bi-award-fill text-warning me-2"></i> How do students earn
+                                            certificates?
+                                        </button>
+                                    </h2>
+                                    <div id="faqCollapseThree" class="accordion-collapse collapse"
+                                        aria-labelledby="faqHeadingThree" data-bs-parent="#contactFaqAccordion">
+                                        <div class="accordion-body text-muted small">
+                                            Certificates and badges are automatically awarded upon completing course
+                                            modules and passing practice quizzes with a score of 80% or above.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item border rounded-3 mb-2 overflow-hidden">
+                                    <h2 class="accordion-header" id="faqHeadingFour">
+                                        <button class="accordion-button collapsed fw-semibold" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#faqCollapseFour"
+                                            aria-expanded="false" aria-controls="faqCollapseFour">
+                                            <i class="bi bi-building-fill text-success me-2"></i> Do you offer plans for
+                                            schools?
+                                        </button>
+                                    </h2>
+                                    <div id="faqCollapseFour" class="accordion-collapse collapse"
+                                        aria-labelledby="faqHeadingFour" data-bs-parent="#contactFaqAccordion">
+                                        <div class="accordion-body text-muted small">
+                                            Yes! We provide educator dashboards, classroom site licenses, and group
+                                            enrollment options for schools and coding academies. Contact us for custom
+                                            pricing.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item border rounded-3 overflow-hidden">
+                                    <h2 class="accordion-header" id="faqHeadingFive">
+                                        <button class="accordion-button collapsed fw-semibold" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#faqCollapseFive"
+                                            aria-expanded="false" aria-controls="faqCollapseFive">
+                                            <i class="bi bi-shield-check text-primary me-2"></i> Is my child's data
+                                            safe?
+                                        </button>
+                                    </h2>
+                                    <div id="faqCollapseFive" class="accordion-collapse collapse"
+                                        aria-labelledby="faqHeadingFive" data-bs-parent="#contactFaqAccordion">
+                                        <div class="accordion-body text-muted small">
+                                            Absolutely. CodeSpark is COPPA-compliant and uses industry-standard
+                                            encryption. We never share personal data with third parties.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Live Chat Assistant Card -->
+                        <div class="contact-live-chat-card p-4 rounded-4">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="contact-chat-avatar flex-shrink-0">
+                                    <i class="bi bi-robot"></i>
+                                    <span class="chat-online-dot"></span>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h6 class="fw-bold mb-0 text-dark-heading">Need Instant Help?</h6>
+                                    <p class="small text-muted mb-0">Chat with CodeSpark AI Assistant — available 24/7.
+                                    </p>
+                                </div>
+                                <button type="button" id="btn-live-chat"
+                                    class="btn btn-primary rounded-pill btn-sm px-3 fw-semibold flex-shrink-0 d-flex align-items-center gap-1">
+                                    <i class="bi bi-chat-dots-fill"></i>
+                                    <span>Chat</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Social Links Card -->
+                        <div class="contact-social-card p-4 rounded-4 text-center">
+                            <h6 class="fw-bold text-dark-heading mb-1">Connect With Us</h6>
+                            <p class="small text-muted mb-3">Follow CodeSpark on social media for tips, updates &
+                                coding challenges.</p>
+                            <div class="d-flex justify-content-center gap-3">
+                                <a href="#" class="social-icon-link" aria-label="Twitter / X">
+                                    <i class="bi bi-twitter-x"></i>
+                                </a>
+                                <a href="#" class="social-icon-link social-icon-yt" aria-label="YouTube">
+                                    <i class="bi bi-youtube"></i>
+                                </a>
+                                <a href="#" class="social-icon-link social-icon-ig" aria-label="Instagram">
+                                    <i class="bi bi-instagram"></i>
+                                </a>
+                                <a href="#" class="social-icon-link social-icon-gh" aria-label="GitHub">
+                                    <i class="bi bi-github"></i>
+                                </a>
+                                <a href="#" class="social-icon-link social-icon-dc" aria-label="Discord">
+                                    <i class="bi bi-discord"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row gy-4 align-items-center">
+                <div class="col-lg-4 text-center text-lg-start">
+                    <a class="footer-brand fw-bold" href="index.html" aria-label="CodeSpark home">
+                        <span>CodeSpark</span>
+                    </a>
+                    <p class="footer-tagline mt-2 mb-0">
+                        Learn, Practice, and Build coding skills step by step.
+                    </p>
+                </div>
+                <div class="col-lg-5">
+                    <nav class="footer-nav" aria-label="Footer navigation">
+                        <ul class="nav justify-content-center justify-content-lg-center gap-2 gap-md-3">
+                            <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                            <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+                            <li class="nav-item"><a href="courses.html" class="nav-link">Courses</a></li>
+                            <li class="nav-item"><a href="quiz.html" class="nav-link">Quiz</a></li>
+                            <li class="nav-item"><a href="coding_lab.html" class="nav-link">Coding Lab</a></li>
+                            <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3 text-center text-lg-end">
+                    <p class="copyright-text mb-0">
+                        &copy; 2026 CodeSpark. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Custom JS -->
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
