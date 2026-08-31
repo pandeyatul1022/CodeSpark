@@ -621,21 +621,22 @@ header {
     font-size: 1.05rem;
 }
 
-/* ---------- Mobile Login Button ---------- */
+/* ---------- Mobile Header Login Button ---------- */
 
 .btn-login-mobile {
-    width: 2.65rem;
-    height: 2.65rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.95rem;
     color: #ffffff;
     background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
     border: none;
-    border-radius: 50%;
-    font-size: 1.2rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
     text-decoration: none;
-    box-shadow: 0 3px 10px rgba(79, 70, 229, 0.3);
+    box-shadow: 0 3px 10px rgba(79, 70, 229, 0.28);
     transition:
         transform 0.25s ease,
         box-shadow 0.25s ease,
@@ -645,7 +646,7 @@ header {
 .btn-login-mobile:hover {
     color: #ffffff;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(79, 70, 229, 0.4);
+    box-shadow: 0 5px 15px rgba(79, 70, 229, 0.38);
     filter: brightness(1.06);
 }
 
@@ -658,6 +659,10 @@ header {
     box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.18);
 }
 
+.btn-login-mobile i {
+    font-size: 1rem;
+}
+
 [data-theme="dark"] .btn-login-mobile {
     background: linear-gradient(135deg, #6366f1, #818cf8);
     box-shadow: 0 3px 10px rgba(99, 102, 241, 0.35);
@@ -665,6 +670,10 @@ header {
 
 [data-theme="dark"] .btn-login-mobile:hover {
     box-shadow: 0 5px 15px rgba(99, 102, 241, 0.45);
+}
+
+.mobile-menu-actions {
+    border-top: 1px solid var(--border-color);
 }
 
 @media (min-width: 992px) {
