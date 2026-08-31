@@ -42,10 +42,6 @@
                         <i class="bi bi-moon-stars" aria-hidden="true"></i>
                     </button>
 
-                    <a href="login.html" class="btn-login-mobile" aria-label="Login" title="Login">
-                        <i class="bi bi-box-arrow-in-right" aria-hidden="true"></i>
-                    </a>
-
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -103,6 +99,285 @@
             </div>
         </nav>
     </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Header -->
+        <section class="page-header page-header-courses d-flex align-items-center" aria-labelledby="courses-title">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto text-center page-header-content" data-aos="fade-up">
+                        <span class="section-label mb-3 d-inline-block">
+                            <i class="bi bi-journal-code me-1" aria-hidden="true"></i> Interactive Curriculum
+                        </span>
+                        <h1 id="courses-title" class="display-4 fw-bold text-white mb-3">
+                            Master In-Demand Coding Skills
+                        </h1>
+                        <p class="lead text-white-50 mb-4">
+                            From fundamental web development to advanced programming concepts, explore structured, hands-on courses designed for all experience levels.
+                        </p>
+                        <div class="d-flex justify-content-center gap-3 flex-wrap">
+                            <a href="#course-grid" class="btn btn-primary rounded-pill px-4 py-2 fw-semibold">
+                                <i class="bi bi-grid-fill me-2" aria-hidden="true"></i>Browse All Courses
+                            </a>
+                            <a href="coding_lab.html" class="btn btn-outline-light rounded-pill px-4 py-2 fw-semibold">
+                                <i class="bi bi-code-slash me-2" aria-hidden="true"></i>Practice in Lab
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filter & Search Controls -->
+        <section class="py-4 bg-surface-alt border-bottom" aria-label="Course Filters">
+            <div class="container">
+                <div class="row align-items-center g-3">
+                    <div class="col-lg-8">
+                        <div class="d-flex align-items-center gap-2 overflow-auto pb-2 pb-lg-0">
+                            <button type="button" class="course-filter-btn active" data-filter="all">All Courses</button>
+                            <button type="button" class="course-filter-btn" data-filter="web">Web Development</button>
+                            <button type="button" class="course-filter-btn" data-filter="languages">Languages</button>
+                            <button type="button" class="course-filter-btn" data-filter="dsa">Data &amp; Logic</button>
+                            <button type="button" class="course-filter-btn" data-filter="beginner">Beginner Friendly</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="course-search-wrapper">
+                            <i class="bi bi-search" aria-hidden="true"></i>
+                            <input type="text" id="courseSearchInput" class="form-control course-search-input" placeholder="Search courses (e.g. HTML, JS, Python)...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Courses Grid -->
+        <section id="course-grid" class="py-5" aria-labelledby="courses-catalog-title">
+            <div class="container">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <div>
+                        <h2 id="courses-catalog-title" class="fw-bold h3 mb-1">Explore Courses</h2>
+                        <p class="text-muted small mb-0">Showing all interactive courses &amp; hands-on modules</p>
+                    </div>
+                    <span class="badge bg-primary rounded-pill px-3 py-2">6 Courses Available</span>
+                </div>
+
+                <div class="row g-4" id="courseCardContainer">
+                    <!-- Course Card 1 -->
+                    <div class="col-md-6 col-lg-4 course-item" data-category="web beginner">
+                        <article class="course-card">
+                            <span class="course-badge bg-success text-white">Popular</span>
+                            <div class="course-card-icon">
+                                <i class="bi bi-filetype-html" aria-hidden="true"></i>
+                            </div>
+                            <h4 class="fw-bold mb-2">HTML5 &amp; Web Structure</h4>
+                            <p class="text-muted small mb-3">
+                                Learn modern semantic HTML5, accessible tags, document structure, forms, audio/video embeds, and web best practices.
+                            </p>
+                            <div class="course-meta">
+                                <span><i class="bi bi-clock me-1"></i>4 Weeks</span>
+                                <span><i class="bi bi-journal-text me-1"></i>24 Lessons</span>
+                                <span><i class="bi bi-bar-chart-line me-1"></i>Beginner</span>
+                            </div>
+                            <div class="mt-auto pt-3 border-top d-flex align-items-center justify-content-between">
+                                <span class="fw-bold text-warning small"><i class="bi bi-star-fill me-1"></i>4.9 (1.2k)</span>
+                                <a href="coding_lab.html" class="btn btn-primary btn-sm rounded-pill px-3 fw-semibold">
+                                    Start Course <i class="bi bi-arrow-right ms-1"></i>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Course Card 2 -->
+                    <div class="col-md-6 col-lg-4 course-item" data-category="web beginner">
+                        <article class="course-card">
+                            <span class="course-badge bg-primary text-white">Bestseller</span>
+                            <div class="course-card-icon" style="background: linear-gradient(135deg, #0284c7, #0369a1);">
+                                <i class="bi bi-filetype-css" aria-hidden="true"></i>
+                            </div>
+                            <h4 class="fw-bold mb-2">CSS3 Styling &amp; Flexbox</h4>
+                            <p class="text-muted small mb-3">
+                                Master responsive styling, CSS Grid, Flexbox layouts, animations, transitions, and modern CSS variables.
+                            </p>
+                            <div class="course-meta">
+                                <span><i class="bi bi-clock me-1"></i>6 Weeks</span>
+                                <span><i class="bi bi-journal-text me-1"></i>32 Lessons</span>
+                                <span><i class="bi bi-bar-chart-line me-1"></i>Beginner</span>
+                            </div>
+                            <div class="mt-auto pt-3 border-top d-flex align-items-center justify-content-between">
+                                <span class="fw-bold text-warning small"><i class="bi bi-star-fill me-1"></i>4.8 (950)</span>
+                                <a href="coding_lab.html" class="btn btn-primary btn-sm rounded-pill px-3 fw-semibold">
+                                    Start Course <i class="bi bi-arrow-right ms-1"></i>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Course Card 3 -->
+                    <div class="col-md-6 col-lg-4 course-item" data-category="web languages">
+                        <article class="course-card">
+                            <span class="course-badge bg-warning text-dark">Featured</span>
+                            <div class="course-card-icon" style="background: linear-gradient(135deg, #d97706, #b45309);">
+                                <i class="bi bi-filetype-js" aria-hidden="true"></i>
+                            </div>
+                            <h4 class="fw-bold mb-2">JavaScript ES6+ Essentials</h4>
+                            <p class="text-muted small mb-3">
+                                Build dynamic web apps! Learn JS fundamentals, DOM manipulation, ES6 features, async/await, and APIs.
+                            </p>
+                            <div class="course-meta">
+                                <span><i class="bi bi-clock me-1"></i>8 Weeks</span>
+                                <span><i class="bi bi-journal-text me-1"></i>45 Lessons</span>
+                                <span><i class="bi bi-bar-chart-line me-1"></i>Intermediate</span>
+                            </div>
+                            <div class="mt-auto pt-3 border-top d-flex align-items-center justify-content-between">
+                                <span class="fw-bold text-warning small"><i class="bi bi-star-fill me-1"></i>4.9 (2.1k)</span>
+                                <a href="coding_lab.html" class="btn btn-primary btn-sm rounded-pill px-3 fw-semibold">
+                                    Start Course <i class="bi bi-arrow-right ms-1"></i>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Course Card 4 -->
+                    <div class="col-md-6 col-lg-4 course-item" data-category="languages beginner">
+                        <article class="course-card">
+                            <span class="course-badge bg-danger text-white">Hot</span>
+                            <div class="course-card-icon" style="background: linear-gradient(135deg, #0d9488, #0f766e);">
+                                <i class="bi bi-filetype-py" aria-hidden="true"></i>
+                            </div>
+                            <h4 class="fw-bold mb-2">Python for Beginners</h4>
+                            <p class="text-muted small mb-3">
+                                Start your coding journey with Python! Learn syntax, data types, loops, functions, and fundamental logic building.
+                            </p>
+                            <div class="course-meta">
+                                <span><i class="bi bi-clock me-1"></i>6 Weeks</span>
+                                <span><i class="bi bi-journal-text me-1"></i>30 Lessons</span>
+                                <span><i class="bi bi-bar-chart-line me-1"></i>Beginner</span>
+                            </div>
+                            <div class="mt-auto pt-3 border-top d-flex align-items-center justify-content-between">
+                                <span class="fw-bold text-warning small"><i class="bi bi-star-fill me-1"></i>4.9 (1.8k)</span>
+                                <a href="coding_lab.html" class="btn btn-primary btn-sm rounded-pill px-3 fw-semibold">
+                                    Start Course <i class="bi bi-arrow-right ms-1"></i>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Course Card 5 -->
+                    <div class="col-md-6 col-lg-4 course-item" data-category="web">
+                        <article class="course-card">
+                            <span class="course-badge bg-info text-dark">New</span>
+                            <div class="course-card-icon" style="background: linear-gradient(135deg, #7c3aed, #6d28d9);">
+                                <i class="bi bi-bootstrap-fill" aria-hidden="true"></i>
+                            </div>
+                            <h4 class="fw-bold mb-2">Bootstrap 5 Framework</h4>
+                            <p class="text-muted small mb-3">
+                                Build mobile-responsive websites fast with Bootstrap grid system, components, utility classes, and custom themes.
+                            </p>
+                            <div class="course-meta">
+                                <span><i class="bi bi-clock me-1"></i>4 Weeks</span>
+                                <span><i class="bi bi-journal-text me-1"></i>20 Lessons</span>
+                                <span><i class="bi bi-bar-chart-line me-1"></i>Intermediate</span>
+                            </div>
+                            <div class="mt-auto pt-3 border-top d-flex align-items-center justify-content-between">
+                                <span class="fw-bold text-warning small"><i class="bi bi-star-fill me-1"></i>4.7 (720)</span>
+                                <a href="coding_lab.html" class="btn btn-primary btn-sm rounded-pill px-3 fw-semibold">
+                                    Start Course <i class="bi bi-arrow-right ms-1"></i>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Course Card 6 -->
+                    <div class="col-md-6 col-lg-4 course-item" data-category="dsa">
+                        <article class="course-card">
+                            <span class="course-badge bg-secondary text-white">Advanced</span>
+                            <div class="course-card-icon" style="background: linear-gradient(135deg, #e11d48, #be123c);">
+                                <i class="bi bi-diagram-3-fill" aria-hidden="true"></i>
+                            </div>
+                            <h4 class="fw-bold mb-2">Data Structures &amp; Logic</h4>
+                            <p class="text-muted small mb-3">
+                                Master essential problem solving: arrays, linked lists, stacks, queues, sorting algorithms, and time complexity.
+                            </p>
+                            <div class="course-meta">
+                                <span><i class="bi bi-clock me-1"></i>10 Weeks</span>
+                                <span><i class="bi bi-journal-text me-1"></i>50 Lessons</span>
+                                <span><i class="bi bi-bar-chart-line me-1"></i>Advanced</span>
+                            </div>
+                            <div class="mt-auto pt-3 border-top d-flex align-items-center justify-content-between">
+                                <span class="fw-bold text-warning small"><i class="bi bi-star-fill me-1"></i>4.9 (1.4k)</span>
+                                <a href="coding_lab.html" class="btn btn-primary btn-sm rounded-pill px-3 fw-semibold">
+                                    Start Course <i class="bi bi-arrow-right ms-1"></i>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Learning Path Roadmap Section -->
+        <section class="py-5 bg-surface-alt" aria-labelledby="roadmap-title">
+            <div class="container">
+                <div class="text-center max-width-md mx-auto mb-5" data-aos="fade-up">
+                    <span class="about-pill-badge mb-2">Guided Pathway</span>
+                    <h2 id="roadmap-title" class="fw-bold display-6 mb-3">How Your Learning Path Works</h2>
+                    <p class="text-muted">Structured 3-step learning approach designed to take you from absolute zero to building real-world software.</p>
+                </div>
+
+                <div class="row g-4 text-center">
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="p-4 rounded-4 bg-card border h-100">
+                            <div class="about-feature-icon mx-auto mb-3">
+                                <i class="bi bi-1-circle-fill" aria-hidden="true"></i>
+                            </div>
+                            <h5 class="fw-bold mb-2">1. Learn Core Concepts</h5>
+                            <p class="text-muted small mb-0">Study bite-sized interactive modules covering web fundamentals, syntax, and logic.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="p-4 rounded-4 bg-card border h-100">
+                            <div class="about-feature-icon mx-auto mb-3" style="background: linear-gradient(135deg, #0d9488, #059669);">
+                                <i class="bi bi-2-circle-fill" aria-hidden="true"></i>
+                            </div>
+                            <h5 class="fw-bold mb-2">2. Practice &amp; Test</h5>
+                            <p class="text-muted small mb-0">Solve interactive quizzes and practice live coding exercises inside the CodeSpark Lab.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="p-4 rounded-4 bg-card border h-100">
+                            <div class="about-feature-icon mx-auto mb-3" style="background: linear-gradient(135deg, #ec4899, #8b5cf6);">
+                                <i class="bi bi-3-circle-fill" aria-hidden="true"></i>
+                            </div>
+                            <h5 class="fw-bold mb-2">3. Build Projects</h5>
+                            <p class="text-muted small mb-0">Combine your skills to create portfolio-ready web applications and share them with the world.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-5" aria-labelledby="courses-cta-title">
+            <div class="container" data-aos="zoom-in">
+                <div class="about-cta-box text-center">
+                    <h2 id="courses-cta-title" class="display-6 fw-bold mb-3">Unsure Where to Start?</h2>
+                    <p class="lead text-white-50 max-width-md mx-auto mb-4">
+                        Take a quick interactive quiz to evaluate your current level or test out code snippets in our free Coding Lab.
+                    </p>
+                    <div class="d-flex justify-content-center gap-3 flex-wrap">
+                        <a href="quiz.html" class="btn btn-light rounded-pill px-4 py-2 fw-semibold text-primary">
+                            <i class="bi bi-question-circle-fill me-2" aria-hidden="true"></i>Take Skill Quiz
+                        </a>
+                        <a href="coding_lab.html" class="btn btn-outline-light rounded-pill px-4 py-2 fw-semibold">
+                            <i class="bi bi-code-slash me-2" aria-hidden="true"></i>Open Coding Lab
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer class="site-footer">

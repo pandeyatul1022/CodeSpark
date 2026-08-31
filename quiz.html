@@ -42,10 +42,6 @@
                         <i class="bi bi-moon-stars" aria-hidden="true"></i>
                     </button>
 
-                    <a href="login.html" class="btn-login-mobile" aria-label="Login" title="Login">
-                        <i class="bi bi-box-arrow-in-right" aria-hidden="true"></i>
-                    </a>
-
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -103,6 +99,314 @@
             </div>
         </nav>
     </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Header -->
+        <section class="page-header page-header-quiz d-flex align-items-center" aria-labelledby="quiz-title">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto text-center page-header-content" data-aos="fade-up">
+                        <span class="section-label mb-3 d-inline-block">
+                            <i class="bi bi-patch-check-fill me-1" aria-hidden="true"></i> Official Certification
+                        </span>
+                        <h1 id="quiz-title" class="display-4 fw-bold text-white mb-3">
+                            CodeSpark Certification Quiz
+                        </h1>
+                        <p class="lead text-white-50 mb-4">
+                            Test your programming knowledge across 100 marks. Score 70% or higher to earn your verifiable CodeSpark Certificate of Completion!
+                        </p>
+                        <div id="quizAuthBanner" class="alert alert-warning border-0 rounded-4 shadow-sm d-inline-flex align-items-center gap-2 mb-0 px-4 py-2 text-start">
+                            <i class="bi bi-shield-lock-fill text-warning fs-5"></i>
+                            <div>
+                                <strong class="d-block">Login Required to Take Quiz</strong>
+                                <span class="small">Please log in to track your scores and generate your certificate.</span>
+                            </div>
+                            <a href="login.html" class="btn btn-warning btn-sm rounded-pill ms-3 fw-semibold text-dark">
+                                Login Now <i class="bi bi-box-arrow-in-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Container -->
+        <section class="py-5" aria-label="Certification Quiz Engine">
+            <div class="container">
+
+                <!-- SCREEN 1: Quiz Selection & Start Screen -->
+                <div id="quizStartScreen" data-aos="fade-up">
+                    <div class="row g-4 align-items-center mb-5">
+                        <div class="col-lg-7">
+                            <span class="about-pill-badge mb-2">Select Your Track</span>
+                            <h2 class="fw-bold display-6 mb-3">Choose Course for Certification</h2>
+                            <p class="text-muted mb-4">
+                                Questions are tailored specifically to your chosen course track. Each quiz contains 10 comprehensive questions worth 10 marks each (Total: 100 Marks).
+                            </p>
+
+                            <div class="row g-3" id="quizCourseSelection">
+                                <div class="col-md-6">
+                                    <div class="quiz-course-card selected" data-course="html_css">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="about-feature-icon mb-0">
+                                                <i class="bi bi-filetype-html"></i>
+                                            </div>
+                                            <div>
+                                                <h6 class="fw-bold mb-1 text-dark-heading">HTML5 &amp; CSS3 Basics</h6>
+                                                <span class="small text-muted">10 Qs • 100 Marks</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="quiz-course-card" data-course="javascript">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="about-feature-icon mb-0" style="background: linear-gradient(135deg, #d97706, #b45309);">
+                                                <i class="bi bi-filetype-js"></i>
+                                            </div>
+                                            <div>
+                                                <h6 class="fw-bold mb-1 text-dark-heading">JavaScript ES6+</h6>
+                                                <span class="small text-muted">10 Qs • 100 Marks</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="quiz-course-card" data-course="python">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="about-feature-icon mb-0" style="background: linear-gradient(135deg, #0d9488, #0f766e);">
+                                                <i class="bi bi-filetype-py"></i>
+                                            </div>
+                                            <div>
+                                                <h6 class="fw-bold mb-1 text-dark-heading">Python Programming</h6>
+                                                <span class="small text-muted">10 Qs • 100 Marks</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="quiz-course-card" data-course="fullstack">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="about-feature-icon mb-0" style="background: linear-gradient(135deg, #7c3aed, #6d28d9);">
+                                                <i class="bi bi-trophy-fill"></i>
+                                            </div>
+                                            <div>
+                                                <h6 class="fw-bold mb-1 text-dark-heading">Full-Stack Master Test</h6>
+                                                <span class="small text-muted">10 Qs • 100 Marks</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-5">
+                            <div class="p-4 rounded-4 bg-card border shadow-sm">
+                                <h5 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                                    <i class="bi bi-shield-check text-primary"></i> Exam Specifications
+                                </h5>
+                                <ul class="list-unstyled mb-4 small text-muted">
+                                    <li class="d-flex align-items-center gap-2 mb-2">
+                                        <i class="bi bi-check-circle-fill text-success"></i>
+                                        <span><strong>100 Total Marks</strong> (10 Marks / Question)</span>
+                                    </li>
+                                    <li class="d-flex align-items-center gap-2 mb-2">
+                                        <i class="bi bi-check-circle-fill text-success"></i>
+                                        <span><strong>70% Passing Threshold</strong> for Certificate</span>
+                                    </li>
+                                    <li class="d-flex align-items-center gap-2 mb-2">
+                                        <i class="bi bi-check-circle-fill text-success"></i>
+                                        <span><strong>15 Minutes</strong> Timer Limit</span>
+                                    </li>
+                                    <li class="d-flex align-items-center gap-2 mb-2">
+                                        <i class="bi bi-check-circle-fill text-success"></i>
+                                        <span><strong>4 Question Formats</strong> (MCQ, Fill Blanks, True/False, Code)</span>
+                                    </li>
+                                </ul>
+
+                                <button type="button" id="btnStartQuiz" class="btn btn-primary w-100 rounded-pill py-3 fw-bold shadow">
+                                    <i class="bi bi-play-fill me-1"></i> Start Certification Quiz
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SCREEN 2: Live Quiz Engine (Initially Hidden) -->
+                <div id="quizEngineScreen" class="d-none max-width-lg mx-auto">
+                    <!-- Progress & Status Header -->
+                    <div class="p-4 rounded-4 bg-card border shadow-sm mb-4">
+                        <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-3">
+                            <div>
+                                <span class="badge bg-primary rounded-pill px-3 py-1 mb-1" id="quizActiveCourseBadge">HTML5 &amp; CSS3</span>
+                                <h5 class="fw-bold mb-0" id="quizQuestionCounter">Question 1 of 10</h5>
+                            </div>
+                            <div class="d-flex align-items-center gap-4">
+                                <div class="text-end">
+                                    <span class="small text-muted d-block">Time Remaining</span>
+                                    <span class="fw-bold text-danger fs-5 d-flex align-items-center gap-1" id="quizTimer">
+                                        <i class="bi bi-stopwatch"></i> 15:00
+                                    </span>
+                                </div>
+                                <div class="text-end border-start ps-4">
+                                    <span class="small text-muted d-block">Total Marks</span>
+                                    <span class="fw-bold text-primary fs-5" id="quizLiveMarks">100 Marks</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="progress rounded-pill" style="height: 8px;">
+                            <div id="quizProgressBar" class="progress-bar bg-primary" role="progressbar" style="width: 10%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Question Container -->
+                    <div class="p-4 p-md-5 rounded-4 bg-card border shadow-sm mb-4" id="quizQuestionCard">
+                        <!-- Question Header -->
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <span class="badge bg-secondary rounded-pill px-3 py-1" id="quizTypeBadge">Multiple Choice</span>
+                            <span class="fw-semibold text-primary small">10 Marks</span>
+                        </div>
+
+                        <!-- Question Text -->
+                        <h4 class="fw-bold text-dark-heading mb-3" id="quizQuestionText">Loading Question...</h4>
+
+                        <!-- Optional Code Snippet -->
+                        <div id="quizCodeContainer" class="quiz-code-block mb-4 d-none"></div>
+
+                        <!-- Input / Options Area -->
+                        <div id="quizOptionsContainer" class="row g-3"></div>
+                    </div>
+
+                    <!-- Navigation Controls -->
+                    <div class="d-flex align-items-center justify-content-between">
+                        <button type="button" id="btnPrevQuestion" class="btn btn-outline-secondary rounded-pill px-4" disabled>
+                            <i class="bi bi-arrow-left me-1"></i> Previous
+                        </button>
+                        <button type="button" id="btnNextQuestion" class="btn btn-primary rounded-pill px-4 fw-semibold">
+                            Next Question <i class="bi bi-arrow-right ms-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- SCREEN 3: Scorecard & Certificate Result Screen (Initially Hidden) -->
+                <div id="quizResultScreen" class="d-none max-width-lg mx-auto text-center" data-aos="zoom-in">
+                    <div class="p-5 rounded-4 bg-card border shadow-sm">
+                        <!-- Pass/Fail Badge -->
+                        <div id="resultStatusIcon" class="about-team-avatar mx-auto mb-3" style="width: 100px; height: 100px; font-size: 3rem;">
+                            <i class="bi bi-award-fill"></i>
+                        </div>
+
+                        <h2 id="resultTitle" class="display-6 fw-bold mb-2">Quiz Completed!</h2>
+                        <p id="resultSubtitle" class="text-muted max-width-md mx-auto mb-4">Here is your scorecard breakdown for this attempt.</p>
+
+                        <!-- Scorecard Grid -->
+                        <div class="row g-3 max-width-md mx-auto mb-4">
+                            <div class="col-4">
+                                <div class="p-3 rounded-3 bg-surface-alt border">
+                                    <span class="small text-muted d-block">Score</span>
+                                    <strong id="resultScore" class="fs-4 text-primary">80 / 100</strong>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="p-3 rounded-3 bg-surface-alt border">
+                                    <span class="small text-muted d-block">Percentage</span>
+                                    <strong id="resultPercentage" class="fs-4 text-success">80%</strong>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="p-3 rounded-3 bg-surface-alt border">
+                                    <span class="small text-muted d-block">Result</span>
+                                    <strong id="resultStatusText" class="fs-4 text-success">PASSED</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div id="resultActions" class="d-flex justify-content-center gap-3 flex-wrap">
+                            <button type="button" id="btnViewCertificate" class="btn btn-success rounded-pill px-4 py-2 fw-semibold d-none">
+                                <i class="bi bi-patch-check-fill me-2"></i>View &amp; Print Certificate
+                            </button>
+                            <button type="button" id="btnRetryQuiz" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-semibold">
+                                <i class="bi bi-arrow-counterclockwise me-2"></i>Retake Quiz
+                            </button>
+                            <a href="courses.html" class="btn btn-secondary rounded-pill px-4 py-2 fw-semibold">
+                                <i class="bi bi-journal-code me-2"></i>Back to Courses
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Certificate Modal -->
+    <div class="modal fade" id="certificateModal" tabindex="-1" aria-labelledby="certificateModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 rounded-4 shadow-lg overflow-hidden">
+                <div class="modal-header border-0 bg-dark text-white no-print">
+                    <h5 class="modal-title fw-bold" id="certificateModalLabel">
+                        <i class="bi bi-award-fill text-warning me-2"></i>Verified CodeSpark Certificate
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4 bg-light">
+                    <!-- Certificate Document Container -->
+                    <div id="certificateCard" class="certificate-container text-center">
+                        <div class="certificate-watermark">CODESPARK</div>
+                        
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <div class="fw-bold fs-4 text-primary d-flex align-items-center gap-2">
+                                <i class="bi bi-code-square"></i> CodeSpark
+                            </div>
+                            <div class="certificate-gold-seal">
+                                <i class="bi bi-shield-check certificate-seal-icon"></i>
+                                <span class="certificate-seal-text">VERIFIED</span>
+                            </div>
+                        </div>
+
+                        <span class="text-uppercase fw-bold text-muted small letter-spacing-2">CERTIFICATE OF ACHIEVEMENT</span>
+                        <h2 class="certificate-title my-3">PROUDLY PRESENTED TO</h2>
+
+                        <div class="my-4">
+                            <h3 id="certStudentName" class="certificate-recipient">Student Name</h3>
+                        </div>
+
+                        <p class="text-muted max-width-md mx-auto mb-4 fs-6">
+                            for successfully demonstrating proficiency and passing the 100-Mark Official Assessment in
+                        </p>
+
+                        <h4 id="certCourseName" class="fw-bold text-dark fs-3 mb-4">HTML5 &amp; CSS3 Web Development</h4>
+
+                        <div class="row align-items-end mt-5 pt-3 border-top">
+                            <div class="col-4 text-start">
+                                <span class="small text-muted d-block">Issue Date</span>
+                                <strong id="certIssueDate" class="text-dark small">August 31, 2026</strong>
+                            </div>
+                            <div class="col-4 text-center">
+                                <span class="small text-muted d-block">Certificate ID</span>
+                                <strong id="certId" class="text-primary small">CS-2026-89412</strong>
+                            </div>
+                            <div class="col-4 text-end">
+                                <div class="fw-bold text-dark border-bottom pb-1 mb-1 font-monospace">Atul Pandey</div>
+                                <span class="small text-muted d-block">Lead Instructor &amp; Director</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 bg-surface-alt no-print justify-content-between">
+                    <span class="small text-muted"><i class="bi bi-info-circle me-1"></i>Score: <strong id="certScoreDisplay">80% Distinction</strong></span>
+                    <div class="d-flex gap-2">
+                        <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+                        <button type="button" id="btnPrintCertificate" class="btn btn-primary rounded-pill px-4 fw-semibold">
+                            <i class="bi bi-printer-fill me-1"></i> Print / Save PDF
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="site-footer">

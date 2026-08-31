@@ -42,10 +42,6 @@
                         <i class="bi bi-moon-stars" aria-hidden="true"></i>
                     </button>
 
-                    <a href="login.html" class="btn-login-mobile" aria-label="Login" title="Login">
-                        <i class="bi bi-box-arrow-in-right" aria-hidden="true"></i>
-                    </a>
-
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -103,6 +99,182 @@
             </div>
         </nav>
     </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Header -->
+        <section class="page-header page-header-lab d-flex align-items-center" aria-labelledby="lab-title">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto text-center page-header-content" data-aos="fade-up">
+                        <span class="section-label mb-3 d-inline-block">
+                            <i class="bi bi-terminal-fill me-1" aria-hidden="true"></i> Live Code Playground
+                        </span>
+                        <h1 id="lab-title" class="display-4 fw-bold text-white mb-3">
+                            Interactive Web Coding Lab
+                        </h1>
+                        <p class="lead text-white-50 mb-4">
+                            Write HTML, CSS, and JavaScript in real-time. Test code live, inspect console logs, export projects, and build hands-on web applications!
+                        </p>
+                        <div class="d-flex justify-content-center gap-3 flex-wrap">
+                            <a href="#lab-workspace" class="btn btn-primary rounded-pill px-4 py-2 fw-semibold">
+                                <i class="bi bi-code-slash me-2" aria-hidden="true"></i>Open Workspace
+                            </a>
+                            <a href="courses.html" class="btn btn-outline-light rounded-pill px-4 py-2 fw-semibold">
+                                <i class="bi bi-journal-code me-2" aria-hidden="true"></i>Browse Lessons
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Coding Lab Workspace Section -->
+        <section id="lab-workspace" class="py-5" aria-label="Live Code Editor and Output">
+            <div class="container">
+
+                <!-- Template Selector & Controls Bar -->
+                <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-4" data-aos="fade-up">
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="fw-bold small text-muted text-uppercase letter-spacing-1"><i class="bi bi-collection-play-fill text-primary me-1"></i> Templates:</span>
+                        <select id="labTemplateSelect" class="form-select form-select-sm rounded-pill border shadow-sm" style="width: 240px; cursor: pointer;">
+                            <option value="hero">🚀 Default: Hero Banner</option>
+                            <option value="glassmorphic">🎨 Glassmorphic Profile Card</option>
+                            <option value="counter">⚛️ Interactive Counter App</option>
+                            <option value="todo">📝 Working Task List (Todo App)</option>
+                            <option value="theme_toggle">🔮 Light/Dark Switcher Widget</option>
+                        </select>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-2">
+                        <button type="button" id="btnLabRun" class="btn btn-success rounded-pill btn-sm px-3 fw-bold shadow-sm">
+                            <i class="bi bi-play-fill me-1"></i> Run Code
+                        </button>
+                        <button type="button" id="btnLabReset" class="btn btn-outline-secondary rounded-pill btn-sm px-3">
+                            <i class="bi bi-arrow-counterclockwise me-1"></i> Reset
+                        </button>
+                        <button type="button" id="btnLabCopy" class="btn btn-outline-primary rounded-pill btn-sm px-3">
+                            <i class="bi bi-clipboard me-1"></i> Copy
+                        </button>
+                        <button type="button" id="btnLabDownload" class="btn btn-primary rounded-pill btn-sm px-3 fw-semibold">
+                            <i class="bi bi-download me-1"></i> Export HTML
+                        </button>
+                    </div>
+                </div>
+
+                <!-- IDE Card (Editor + Preview Split View) -->
+                <div class="lab-ide-card" data-aos="fade-up" data-aos-delay="100">
+                    <!-- Editor Tabs Toolbar -->
+                    <div class="lab-toolbar">
+                        <div class="d-flex align-items-center gap-2">
+                            <button type="button" class="lab-tab-btn active" data-tab="html">
+                                <i class="bi bi-filetype-html text-warning"></i> index.html
+                            </button>
+                            <button type="button" class="lab-tab-btn" data-tab="css">
+                                <i class="bi bi-filetype-css text-info"></i> style.css
+                            </button>
+                            <button type="button" class="lab-tab-btn" data-tab="js">
+                                <i class="bi bi-filetype-js text-warning"></i> script.js
+                            </button>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="badge bg-success rounded-pill px-3 py-1"><i class="bi bi-record-fill me-1"></i> Auto-Sync On</span>
+                        </div>
+                    </div>
+
+                    <!-- Split Row: Textarea Editors (Left) vs Preview & Console (Right) -->
+                    <div class="row g-0">
+                        <!-- Left Column: Code Textareas -->
+                        <div class="col-lg-6 border-end border-secondary border-opacity-25">
+                            <!-- HTML Editor -->
+                            <div id="htmlTabPane" class="lab-editor-pane">
+                                <textarea id="htmlEditor" class="lab-code-textarea" spellcheck="false" placeholder="Write HTML markup here..."></textarea>
+                            </div>
+                            <!-- CSS Editor (Hidden initially) -->
+                            <div id="cssTabPane" class="lab-editor-pane d-none">
+                                <textarea id="cssEditor" class="lab-code-textarea" spellcheck="false" placeholder="Write CSS styles here..."></textarea>
+                            </div>
+                            <!-- JS Editor (Hidden initially) -->
+                            <div id="jsTabPane" class="lab-editor-pane d-none">
+                                <textarea id="jsEditor" class="lab-code-textarea" spellcheck="false" placeholder="Write JavaScript code here..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Right Column: Live Output Preview & Console -->
+                        <div class="col-lg-6 d-flex flex-column">
+                            <div class="p-2 bg-dark text-white-50 border-bottom border-secondary border-opacity-25 d-flex align-items-center justify-content-between small">
+                                <span><i class="bi bi-display me-1 text-primary"></i> Live Output Preview</span>
+                                <span id="labStatusIndicator" class="small text-success"><i class="bi bi-check-circle-fill me-1"></i> Ready</span>
+                            </div>
+
+                            <div class="lab-preview-wrapper flex-grow-1">
+                                <iframe id="labPreviewIframe" class="lab-preview-iframe" title="Live Preview Output" sandbox="allow-scripts allow-modals allow-same-origin"></iframe>
+                            </div>
+
+                            <!-- Built-in Terminal Console Output -->
+                            <div class="lab-console-panel">
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <span class="small text-white-50 fw-semibold"><i class="bi bi-terminal me-1 text-info"></i> Console Output</span>
+                                    <button type="button" id="btnClearConsole" class="btn btn-link btn-sm text-white-50 text-decoration-none p-0">Clear Console</button>
+                                </div>
+                                <div id="labConsoleLogs">
+                                    <div class="lab-console-log-line">
+                                        <i class="bi bi-info-circle-fill text-info"></i>
+                                        <span class="text-white-50">Console output ready. console.log() statements will appear here.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Features Cards Grid below IDE (Interactive Action Cards) -->
+                <div class="row g-4 mt-5">
+                    <div class="col-md-3">
+                        <div id="cardInstantExec" class="p-4 rounded-4 bg-card border text-center h-100 feature-action-card" style="cursor: pointer; transition: all 0.25s ease;" title="Click to trigger instant preview update">
+                            <div class="about-stat-icon mx-auto mb-2">
+                                <i class="bi bi-lightning-charge-fill"></i>
+                            </div>
+                            <h6 class="fw-bold mb-1 text-dark-heading">Instant Execution</h6>
+                            <p class="small text-muted mb-0">Changes update in real-time as you type HTML, CSS, and JS.</p>
+                            <span class="badge bg-primary-subtle text-primary rounded-pill mt-3 small"><i class="bi bi-hand-index-thumb me-1"></i> Click to Test</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div id="cardConsole" class="p-4 rounded-4 bg-card border text-center h-100 feature-action-card" style="cursor: pointer; transition: all 0.25s ease;" title="Click to inspect and focus terminal console">
+                            <div class="about-stat-icon mx-auto mb-2" style="background: rgba(13, 148, 136, 0.08); color: #0d9488;">
+                                <i class="bi bi-terminal-fill"></i>
+                            </div>
+                            <h6 class="fw-bold mb-1 text-dark-heading">Interactive Console</h6>
+                            <p class="small text-muted mb-0">Inspect JS logs and debug scripts directly inside the built-in terminal.</p>
+                            <span class="badge bg-success-subtle text-success rounded-pill mt-3 small"><i class="bi bi-terminal me-1"></i> Focus Console</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div id="cardExport" class="p-4 rounded-4 bg-card border text-center h-100 feature-action-card" style="cursor: pointer; transition: all 0.25s ease;" title="Click to export index.html project file">
+                            <div class="about-stat-icon mx-auto mb-2" style="background: rgba(217, 119, 6, 0.08); color: #d97706;">
+                                <i class="bi bi-download"></i>
+                            </div>
+                            <h6 class="fw-bold mb-1 text-dark-heading">One-Click Export</h6>
+                            <p class="small text-muted mb-0">Download bundled index.html project file ready to deploy anywhere.</p>
+                            <span class="badge bg-warning-subtle text-warning rounded-pill mt-3 small"><i class="bi bi-download me-1"></i> Download Project</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div id="cardTemplates" class="p-4 rounded-4 bg-card border text-center h-100 feature-action-card" style="cursor: pointer; transition: all 0.25s ease;" title="Click to cycle starter templates">
+                            <div class="about-stat-icon mx-auto mb-2" style="background: rgba(236, 72, 153, 0.08); color: #ec4899;">
+                                <i class="bi bi-folder-symlink-fill"></i>
+                            </div>
+                            <h6 class="fw-bold mb-1 text-dark-heading">Pre-built Templates</h6>
+                            <p class="small text-muted mb-0">Start instantly with starter templates for Todo apps, Counters, and UI Cards.</p>
+                            <span class="badge bg-danger-subtle text-danger rounded-pill mt-3 small"><i class="bi bi-arrow-repeat me-1"></i> Cycle Template</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer class="site-footer">
