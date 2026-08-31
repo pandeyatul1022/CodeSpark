@@ -621,55 +621,52 @@ header {
     font-size: 1.05rem;
 }
 
-/* ---------- Mobile Header Login Button ---------- */
+/* ---------- Mobile Header Login Button (Theme Toggle Style) ---------- */
 
 .btn-login-mobile {
+    width: 2.65rem;
+    height: 2.65rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.4rem;
-    padding: 0.45rem 0.95rem;
-    color: #ffffff;
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
-    border: none;
-    border-radius: 999px;
-    font-size: 0.85rem;
-    font-weight: 600;
+    flex-shrink: 0;
+    color: var(--text-color);
+    background-color: var(--theme-toggle-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    font-size: 1.15rem;
+    line-height: 1;
     text-decoration: none;
-    box-shadow: 0 3px 10px rgba(79, 70, 229, 0.28);
+    cursor: pointer;
     transition:
+        color 0.25s ease,
+        background-color 0.25s ease,
+        border-color 0.25s ease,
         transform 0.25s ease,
-        box-shadow 0.25s ease,
-        filter 0.25s ease;
+        box-shadow 0.25s ease;
 }
 
 .btn-login-mobile:hover {
-    color: #ffffff;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(79, 70, 229, 0.38);
-    filter: brightness(1.06);
+    color: var(--primary-color);
+    background-color: var(--theme-toggle-hover);
+    border-color: rgba(79, 70, 229, 0.35);
+    transform: scale(1.08);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.15);
 }
 
 .btn-login-mobile:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.25);
+    transform: scale(0.96);
 }
 
 .btn-login-mobile:focus-visible {
-    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.18);
-}
-
-.btn-login-mobile i {
-    font-size: 1rem;
-}
-
-[data-theme="dark"] .btn-login-mobile {
-    background: linear-gradient(135deg, #6366f1, #818cf8);
-    box-shadow: 0 3px 10px rgba(99, 102, 241, 0.35);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
 }
 
 [data-theme="dark"] .btn-login-mobile:hover {
-    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.45);
+    color: #818cf8;
+    border-color: rgba(129, 140, 248, 0.4);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
 }
 
 .mobile-menu-actions {
