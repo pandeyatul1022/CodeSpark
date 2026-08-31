@@ -621,6 +621,58 @@ header {
     font-size: 1.05rem;
 }
 
+/* ---------- Mobile Login Button ---------- */
+
+.btn-login-mobile {
+    width: 2.65rem;
+    height: 2.65rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+    border: none;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    text-decoration: none;
+    box-shadow: 0 3px 10px rgba(79, 70, 229, 0.3);
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        filter 0.25s ease;
+}
+
+.btn-login-mobile:hover {
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(79, 70, 229, 0.4);
+    filter: brightness(1.06);
+}
+
+.btn-login-mobile:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.25);
+}
+
+.btn-login-mobile:focus-visible {
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.18);
+}
+
+[data-theme="dark"] .btn-login-mobile {
+    background: linear-gradient(135deg, #6366f1, #818cf8);
+    box-shadow: 0 3px 10px rgba(99, 102, 241, 0.35);
+}
+
+[data-theme="dark"] .btn-login-mobile:hover {
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.45);
+}
+
+@media (min-width: 992px) {
+    .btn-login-mobile {
+        display: none;
+    }
+}
+
 
 /* ---------- Mobile & Tablet Toggle Button ---------- */
 
