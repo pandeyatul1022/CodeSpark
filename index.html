@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodeSpark | Home</title>
+    <meta name="description"
+        content="CodeSpark - A modern e-learning platform empowering school students with interactive coding courses, gamified quizzes, visual block coding, and a hands-on browser coding lab.">
+    <title>CodeSpark | Interactive Coding Platform for Young Creators</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -19,7 +21,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap"
         rel="stylesheet">
 
     <!-- Custom CSS -->
@@ -30,10 +32,11 @@
 
     <!-- Header / Navbar -->
     <header>
-        <nav class="navbar navbar-expand-lg site-navbar" aria-label="Main navigation">
+        <nav class="navbar navbar-expand-lg site-navbar fixed-top" aria-label="Main navigation">
             <div class="container">
-                <a class="navbar-brand fw-bold" href="index.html" aria-label="CodeSpark home">
-                    <span>CodeSpark</span>
+                <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="index.html"
+                    aria-label="CodeSpark home">
+                    <span class="brand-text">Code<span class="purple-gradient-text">Spark</span></span>
                 </a>
 
                 <div class="d-flex align-items-center gap-2 d-lg-none ms-auto me-1">
@@ -52,8 +55,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.html"><i class="bi bi-house nav-link-icon"
-                                    aria-hidden="true"></i><span class="nav-link-text">Home</span></a>
+                            <a class="nav-link active" href="index.html" aria-current="page"><i
+                                    class="bi bi-house nav-link-icon" aria-hidden="true"></i><span
+                                    class="nav-link-text">Home</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="about.html"><i class="bi bi-info-circle nav-link-icon"
@@ -83,16 +87,27 @@
                             <i class="bi bi-moon-stars" aria-hidden="true"></i>
                         </button>
 
-                        <a href="login.html" class="btn btn-primary site-login-link">
+                        <a href="login.html" class="btn btn-outline-primary rounded-pill px-3 py-1.5 fw-semibold">
                             <i class="bi bi-box-arrow-in-right" aria-hidden="true"></i>
                             <span>Login</span>
                         </a>
+
+                        <a href="register.html"
+                            class="btn btn-primary site-login-link rounded-pill px-3.5 py-1.5 fw-bold">
+                            <i class="bi bi-rocket-takeoff-fill" aria-hidden="true"></i>
+                            <span>Get Started</span>
+                        </a>
                     </div>
 
-                    <div class="mobile-menu-actions d-lg-none mt-3 pt-3">
-                        <a href="login.html" class="btn btn-primary site-login-link w-100 justify-content-center">
+                    <div
+                        class="mobile-menu-actions d-lg-none mt-3 pt-3 border-top border-subtle d-flex flex-column gap-2">
+                        <a href="login.html" class="btn btn-outline-primary w-100 justify-content-center">
                             <i class="bi bi-box-arrow-in-right" aria-hidden="true"></i>
                             <span>Login</span>
+                        </a>
+                        <a href="register.html" class="btn btn-primary site-login-link w-100 justify-content-center">
+                            <i class="bi bi-rocket-takeoff-fill" aria-hidden="true"></i>
+                            <span>Get Started Free</span>
                         </a>
                     </div>
                 </div>
@@ -102,118 +117,198 @@
 
     <!-- Main Content -->
     <main>
-        <section class="hero-section" aria-labelledby="hero-title">
-            <div id="carouselExampleIndicators" class="carousel slide hero-carousel" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                        class="active" aria-current="true" aria-label="Learn programming"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                        aria-label="Practice with quizzes"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                        aria-label="Build in coding lab"></button>
+
+        <!-- Redesigned High-Impact Hero Section -->
+        <section class="hero-redesigned-section" aria-labelledby="hero-title">
+            <div class="container py-4 py-lg-5">
+                <div class="row align-items-center gy-5">
+
+                    <!-- Left Column: Value Prop & CTAs -->
+                    <div class="col-lg-6" data-aos="fade-right">
+                        <div class="pe-lg-3">
+                            <div class="hero-badge-pill mb-3">
+                                <i class="bi bi-rocket-takeoff-fill text-warning" aria-hidden="true"></i>
+                                <span>#1 Interactive Coding Platform for Young Creators</span>
+                            </div>
+
+                            <h1 id="hero-title" class="hero-main-title fw-bold mb-4">
+                                Turn Curiosity into Code <span class="purple-gradient-text">&amp; Build Real Apps</span>
+                            </h1>
+
+                            <p class="hero-lead-text text-muted mb-4">
+                                CodeSpark empowers school students to master <strong>HTML, CSS, JavaScript, and
+                                    Python</strong> through bite-sized micro-lessons, gamified quizzes, visual block
+                                coding, and a safe, 100% browser-based coding lab.
+                            </p>
+
+                            <div class="d-flex flex-wrap align-items-center gap-3 mb-4">
+                                <a href="courses.html"
+                                    class="btn btn-primary btn-lg rounded-pill shadow-primary-glow px-4 py-3 fw-bold">
+                                    <i class="bi bi-journal-code" aria-hidden="true"></i>
+                                    <span>Explore Courses</span>
+                                </a>
+                                <a href="coding_lab.html"
+                                    class="btn btn-outline-light-theme btn-lg rounded-pill px-4 py-3 fw-bold">
+                                    <i class="bi bi-terminal-fill text-primary" aria-hidden="true"></i>
+                                    <span>Open Coding Lab</span>
+                                </a>
+                            </div>
+
+                            <!-- Trust Highlights -->
+                            <div
+                                class="d-flex flex-wrap align-items-center gap-4 pt-3 border-top border-color-subtle extra-small text-muted fw-semibold">
+                                <div class="d-flex align-items-center gap-1.5">
+                                    <i class="bi bi-check-circle-fill text-success fs-6" aria-hidden="true"></i>
+                                    <span>100% Browser Based</span>
+                                </div>
+                                <div class="d-flex align-items-center gap-1.5">
+                                    <i class="bi bi-check-circle-fill text-success fs-6" aria-hidden="true"></i>
+                                    <span>No Software Setup</span>
+                                </div>
+                                <div class="d-flex align-items-center gap-1.5">
+                                    <i class="bi bi-shield-check text-success fs-6" aria-hidden="true"></i>
+                                    <span>Kid-Friendly &amp; Safe</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Interactive IDE Mockup Window -->
+                    <div class="col-lg-6" data-aos="fade-left">
+                        <div class="position-relative ps-lg-2">
+
+                            <!-- Floating Badge 1: Top Right -->
+                            <div class="floating-hero-badge badge-top-right">
+                                <div class="badge-icon-wrap badge-icon-purple">
+                                    <i class="bi bi-award-fill" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <div class="badge-text-primary">50+ Lessons</div>
+                                    <div class="badge-text-sub">Gamified &amp; Interactive</div>
+                                </div>
+                            </div>
+
+                            <!-- Floating Badge 2: Bottom Left -->
+                            <div class="floating-hero-badge badge-bottom-left">
+                                <div class="badge-icon-wrap badge-icon-teal">
+                                    <i class="bi bi-lightning-charge-fill" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <div class="badge-text-primary">Instant Runner</div>
+                                    <div class="badge-text-sub">Zero Setup Required</div>
+                                </div>
+                            </div>
+
+                            <!-- IDE Mockup Window Card -->
+                            <div class="hero-ide-window">
+                                <div class="hero-ide-header">
+                                    <div class="window-dots">
+                                        <span class="window-dot dot-red"></span>
+                                        <span class="window-dot dot-yellow"></span>
+                                        <span class="window-dot dot-green"></span>
+                                    </div>
+                                    <span class="hero-ide-tab">
+                                        <i class="bi bi-filetype-html me-1" aria-hidden="true"></i> index.html
+                                    </span>
+                                    <span
+                                        class="badge bg-success bg-opacity-20 text-success rounded-pill extra-small px-2 py-0.5">
+                                        <i class="bi bi-circle-fill me-1 extra-small" aria-hidden="true"></i> Live
+                                    </span>
+                                </div>
+
+                                <div class="hero-ide-body">
+                                    <div class="code-line"><span class="line-num">1</span><span
+                                            class="code-comment">&lt;!-- CodeSpark Interactive App --&gt;</span></div>
+                                    <div class="code-line"><span class="line-num">2</span><span
+                                            class="code-tag">&lt;div</span> <span class="code-attr">class</span>=<span
+                                            class="code-string">"app-card"</span><span class="code-tag">&gt;</span>
+                                    </div>
+                                    <div class="code-line"><span class="line-num">3</span>&nbsp;&nbsp;<span
+                                            class="code-tag">&lt;h1</span> <span class="code-attr">class</span>=<span
+                                            class="code-string">"spark-title"</span><span class="code-tag">&gt;</span>
+                                    </div>
+                                    <div class="code-line"><span class="line-num">4</span>&nbsp;&nbsp;&nbsp;&nbsp;<span
+                                            class="code-val">Hello, Future Coder! 🚀</span></div>
+                                    <div class="code-line"><span class="line-num">5</span>&nbsp;&nbsp;<span
+                                            class="code-tag">&lt;/h1&gt;</span></div>
+                                    <div class="code-line"><span class="line-num">6</span>&nbsp;&nbsp;<span
+                                            class="code-tag">&lt;button</span> <span
+                                            class="code-attr">onclick</span>=<span
+                                            class="code-string">"launchProject()"</span><span
+                                            class="code-tag">&gt;</span></div>
+                                    <div class="code-line"><span class="line-num">7</span>&nbsp;&nbsp;&nbsp;&nbsp;<span
+                                            class="code-val">Build My Project ✨</span></div>
+                                    <div class="code-line"><span class="line-num">8</span>&nbsp;&nbsp;<span
+                                            class="code-tag">&lt;/button&gt;</span></div>
+                                    <div class="code-line"><span class="line-num">9</span><span
+                                            class="code-tag">&lt;/div&gt;</span></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
                 </div>
-
-                <div class="carousel-inner">
-                    <article class="carousel-item active">
-                        <div class="hero-slide">
-                            <img src="assets/images/carousel-learning.svg" class="hero-image"
-                                alt="Students learning programming concepts">
-                            <div class="container">
-                                <div class="hero-content" data-aos="fade-up">
-                                    <span class="section-label">Learn. Practice. Build.</span>
-                                    <h1 id="hero-title">Start your coding journey with CodeSpark</h1>
-                                    <p>
-                                        Build strong programming fundamentals through guided lessons, hands-on practice,
-                                        quick quizzes, and a focused coding lab made for young learners.
-                                    </p>
-                                    <div class="hero-actions">
-                                        <a href="courses.html" class="btn btn-primary btn-lg">
-                                            <i class="bi bi-journal-code" aria-hidden="true"></i>
-                                            Explore Courses
-                                        </a>
-                                        <a href="coding_lab.html" class="btn btn-outline-light btn-lg">
-                                            <i class="bi bi-code-square" aria-hidden="true"></i>
-                                            Open Coding Lab
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="carousel-item">
-                        <div class="hero-slide">
-                            <img src="assets/images/carousel-quiz.svg" class="hero-image"
-                                alt="Learner solving coding quiz questions">
-                            <div class="container">
-                                <div class="hero-content">
-                                    <span class="section-label">Smart Practice</span>
-                                    <h2>Test concepts before they fade</h2>
-                                    <p>
-                                        Use topic-wise quizzes to check understanding, spot weak areas, and revise
-                                        important concepts with clear feedback.
-                                    </p>
-                                    <div class="hero-actions">
-                                        <a href="quiz.html" class="btn btn-primary btn-lg">
-                                            <i class="bi bi-question-circle" aria-hidden="true"></i>
-                                            Take a Quiz
-                                        </a>
-                                        <a href="courses.html" class="btn btn-outline-light btn-lg">
-                                            <i class="bi bi-journal-code" aria-hidden="true"></i>
-                                            View Courses
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="carousel-item">
-                        <div class="hero-slide">
-                            <img src="assets/images/carousel-lab.svg" class="hero-image"
-                                alt="Code editor with project files">
-                            <div class="container">
-                                <div class="hero-content">
-                                    <span class="section-label">Project Focused</span>
-                                    <h2>Turn lessons into real work</h2>
-                                    <p>
-                                        Move from syntax to problem solving with coding exercises designed to improve
-                                        clarity, speed, and practical thinking step by step.
-                                    </p>
-                                    <div class="hero-actions">
-                                        <a href="coding_lab.html" class="btn btn-primary btn-lg">
-                                            <i class="bi bi-code-square" aria-hidden="true"></i>
-                                            Open Coding Lab
-                                        </a>
-                                        <a href="contact.html" class="btn btn-outline-light btn-lg">
-                                            <i class="bi bi-envelope" aria-hidden="true"></i>
-                                            Ask For Help
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
             </div>
         </section>
 
-        <!-- About Us Section (CodeSpark Coding Awareness Program) -->
+        <!-- Social Proof & Statistics Counter Section -->
+        <section class="stats-counter-section py-4 border-bottom border-color-subtle">
+            <div class="container py-3">
+                <div class="row g-3 g-sm-4 text-center">
+                    <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="100">
+                        <div class="codespark-stat-card card border-0 rounded-4 p-3.5 h-100 shadow-sm">
+                            <div
+                                class="stat-card-icon mx-auto rounded-circle d-flex align-items-center justify-content-center mb-2">
+                                <i class="bi bi-people-fill" aria-hidden="true"></i>
+                            </div>
+                            <div class="stat-card-number fw-bold mb-0">10k<span class="text-primary">+</span></div>
+                            <div class="stat-card-label text-muted extra-small fw-semibold">Active School Students</div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="200">
+                        <div class="codespark-stat-card card border-0 rounded-4 p-3.5 h-100 shadow-sm">
+                            <div
+                                class="stat-card-icon mx-auto rounded-circle d-flex align-items-center justify-content-center mb-2">
+                                <i class="bi bi-mortarboard-fill" aria-hidden="true"></i>
+                            </div>
+                            <div class="stat-card-number fw-bold mb-0">50<span class="text-primary">+</span></div>
+                            <div class="stat-card-label text-muted extra-small fw-semibold">Interactive Micro-Lessons
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="300">
+                        <div class="codespark-stat-card card border-0 rounded-4 p-3.5 h-100 shadow-sm">
+                            <div
+                                class="stat-card-icon mx-auto rounded-circle d-flex align-items-center justify-content-center mb-2">
+                                <i class="bi bi-code-square" aria-hidden="true"></i>
+                            </div>
+                            <div class="stat-card-number fw-bold mb-0">15<span class="text-primary">+</span></div>
+                            <div class="stat-card-label text-muted extra-small fw-semibold">Real Coding Modules</div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="400">
+                        <div class="codespark-stat-card card border-0 rounded-4 p-3.5 h-100 shadow-sm">
+                            <div
+                                class="stat-card-icon mx-auto rounded-circle d-flex align-items-center justify-content-center mb-2">
+                                <i class="bi bi-star-fill text-warning" aria-hidden="true"></i>
+                            </div>
+                            <div class="stat-card-number fw-bold mb-0">4.9<span class="text-primary">/5</span></div>
+                            <div class="stat-card-label text-muted extra-small fw-semibold">Student &amp; Parent Rating
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section (CodeSpark Awareness Mission) -->
         <section class="about-section position-relative py-5 overflow-hidden" aria-labelledby="about-section-title">
             <div class="container py-4 py-lg-5">
 
-                <!-- Top Centered Header Pill & Title -->
                 <div class="text-center mb-5" data-aos="fade-up">
                     <span class="about-pill-badge d-inline-flex align-items-center gap-2 px-3 py-1.5 rounded-pill mb-3">
                         <i class="bi bi-mortarboard-fill" aria-hidden="true"></i>
@@ -223,35 +318,32 @@
                         About <span class="purple-gradient-text">CodeSpark</span>
                     </h2>
                     <p class="lead text-muted mx-auto fs-6 section-subtitle-lead">
-                        A nationwide coding awareness program empowering school children with digital literacy,
-                        computational thinking, and hands-on coding skills.
+                        A nationwide coding awareness initiative empowering school children with digital literacy,
+                        computational logic, and hands-on coding skills.
                     </p>
                 </div>
 
-                <!-- Main Grid: Left Detailed Content + Right 2x2 Big Stat Cards -->
                 <div class="row align-items-stretch gy-5">
 
-                    <!-- Left Column: Heading, Paragraphs & 2x2 Compact Feature Cards -->
+                    <!-- Left Column: Detailed Content & 2x2 Feature Cards -->
                     <div class="col-lg-7" data-aos="fade-right">
                         <div class="pe-lg-4">
                             <h3 class="fw-bold display-6 mb-4 lh-sm">
-                                Building <span class="text-primary-bright">future-ready</span> young minds through <span
+                                Building <span class="text-primary">future-ready</span> young minds through <span
                                     class="purple-gradient-text">interactive coding</span> education
                             </h3>
                             <p class="text-muted mb-3">
-                                <strong>CodeSpark</strong> is an innovative coding awareness initiative designed
-                                specifically for school students. We break down complex computer science concepts into
-                                fun, visual, and interactive learning experiences that spark creativity and curiosity
-                                from an early age.
+                                <strong>CodeSpark</strong> breaks down complex computer science concepts into fun,
+                                visual, and story-driven learning experiences that spark creativity and curiosity from
+                                an early age.
                             </p>
                             <p class="text-muted mb-4">
-                                Our program bridges the gap between basic computer usage and real-world technology
+                                Our platform bridges the gap between basic computer usage and real-world technology
                                 creation—equipping children with problem-solving mindsets, computational logic, guided
-                                lessons in web development (HTML, CSS, JS), interactive topic quizzes, and a safe
-                                browser coding lab.
+                                web development, topic quizzes, and a safe browser coding lab.
                             </p>
 
-                            <!-- Bottom 2x2 Compact Feature Cards -->
+                            <!-- Bottom 2x2 Feature Cards -->
                             <div class="row g-3 mb-4">
                                 <div class="col-sm-6" data-aos="fade-up" data-aos-delay="100">
                                     <div class="codespark-mini-card d-flex align-items-center gap-3 p-3 rounded-4">
@@ -274,9 +366,9 @@
                                             <i class="bi bi-puzzle-fill" aria-hidden="true"></i>
                                         </div>
                                         <div>
-                                            <h4 class="h6 fw-bold mb-1">Logic & Creativity</h4>
-                                            <p class="extra-small text-muted mb-0">Building algorithmic thinking &
-                                                problem solving</p>
+                                            <h4 class="h6 fw-bold mb-1">Logic &amp; Creativity</h4>
+                                            <p class="extra-small text-muted mb-0">Building algorithmic thinking &amp;
+                                                logic</p>
                                         </div>
                                     </div>
                                 </div>
@@ -289,8 +381,7 @@
                                         </div>
                                         <div>
                                             <h4 class="h6 fw-bold mb-1">Live Coding Lab</h4>
-                                            <p class="extra-small text-muted mb-0">Safe, hands-on coding playground in
-                                                browser</p>
+                                            <p class="extra-small text-muted mb-0">Safe, hands-on browser playground</p>
                                         </div>
                                     </div>
                                 </div>
@@ -304,7 +395,7 @@
                                         <div>
                                             <h4 class="h6 fw-bold mb-1">Future Ready</h4>
                                             <p class="extra-small text-muted mb-0">Preparing students for tomorrow's
-                                                tech world</p>
+                                                world</p>
                                         </div>
                                     </div>
                                 </div>
@@ -312,64 +403,42 @@
                         </div>
                     </div>
 
-                    <!-- Right Column: 2x2 Large Stat Cards Grid -->
+                    <!-- Right Column: Visual Feature Highlight Box -->
                     <div class="col-lg-5" data-aos="fade-left">
-                        <div class="row g-3 g-sm-4">
-                            <!-- Card 1 -->
-                            <div class="col-6">
-                                <div
-                                    class="codespark-stat-card card border-0 rounded-4 text-center p-4 h-100 shadow-sm">
-                                    <div
-                                        class="stat-card-icon mx-auto rounded-circle d-flex align-items-center justify-content-center mb-3">
-                                        <i class="bi bi-mortarboard-fill" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="stat-card-number fw-bold mb-1">50<span class="text-primary">+</span>
-                                    </div>
-                                    <div class="stat-card-label text-muted small fw-semibold">Interactive Lessons</div>
-                                </div>
+                        <div
+                            class="card border-0 rounded-4 shadow-sm p-4 h-100 d-flex flex-column justify-content-between bg-surface-card">
+                            <div>
+                                <span
+                                    class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-1.5 fw-bold mb-3">
+                                    🌟 Why Choose CodeSpark?
+                                </span>
+                                <h4 class="h5 fw-bold mb-3">Designed specifically for school students aged 8 to 16</h4>
+                                <ul class="list-unstyled text-muted small d-flex flex-column gap-3 mb-4">
+                                    <li class="d-flex align-items-start gap-2.5">
+                                        <i class="bi bi-check-circle-fill text-primary fs-6 mt-0.5"
+                                            aria-hidden="true"></i>
+                                        <span><strong>Zero Installation Required:</strong> Starts instantly inside any
+                                            web browser on desktop or tablet.</span>
+                                    </li>
+                                    <li class="d-flex align-items-start gap-2.5">
+                                        <i class="bi bi-check-circle-fill text-primary fs-6 mt-0.5"
+                                            aria-hidden="true"></i>
+                                        <span><strong>Instant Visual Feedback:</strong> Code changes render live in
+                                            real-time right alongside the editor.</span>
+                                    </li>
+                                    <li class="d-flex align-items-start gap-2.5">
+                                        <i class="bi bi-check-circle-fill text-primary fs-6 mt-0.5"
+                                            aria-hidden="true"></i>
+                                        <span><strong>Smart Quizzes &amp; Certificates:</strong> Test understanding at
+                                            every milestone and earn badges.</span>
+                                    </li>
+                                </ul>
                             </div>
-
-                            <!-- Card 2 -->
-                            <div class="col-6">
-                                <div
-                                    class="codespark-stat-card card border-0 rounded-4 text-center p-4 h-100 shadow-sm">
-                                    <div
-                                        class="stat-card-icon mx-auto rounded-circle d-flex align-items-center justify-content-center mb-3">
-                                        <i class="bi bi-people-fill" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="stat-card-number fw-bold mb-1">10k<span class="text-primary">+</span>
-                                    </div>
-                                    <div class="stat-card-label text-muted small fw-semibold">Students Reached</div>
-                                </div>
-                            </div>
-
-                            <!-- Card 3 -->
-                            <div class="col-6">
-                                <div
-                                    class="codespark-stat-card card border-0 rounded-4 text-center p-4 h-100 shadow-sm">
-                                    <div
-                                        class="stat-card-icon mx-auto rounded-circle d-flex align-items-center justify-content-center mb-3">
-                                        <i class="bi bi-award-fill" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="stat-card-number fw-bold mb-1">15<span class="text-primary">+</span>
-                                    </div>
-                                    <div class="stat-card-label text-muted small fw-semibold">Coding Modules</div>
-                                </div>
-                            </div>
-
-                            <!-- Card 4 -->
-                            <div class="col-6">
-                                <div
-                                    class="codespark-stat-card card border-0 rounded-4 text-center p-4 h-100 shadow-sm">
-                                    <div
-                                        class="stat-card-icon mx-auto rounded-circle d-flex align-items-center justify-content-center mb-3">
-                                        <i class="bi bi-shield-check" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="stat-card-number fw-bold mb-1">100<span class="text-primary">%</span>
-                                    </div>
-                                    <div class="stat-card-label text-muted small fw-semibold">Kid Friendly & Safe</div>
-                                </div>
-                            </div>
+                            <a href="about.html"
+                                class="btn btn-outline-primary rounded-pill px-4 w-100 text-center fw-bold">
+                                <span>Learn More About Us</span>
+                                <i class="bi bi-arrow-right ms-1" aria-hidden="true"></i>
+                            </a>
                         </div>
                     </div>
 
@@ -377,8 +446,8 @@
             </div>
         </section>
 
-        <!-- How CodeSpark Works Section -->
-        <section class="how-it-works-section py-5 position-relative" aria-labelledby="how-it-works-title">
+        <!-- How CodeSpark Works Section (4-Step Pathway) -->
+        <section class="how-it-works-section py-5 position-relative bg-surface" aria-labelledby="how-it-works-title">
             <div class="container py-4 py-lg-5">
 
                 <div class="text-center mb-5" data-aos="fade-up">
@@ -390,22 +459,24 @@
                         How <span class="purple-gradient-text">CodeSpark</span> Works
                     </h2>
                     <p class="lead text-muted mx-auto fs-6 section-subtitle-lead">
-                        A proven 4-step interactive learning pathway designed to take school students from zero coding
-                        knowledge to building real web projects.
+                        A proven 4-step interactive learning pathway taking school students from zero coding knowledge
+                        to building real web projects.
                     </p>
                 </div>
 
                 <div class="row g-4">
                     <!-- Step 1 -->
                     <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="step-card h-100 shadow-sm">
-                            <span class="step-number-badge">01</span>
-                            <div class="step-icon-wrapper">
-                                <i class="bi bi-book-half" aria-hidden="true"></i>
+                        <div
+                            class="step-card h-100 shadow-sm p-4 rounded-4 bg-card position-relative border border-subtle">
+                            <span class="step-number-badge fw-extrabold text-primary">01</span>
+                            <div
+                                class="step-icon-wrapper rounded-circle d-flex align-items-center justify-content-center mb-3">
+                                <i class="bi bi-book-half fs-4" aria-hidden="true"></i>
                             </div>
                             <h3 class="h5 fw-bold mb-2">Micro-Lessons</h3>
                             <p class="text-muted small mb-0">
-                                Short, visual, and story-driven concepts broken into easy bite-sized guides tailored for
+                                Short, visual, story-driven concepts broken into easy bite-sized guides tailored for
                                 young minds.
                             </p>
                         </div>
@@ -413,10 +484,12 @@
 
                     <!-- Step 2 -->
                     <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                        <div class="step-card h-100 shadow-sm">
-                            <span class="step-number-badge">02</span>
-                            <div class="step-icon-wrapper">
-                                <i class="bi bi-patch-question-fill" aria-hidden="true"></i>
+                        <div
+                            class="step-card h-100 shadow-sm p-4 rounded-4 bg-card position-relative border border-subtle">
+                            <span class="step-number-badge fw-extrabold text-primary">02</span>
+                            <div
+                                class="step-icon-wrapper rounded-circle d-flex align-items-center justify-content-center mb-3">
+                                <i class="bi bi-patch-question-fill fs-4" aria-hidden="true"></i>
                             </div>
                             <h3 class="h5 fw-bold mb-2">Smart Quiz Check</h3>
                             <p class="text-muted small mb-0">
@@ -428,10 +501,12 @@
 
                     <!-- Step 3 -->
                     <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="step-card h-100 shadow-sm">
-                            <span class="step-number-badge">03</span>
-                            <div class="step-icon-wrapper">
-                                <i class="bi bi-code-square" aria-hidden="true"></i>
+                        <div
+                            class="step-card h-100 shadow-sm p-4 rounded-4 bg-card position-relative border border-subtle">
+                            <span class="step-number-badge fw-extrabold text-primary">03</span>
+                            <div
+                                class="step-icon-wrapper rounded-circle d-flex align-items-center justify-content-center mb-3">
+                                <i class="bi bi-code-square fs-4" aria-hidden="true"></i>
                             </div>
                             <h3 class="h5 fw-bold mb-2">Browser Coding Lab</h3>
                             <p class="text-muted small mb-0">
@@ -443,244 +518,18 @@
 
                     <!-- Step 4 -->
                     <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
-                        <div class="step-card h-100 shadow-sm">
-                            <span class="step-number-badge">04</span>
-                            <div class="step-icon-wrapper">
-                                <i class="bi bi-award-fill" aria-hidden="true"></i>
+                        <div
+                            class="step-card h-100 shadow-sm p-4 rounded-4 bg-card position-relative border border-subtle">
+                            <span class="step-number-badge fw-extrabold text-primary">04</span>
+                            <div
+                                class="step-icon-wrapper rounded-circle d-flex align-items-center justify-content-center mb-3">
+                                <i class="bi bi-award-fill fs-4" aria-hidden="true"></i>
                             </div>
-                            <h3 class="h5 fw-bold mb-2">Badges & Certificate</h3>
+                            <h3 class="h5 fw-bold mb-2">Badges &amp; Certificate</h3>
                             <p class="text-muted small mb-0">
                                 Earn milestone skill badges and downloadable certificates to showcase your programming
                                 progress.
                             </p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Featured Courses Section -->
-        <section class="courses-section py-5 position-relative" aria-labelledby="courses-section-title">
-            <div class="container py-4 py-lg-5">
-
-                <!-- Section Header -->
-                <div class="text-center mb-5" data-aos="fade-up">
-                    <span class="about-pill-badge d-inline-flex align-items-center gap-2 px-3 py-1.5 rounded-pill mb-3">
-                        <i class="bi bi-journal-code" aria-hidden="true"></i>
-                        <span>Explore Our Curriculum</span>
-                    </span>
-                    <h2 id="courses-section-title" class="display-5 fw-bold mb-3">
-                        Featured <span class="purple-gradient-text">Coding Courses</span>
-                    </h2>
-                    <p class="lead text-muted mx-auto fs-6 section-subtitle-lead">
-                        Interactive, kid-friendly programming courses designed to build strong fundamentals, logical
-                        thinking, and real projects step by step.
-                    </p>
-                </div>
-
-                <!-- Course Cards Grid -->
-                <div class="row g-4 justify-content-center">
-
-                    <!-- Course Card 1: Web Fundamentals -->
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                        <article
-                            class="course-card card h-100 border-0 rounded-4 shadow-sm overflow-hidden d-flex flex-column">
-                            <div class="course-card-header p-4 pb-0 position-relative">
-                                <div class="d-flex align-items-center justify-content-between mb-3">
-                                    <span class="badge course-badge-category rounded-pill px-3 py-2">
-                                        <i class="bi bi-laptop me-1" aria-hidden="true"></i> Web Basics
-                                    </span>
-                                    <span class="badge course-badge-level rounded-pill px-2.5 py-1.5">Beginner</span>
-                                </div>
-                                <div
-                                    class="course-icon-wrapper rounded-3 mb-3 d-flex align-items-center justify-content-center">
-                                    <i class="bi bi-code-slash fs-2" aria-hidden="true"></i>
-                                </div>
-                                <h3 class="h5 fw-bold card-title mb-2">HTML5 & CSS3 Web Basics</h3>
-                                <p class="card-text text-muted small mb-3">
-                                    Master page structure, colorful styling, Flexbox layouts, and build your very first
-                                    live personal website from scratch.
-                                </p>
-                            </div>
-
-                            <div
-                                class="course-card-body px-4 py-3 border-top border-bottom border-color-subtle mt-auto">
-                                <div class="row g-2 text-muted extra-small">
-                                    <div class="col-6 d-flex align-items-center gap-1.5">
-                                        <i class="bi bi-journal-text text-primary" aria-hidden="true"></i>
-                                        <span>12 Lessons</span>
-                                    </div>
-                                    <div class="col-6 d-flex align-items-center gap-1.5">
-                                        <i class="bi bi-clock text-primary" aria-hidden="true"></i>
-                                        <span>4 Weeks</span>
-                                    </div>
-                                    <div class="col-6 d-flex align-items-center gap-1.5">
-                                        <i class="bi bi-person text-primary" aria-hidden="true"></i>
-                                        <span>Age: 8-14 Yrs</span>
-                                    </div>
-                                    <div class="col-6 d-flex align-items-center gap-1.5">
-                                        <i class="bi bi-award text-primary" aria-hidden="true"></i>
-                                        <span>Certificate</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div
-                                class="course-card-footer p-4 pt-3 d-flex align-items-center justify-content-between gap-2">
-                                <div class="d-flex gap-1">
-                                    <span class="skill-tag rounded-pill px-2 py-0.5 extra-small">HTML</span>
-                                    <span class="skill-tag rounded-pill px-2 py-0.5 extra-small">CSS</span>
-                                </div>
-                                <a href="courses.html"
-                                    class="btn btn-outline-primary btn-sm rounded-pill px-3 btn-hover-arrow">
-                                    <span>Start Course</span>
-                                    <i class="bi bi-arrow-right icon-arrow" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </article>
-                    </div>
-
-                    <!-- Course Card 2: JavaScript & Logic -->
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                        <article
-                            class="course-card card h-100 border-0 rounded-4 shadow-sm overflow-hidden d-flex flex-column featured-card">
-                            <div class="course-card-header p-4 pb-0 position-relative">
-                                <div class="d-flex align-items-center justify-content-between mb-3">
-                                    <span
-                                        class="badge course-badge-category rounded-pill px-3 py-2 bg-gradient-purple text-white">
-                                        <i class="bi bi-lightning-charge me-1" aria-hidden="true"></i> Interactive
-                                    </span>
-                                    <span class="badge course-badge-popular rounded-pill px-2.5 py-1.5">Most
-                                        Popular</span>
-                                </div>
-                                <div
-                                    class="course-icon-wrapper rounded-3 mb-3 d-flex align-items-center justify-content-center icon-js">
-                                    <i class="bi bi-filetype-js fs-2" aria-hidden="true"></i>
-                                </div>
-                                <h3 class="h5 fw-bold card-title mb-2">JavaScript Logic & Magic</h3>
-                                <p class="card-text text-muted small mb-3">
-                                    Bring web pages to life with interactive buttons, variables, loops, functions, sound
-                                    effects, and mini browser games.
-                                </p>
-                            </div>
-
-                            <div
-                                class="course-card-body px-4 py-3 border-top border-bottom border-color-subtle mt-auto">
-                                <div class="row g-2 text-muted extra-small">
-                                    <div class="col-6 d-flex align-items-center gap-1.5">
-                                        <i class="bi bi-journal-text text-primary" aria-hidden="true"></i>
-                                        <span>16 Lessons</span>
-                                    </div>
-                                    <div class="col-6 d-flex align-items-center gap-1.5">
-                                        <i class="bi bi-clock text-primary" aria-hidden="true"></i>
-                                        <span>6 Weeks</span>
-                                    </div>
-                                    <div class="col-6 d-flex align-items-center gap-1.5">
-                                        <i class="bi bi-person text-primary" aria-hidden="true"></i>
-                                        <span>Age: 10-16 Yrs</span>
-                                    </div>
-                                    <div class="col-6 d-flex align-items-center gap-1.5">
-                                        <i class="bi bi-award text-primary" aria-hidden="true"></i>
-                                        <span>Certificate</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div
-                                class="course-card-footer p-4 pt-3 d-flex align-items-center justify-content-between gap-2">
-                                <div class="d-flex gap-1">
-                                    <span class="skill-tag rounded-pill px-2 py-0.5 extra-small">JS</span>
-                                    <span class="skill-tag rounded-pill px-2 py-0.5 extra-small">DOM</span>
-                                </div>
-                                <a href="courses.html" class="btn btn-primary btn-sm rounded-pill px-3 btn-hover-arrow">
-                                    <span>Start Course</span>
-                                    <i class="bi bi-arrow-right icon-arrow" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </article>
-                    </div>
-
-                    <!-- Course Card 3: Python Essentials -->
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                        <article
-                            class="course-card card h-100 border-0 rounded-4 shadow-sm overflow-hidden d-flex flex-column">
-                            <div class="course-card-header p-4 pb-0 position-relative">
-                                <div class="d-flex align-items-center justify-content-between mb-3">
-                                    <span class="badge course-badge-category rounded-pill px-3 py-2">
-                                        <i class="bi bi-terminal me-1" aria-hidden="true"></i> Algorithms
-                                    </span>
-                                    <span
-                                        class="badge course-badge-level rounded-pill px-2.5 py-1.5">Intermediate</span>
-                                </div>
-                                <div
-                                    class="course-icon-wrapper rounded-3 mb-3 d-flex align-items-center justify-content-center icon-python">
-                                    <i class="bi bi-cpu fs-2" aria-hidden="true"></i>
-                                </div>
-                                <h3 class="h5 fw-bold card-title mb-2">Python Fundamentals & Logic</h3>
-                                <p class="card-text text-muted small mb-3">
-                                    Learn clean Python code, problem-solving techniques, mathematical algorithms, and
-                                    text-based interactive games.
-                                </p>
-                            </div>
-
-                            <div
-                                class="course-card-body px-4 py-3 border-top border-bottom border-color-subtle mt-auto">
-                                <div class="row g-2 text-muted extra-small">
-                                    <div class="col-6 d-flex align-items-center gap-1.5">
-                                        <i class="bi bi-journal-text text-primary" aria-hidden="true"></i>
-                                        <span>14 Lessons</span>
-                                    </div>
-                                    <div class="col-6 d-flex align-items-center gap-1.5">
-                                        <i class="bi bi-clock text-primary" aria-hidden="true"></i>
-                                        <span>5 Weeks</span>
-                                    </div>
-                                    <div class="col-6 d-flex align-items-center gap-1.5">
-                                        <i class="bi bi-person text-primary" aria-hidden="true"></i>
-                                        <span>Age: 10-16 Yrs</span>
-                                    </div>
-                                    <div class="col-6 d-flex align-items-center gap-1.5">
-                                        <i class="bi bi-award text-primary" aria-hidden="true"></i>
-                                        <span>Certificate</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div
-                                class="course-card-footer p-4 pt-3 d-flex align-items-center justify-content-between gap-2">
-                                <div class="d-flex gap-1">
-                                    <span class="skill-tag rounded-pill px-2 py-0.5 extra-small">Python</span>
-                                    <span class="skill-tag rounded-pill px-2 py-0.5 extra-small">Logic</span>
-                                </div>
-                                <a href="courses.html"
-                                    class="btn btn-outline-primary btn-sm rounded-pill px-3 btn-hover-arrow">
-                                    <span>Start Course</span>
-                                    <i class="bi bi-arrow-right icon-arrow" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </article>
-                    </div>
-
-                </div>
-
-                <!-- Bottom CTA Box -->
-                <div class="mt-5 text-center" data-aos="fade-up">
-                    <div
-                        class="courses-cta-box p-4 p-md-5 rounded-4 d-flex flex-column flex-md-row align-items-center justify-content-between gap-4 shadow-sm">
-                        <div class="text-center text-md-start">
-                            <h3 class="h4 fw-bold mb-2">Ready to test your coding skills or build projects?</h3>
-                            <p class="text-muted small mb-0">Explore all available courses, take quick topic quizzes, or
-                                jump straight into our live coding playground.</p>
-                        </div>
-                        <div class="d-flex flex-wrap align-items-center justify-content-center gap-3 flex-shrink-0">
-                            <a href="courses.html" class="btn btn-primary px-4 py-2.5">
-                                <i class="bi bi-journal-code" aria-hidden="true"></i>
-                                <span>View All Courses</span>
-                            </a>
-                            <a href="coding_lab.html" class="btn btn-outline-secondary px-4 py-2.5">
-                                <i class="bi bi-code-square" aria-hidden="true"></i>
-                                <span>Open Coding Lab</span>
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -696,10 +545,10 @@
                 <div class="text-center mb-5" data-aos="fade-up">
                     <span class="about-pill-badge d-inline-flex align-items-center gap-2 px-3 py-1.5 rounded-pill mb-3">
                         <i class="bi bi-puzzle-fill text-warning" aria-hidden="true"></i>
-                        <span>Visual Block Coding & Generator</span>
+                        <span>Visual Block Coding &amp; Generator</span>
                     </span>
                     <h2 id="scratch-lab-title" class="display-5 fw-bold mb-3">
-                        Drag Blocks & <span class="purple-gradient-text">Generate Web Code</span>
+                        Drag Blocks &amp; <span class="purple-gradient-text">Generate Web Code</span>
                     </h2>
                     <p class="lead text-muted mx-auto fs-6 section-subtitle-lead">
                         Drag Scratch-style puzzle blocks into your workspace, click <strong>Run Block Program</strong>
@@ -767,7 +616,7 @@
                         <div class="block-palette-card shadow-sm h-100 d-flex flex-column">
                             <div class="d-flex align-items-center justify-content-between mb-3">
                                 <span class="extra-small text-muted fw-bold text-uppercase kicker-uppercase-label">
-                                    <i class="bi bi-sliders me-1" aria-hidden="true"></i> Block Program Workspace
+                                    <i class="bi bi-sliders me-1" aria-hidden="true"></i> Block Workspace
                                 </span>
                                 <button id="reset-blocks-btn" type="button"
                                     class="btn btn-outline-danger btn-sm extra-small px-2 py-0.5 rounded-pill">
@@ -802,7 +651,7 @@
                     </div>
                 </div>
 
-                <!-- Bottom Row: Auto-Generated Code & Multi-Tab Web Editor (index.html, style.css, main.js) -->
+                <!-- Bottom Row: Auto-Generated Code & Multi-Tab Web Editor -->
                 <div class="mt-5" data-aos="fade-up">
                     <div class="editor-multi-tab-window">
                         <div class="editor-tabs-bar">
@@ -819,7 +668,7 @@
                                 </button>
                             </div>
                             <div class="d-flex align-items-center gap-2">
-                                <span class="text-muted extra-small d-none d-md-inline">Auto-Generated & Editable
+                                <span class="text-muted extra-small d-none d-md-inline">Auto-Generated &amp; Editable
                                     Code</span>
                                 <button id="run-web-code-btn" type="button"
                                     class="btn btn-primary btn-sm rounded-pill px-3 fw-bold">
@@ -851,6 +700,235 @@
             </div>
         </section>
 
+        <!-- Featured Courses Section -->
+        <section class="courses-section py-5 position-relative bg-surface" aria-labelledby="courses-section-title">
+            <div class="container py-4 py-lg-5">
+
+                <!-- Section Header -->
+                <div class="text-center mb-5" data-aos="fade-up">
+                    <span class="about-pill-badge d-inline-flex align-items-center gap-2 px-3 py-1.5 rounded-pill mb-3">
+                        <i class="bi bi-journal-code" aria-hidden="true"></i>
+                        <span>Explore Our Curriculum</span>
+                    </span>
+                    <h2 id="courses-section-title" class="display-5 fw-bold mb-3">
+                        Featured <span class="purple-gradient-text">Coding Courses</span>
+                    </h2>
+                    <p class="lead text-muted mx-auto fs-6 section-subtitle-lead">
+                        Interactive, kid-friendly programming courses designed to build strong fundamentals, logical
+                        thinking, and real projects step by step.
+                    </p>
+                </div>
+
+                <!-- Course Cards Grid -->
+                <div class="row g-4 justify-content-center">
+
+                    <!-- Course Card 1: Web Fundamentals -->
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <article
+                            class="course-card card h-100 border-0 rounded-4 shadow-sm overflow-hidden d-flex flex-column">
+                            <div class="course-card-header p-4 pb-0 position-relative">
+                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                    <span class="badge course-badge-category rounded-pill px-3 py-2">
+                                        <i class="bi bi-laptop me-1" aria-hidden="true"></i> Web Basics
+                                    </span>
+                                    <span class="badge course-badge-level rounded-pill px-2.5 py-1.5">Beginner</span>
+                                </div>
+                                <div
+                                    class="course-icon-wrapper rounded-3 mb-3 d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-code-slash fs-2" aria-hidden="true"></i>
+                                </div>
+                                <h3 class="h5 fw-bold card-title mb-2">HTML5 &amp; CSS3 Web Basics</h3>
+                                <p class="card-text text-muted small mb-3">
+                                    Master page structure, colorful styling, Flexbox layouts, and build your very first
+                                    live personal website from scratch.
+                                </p>
+                            </div>
+
+                            <div
+                                class="course-card-body px-4 py-3 border-top border-bottom border-color-subtle mt-auto">
+                                <div class="row g-2 text-muted extra-small">
+                                    <div class="col-6 d-flex align-items-center gap-1.5">
+                                        <i class="bi bi-journal-text text-primary" aria-hidden="true"></i>
+                                        <span>12 Lessons</span>
+                                    </div>
+                                    <div class="col-6 d-flex align-items-center gap-1.5">
+                                        <i class="bi bi-clock text-primary" aria-hidden="true"></i>
+                                        <span>4 Weeks</span>
+                                    </div>
+                                    <div class="col-6 d-flex align-items-center gap-1.5">
+                                        <i class="bi bi-person text-primary" aria-hidden="true"></i>
+                                        <span>Age: 8-14 Yrs</span>
+                                    </div>
+                                    <div class="col-6 d-flex align-items-center gap-1.5">
+                                        <i class="bi bi-award text-primary" aria-hidden="true"></i>
+                                        <span>Certificate</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div
+                                class="course-card-footer p-4 pt-3 d-flex align-items-center justify-content-between gap-2">
+                                <div class="d-flex gap-1">
+                                    <span class="skill-tag rounded-pill px-2 py-0.5 extra-small">HTML</span>
+                                    <span class="skill-tag rounded-pill px-2 py-0.5 extra-small">CSS</span>
+                                </div>
+                                <a href="courses.html"
+                                    class="btn btn-outline-primary btn-sm rounded-pill px-3 btn-hover-arrow">
+                                    <span>Start Course</span>
+                                    <i class="bi bi-arrow-right icon-arrow" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Course Card 2: JavaScript & Logic -->
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                        <article
+                            class="course-card card h-100 border-0 rounded-4 shadow-sm overflow-hidden d-flex flex-column featured-card">
+                            <div class="course-card-header p-4 pb-0 position-relative">
+                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                    <span
+                                        class="badge course-badge-category rounded-pill px-3 py-2 bg-gradient-purple text-white">
+                                        <i class="bi bi-lightning-charge me-1" aria-hidden="true"></i> Interactive
+                                    </span>
+                                    <span class="badge course-badge-popular rounded-pill px-2.5 py-1.5">Most
+                                        Popular</span>
+                                </div>
+                                <div
+                                    class="course-icon-wrapper rounded-3 mb-3 d-flex align-items-center justify-content-center icon-js">
+                                    <i class="bi bi-filetype-js fs-2" aria-hidden="true"></i>
+                                </div>
+                                <h3 class="h5 fw-bold card-title mb-2">JavaScript Logic &amp; Magic</h3>
+                                <p class="card-text text-muted small mb-3">
+                                    Bring web pages to life with interactive buttons, variables, loops, functions, sound
+                                    effects, and mini browser games.
+                                </p>
+                            </div>
+
+                            <div
+                                class="course-card-body px-4 py-3 border-top border-bottom border-color-subtle mt-auto">
+                                <div class="row g-2 text-muted extra-small">
+                                    <div class="col-6 d-flex align-items-center gap-1.5">
+                                        <i class="bi bi-journal-text text-primary" aria-hidden="true"></i>
+                                        <span>16 Lessons</span>
+                                    </div>
+                                    <div class="col-6 d-flex align-items-center gap-1.5">
+                                        <i class="bi bi-clock text-primary" aria-hidden="true"></i>
+                                        <span>6 Weeks</span>
+                                    </div>
+                                    <div class="col-6 d-flex align-items-center gap-1.5">
+                                        <i class="bi bi-person text-primary" aria-hidden="true"></i>
+                                        <span>Age: 10-16 Yrs</span>
+                                    </div>
+                                    <div class="col-6 d-flex align-items-center gap-1.5">
+                                        <i class="bi bi-award text-primary" aria-hidden="true"></i>
+                                        <span>Certificate</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div
+                                class="course-card-footer p-4 pt-3 d-flex align-items-center justify-content-between gap-2">
+                                <div class="d-flex gap-1">
+                                    <span class="skill-tag rounded-pill px-2 py-0.5 extra-small">JS</span>
+                                    <span class="skill-tag rounded-pill px-2 py-0.5 extra-small">DOM</span>
+                                </div>
+                                <a href="courses.html" class="btn btn-primary btn-sm rounded-pill px-3 btn-hover-arrow">
+                                    <span>Start Course</span>
+                                    <i class="bi bi-arrow-right icon-arrow" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Course Card 3: Python Essentials -->
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                        <article
+                            class="course-card card h-100 border-0 rounded-4 shadow-sm overflow-hidden d-flex flex-column">
+                            <div class="course-card-header p-4 pb-0 position-relative">
+                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                    <span class="badge course-badge-category rounded-pill px-3 py-2">
+                                        <i class="bi bi-terminal me-1" aria-hidden="true"></i> Algorithms
+                                    </span>
+                                    <span
+                                        class="badge course-badge-level rounded-pill px-2.5 py-1.5">Intermediate</span>
+                                </div>
+                                <div
+                                    class="course-icon-wrapper rounded-3 mb-3 d-flex align-items-center justify-content-center icon-python">
+                                    <i class="bi bi-cpu fs-2" aria-hidden="true"></i>
+                                </div>
+                                <h3 class="h5 fw-bold card-title mb-2">Python Fundamentals &amp; Logic</h3>
+                                <p class="card-text text-muted small mb-3">
+                                    Learn clean Python code, problem-solving techniques, mathematical algorithms, and
+                                    text-based interactive games.
+                                </p>
+                            </div>
+
+                            <div
+                                class="course-card-body px-4 py-3 border-top border-bottom border-color-subtle mt-auto">
+                                <div class="row g-2 text-muted extra-small">
+                                    <div class="col-6 d-flex align-items-center gap-1.5">
+                                        <i class="bi bi-journal-text text-primary" aria-hidden="true"></i>
+                                        <span>14 Lessons</span>
+                                    </div>
+                                    <div class="col-6 d-flex align-items-center gap-1.5">
+                                        <i class="bi bi-clock text-primary" aria-hidden="true"></i>
+                                        <span>5 Weeks</span>
+                                    </div>
+                                    <div class="col-6 d-flex align-items-center gap-1.5">
+                                        <i class="bi bi-person text-primary" aria-hidden="true"></i>
+                                        <span>Age: 10-16 Yrs</span>
+                                    </div>
+                                    <div class="col-6 d-flex align-items-center gap-1.5">
+                                        <i class="bi bi-award text-primary" aria-hidden="true"></i>
+                                        <span>Certificate</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div
+                                class="course-card-footer p-4 pt-3 d-flex align-items-center justify-content-between gap-2">
+                                <div class="d-flex gap-1">
+                                    <span class="skill-tag rounded-pill px-2 py-0.5 extra-small">Python</span>
+                                    <span class="skill-tag rounded-pill px-2 py-0.5 extra-small">Logic</span>
+                                </div>
+                                <a href="courses.html"
+                                    class="btn btn-outline-primary btn-sm rounded-pill px-3 btn-hover-arrow">
+                                    <span>Start Course</span>
+                                    <i class="bi bi-arrow-right icon-arrow" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+
+                </div>
+
+                <!-- Bottom CTA Box -->
+                <div class="mt-5 text-center" data-aos="fade-up">
+                    <div
+                        class="courses-cta-box p-4 p-md-5 rounded-4 d-flex flex-column flex-md-row align-items-center justify-content-between gap-4 shadow-sm">
+                        <div class="text-center text-md-start">
+                            <h3 class="h4 fw-bold mb-2">Ready to test your coding skills or build projects?</h3>
+                            <p class="text-muted small mb-0">Explore all available courses, take quick topic quizzes, or
+                                jump straight into our live coding playground.</p>
+                        </div>
+                        <div class="d-flex flex-wrap align-items-center justify-content-center gap-3 flex-shrink-0">
+                            <a href="courses.html" class="btn btn-primary px-4 py-2.5 rounded-pill fw-bold">
+                                <i class="bi bi-journal-code" aria-hidden="true"></i>
+                                <span>View All Courses</span>
+                            </a>
+                            <a href="coding_lab.html"
+                                class="btn btn-outline-secondary px-4 py-2.5 rounded-pill fw-bold">
+                                <i class="bi bi-code-square" aria-hidden="true"></i>
+                                <span>Open Coding Lab</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
         <!-- Quick Quiz Teaser Section -->
         <section class="quiz-teaser-section py-5 position-relative" aria-labelledby="quiz-teaser-title">
             <div class="container py-4">
@@ -868,13 +946,14 @@
                             Can you solve this quick coding challenge? Click an answer to test your logic!
                         </p>
 
-                        <div class="quiz-teaser-card text-start">
+                        <div class="quiz-teaser-card text-start p-4 rounded-4 shadow-sm bg-card border border-subtle">
                             <div class="d-flex align-items-center justify-content-between mb-3">
                                 <span
                                     class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-1.5 fw-semibold small">
                                     HTML Topic #1
                                 </span>
-                                <span class="text-muted small"><i class="bi bi-clock me-1"></i> Instant Feedback</span>
+                                <span class="text-muted small"><i class="bi bi-clock me-1" aria-hidden="true"></i>
+                                    Instant Feedback</span>
                             </div>
 
                             <h3 class="h5 fw-bold mb-4">
@@ -884,28 +963,28 @@
 
                             <div class="row g-3">
                                 <div class="col-sm-6">
-                                    <button type="button" class="quiz-option-btn quiz-teaser-option"
+                                    <button type="button" class="quiz-option-btn quiz-teaser-option w-100"
                                         data-correct="false">
                                         <span>A) &lt;head&gt;</span>
                                         <i class="bi bi-circle" aria-hidden="true"></i>
                                     </button>
                                 </div>
                                 <div class="col-sm-6">
-                                    <button type="button" class="quiz-option-btn quiz-teaser-option"
+                                    <button type="button" class="quiz-option-btn quiz-teaser-option w-100"
                                         data-correct="true">
                                         <span>B) &lt;h1&gt;</span>
                                         <i class="bi bi-circle" aria-hidden="true"></i>
                                     </button>
                                 </div>
                                 <div class="col-sm-6">
-                                    <button type="button" class="quiz-option-btn quiz-teaser-option"
+                                    <button type="button" class="quiz-option-btn quiz-teaser-option w-100"
                                         data-correct="false">
                                         <span>C) &lt;p&gt;</span>
                                         <i class="bi bi-circle" aria-hidden="true"></i>
                                     </button>
                                 </div>
                                 <div class="col-sm-6">
-                                    <button type="button" class="quiz-option-btn quiz-teaser-option"
+                                    <button type="button" class="quiz-option-btn quiz-teaser-option w-100"
                                         data-correct="false">
                                         <span>D) &lt;title&gt;</span>
                                         <i class="bi bi-circle" aria-hidden="true"></i>
@@ -928,12 +1007,12 @@
         </section>
 
         <!-- Testimonials Section -->
-        <section class="testimonials-section py-5 position-relative" aria-labelledby="testimonials-title">
+        <section class="testimonials-section py-5 position-relative bg-surface" aria-labelledby="testimonials-title">
             <div class="container py-4 py-lg-5">
                 <div class="text-center mb-5" data-aos="fade-up">
                     <span class="about-pill-badge d-inline-flex align-items-center gap-2 px-3 py-1.5 rounded-pill mb-3">
                         <i class="bi bi-heart-fill text-danger" aria-hidden="true"></i>
-                        <span>Loved By Students & Teachers</span>
+                        <span>Loved By Students &amp; Teachers</span>
                     </span>
                     <h2 id="testimonials-title" class="display-5 fw-bold mb-3">
                         What Learners Say About <span class="purple-gradient-text">CodeSpark</span>
@@ -947,18 +1026,20 @@
                 <div class="row g-4">
                     <!-- Review 1 -->
                     <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="testimonial-card h-100 shadow-sm d-flex flex-column">
-                            <div class="star-rating mb-3">
+                        <div
+                            class="testimonial-card h-100 shadow-sm p-4 rounded-4 bg-card border border-subtle d-flex flex-column">
+                            <div class="star-rating mb-3 text-warning">
                                 <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
                                     class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
                                     class="bi bi-star-fill"></i>
                             </div>
                             <p class="text-muted small mb-4 flex-grow-1">
-                                "CodeSpark made learning HTML & CSS so easy! The live coding lab lets me see my changes
-                                right away. I built my first personal portfolio website in just 2 weeks!"
+                                "CodeSpark made learning HTML &amp; CSS so easy! The live coding lab lets me see my
+                                changes right away. I built my first personal portfolio website in just 2 weeks!"
                             </p>
                             <div class="d-flex align-items-center gap-3 pt-3 border-top border-color-subtle">
-                                <div class="user-avatar">AR</div>
+                                <div class="user-avatar rounded-circle bg-primary text-white d-flex align-items-center justify-content-center fw-bold"
+                                    style="width:40px; height:40px;">AR</div>
                                 <div>
                                     <h4 class="h6 fw-bold mb-0">Aarav Sharma</h4>
                                     <span class="extra-small text-muted">Grade 8 Student</span>
@@ -969,8 +1050,9 @@
 
                     <!-- Review 2 -->
                     <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                        <div class="testimonial-card h-100 shadow-sm d-flex flex-column">
-                            <div class="star-rating mb-3">
+                        <div
+                            class="testimonial-card h-100 shadow-sm p-4 rounded-4 bg-card border border-subtle d-flex flex-column">
+                            <div class="star-rating mb-3 text-warning">
                                 <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
                                     class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
                                     class="bi bi-star-fill"></i>
@@ -980,8 +1062,8 @@
                                 structured micro-lessons help reinforce computational logic effectively."
                             </p>
                             <div class="d-flex align-items-center gap-3 pt-3 border-top border-color-subtle">
-                                <div class="user-avatar avatar-teal">
-                                    PS</div>
+                                <div class="user-avatar rounded-circle bg-teal text-white d-flex align-items-center justify-content-center fw-bold"
+                                    style="width:40px; height:40px; background:#0d9488;">PS</div>
                                 <div>
                                     <h4 class="h6 fw-bold mb-0">Priya Singh</h4>
                                     <span class="extra-small text-muted">Computer Teacher</span>
@@ -992,8 +1074,9 @@
 
                     <!-- Review 3 -->
                     <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="testimonial-card h-100 shadow-sm d-flex flex-column">
-                            <div class="star-rating mb-3">
+                        <div
+                            class="testimonial-card h-100 shadow-sm p-4 rounded-4 bg-card border border-subtle d-flex flex-column">
+                            <div class="star-rating mb-3 text-warning">
                                 <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
                                     class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
                                     class="bi bi-star-fill"></i>
@@ -1003,8 +1086,8 @@
                                 safe, 100% browser-based, and has boosted her confidence in technology."
                             </p>
                             <div class="d-flex align-items-center gap-3 pt-3 border-top border-color-subtle">
-                                <div class="user-avatar avatar-pink">
-                                    RK</div>
+                                <div class="user-avatar rounded-circle bg-pink text-white d-flex align-items-center justify-content-center fw-bold"
+                                    style="width:40px; height:40px; background:#db2777;">RK</div>
                                 <div>
                                     <h4 class="h6 fw-bold mb-0">Rohan Kapoor</h4>
                                     <span class="extra-small text-muted">Parent</span>
@@ -1036,16 +1119,16 @@
                     <div class="col-lg-8" data-aos="fade-up">
                         <div class="accordion faq-accordion" id="faqAccordion">
                             <!-- FAQ 1 -->
-                            <div class="accordion-item">
+                            <div class="accordion-item border rounded-3 mb-3 overflow-hidden shadow-sm">
                                 <h3 class="accordion-header" id="headingOne">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                         Do students need any prior coding experience?
                                     </button>
                                 </h3>
                                 <div id="collapseOne" class="accordion-collapse collapse show"
                                     aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body">
+                                    <div class="accordion-body text-muted small">
                                         No prior experience is required! CodeSpark is designed specifically for
                                         beginners. We start from absolute basic concepts and build up to practical web
                                         projects step by step.
@@ -1054,16 +1137,17 @@
                             </div>
 
                             <!-- FAQ 2 -->
-                            <div class="accordion-item">
+                            <div class="accordion-item border rounded-3 mb-3 overflow-hidden shadow-sm">
                                 <h3 class="accordion-header" id="headingTwo">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <button class="accordion-button collapsed fw-bold" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
+                                        aria-controls="collapseTwo">
                                         Is any software installation required to use CodeSpark?
                                     </button>
                                 </h3>
                                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                                     data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body">
+                                    <div class="accordion-body text-muted small">
                                         Not at all. CodeSpark operates 100% inside your web browser. All micro-lessons,
                                         quizzes, and the live coding playground work seamlessly without installing any
                                         external tools.
@@ -1072,17 +1156,17 @@
                             </div>
 
                             <!-- FAQ 3 -->
-                            <div class="accordion-item">
+                            <div class="accordion-item border rounded-3 mb-3 overflow-hidden shadow-sm">
                                 <h3 class="accordion-header" id="headingThree">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseThree" aria-expanded="false"
+                                    <button class="accordion-button collapsed fw-bold" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false"
                                         aria-controls="collapseThree">
                                         What age group is CodeSpark suitable for?
                                     </button>
                                 </h3>
                                 <div id="collapseThree" class="accordion-collapse collapse"
                                     aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body">
+                                    <div class="accordion-body text-muted small">
                                         Our curriculum is ideal for school students aged 8 to 16 years. Lessons are
                                         structured with kid-friendly explanations, visual graphics, and gamified
                                         challenges.
@@ -1091,17 +1175,17 @@
                             </div>
 
                             <!-- FAQ 4 -->
-                            <div class="accordion-item">
+                            <div class="accordion-item border rounded-3 mb-3 overflow-hidden shadow-sm">
                                 <h3 class="accordion-header" id="headingFour">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseFour" aria-expanded="false"
+                                    <button class="accordion-button collapsed fw-bold" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false"
                                         aria-controls="collapseFour">
                                         Are certificates provided upon course completion?
                                     </button>
                                 </h3>
                                 <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
                                     data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body">
+                                    <div class="accordion-body text-muted small">
                                         Yes! As students complete course modules and pass topic quizzes, they unlock
                                         downloadable certificates and digital badges to celebrate their achievements.
                                     </div>
@@ -1116,7 +1200,7 @@
         <!-- Final Call to Action Section -->
         <section class="final-cta-section py-5 position-relative">
             <div class="container py-3">
-                <div class="cta-banner-box p-4 p-md-5 text-center text-md-start" data-aos="zoom-in">
+                <div class="cta-banner-box p-4 p-md-5 rounded-4 text-center text-md-start" data-aos="zoom-in">
                     <div class="row align-items-center gy-4">
                         <div class="col-lg-8">
                             <span class="badge bg-white text-primary rounded-pill px-3 py-1.5 fw-bold mb-3">
@@ -1150,37 +1234,130 @@
     </main>
 
     <!-- Footer -->
-    <footer class="site-footer">
+    <footer class="site-footer pt-5 pb-4">
         <div class="container">
-            <div class="row gy-4 align-items-center">
-                <div class="col-lg-4 text-center text-lg-start">
-                    <a class="footer-brand fw-bold" href="index.html" aria-label="CodeSpark home">
-                        <span>CodeSpark</span>
+            <div class="row gy-4 mb-4">
+                <!-- Col 1: Brand & Tagline & Social Links -->
+                <div class="col-lg-4 col-md-6">
+                    <a class="footer-brand fw-bold d-inline-flex align-items-center gap-2 mb-3" href="index.html"
+                        aria-label="CodeSpark home">
+                        <span class="brand-text">Code<span class="purple-gradient-text">Spark</span></span>
                     </a>
-                    <p class="footer-tagline mt-2 mb-0">
-                        Learn, Practice, and Build coding skills step by step.
+                    <p class="footer-tagline text-muted small mb-3">
+                        Empowering school children to master coding, build computational logic, and create real web
+                        applications in a safe, browser-based environment.
                     </p>
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <a href="https://github.com/pandeyatul1022/CodeSpark" target="_blank" class="footer-social-link"
+                            aria-label="GitHub Repository">
+                            <i class="bi bi-github" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="footer-social-link" aria-label="Twitter / X">
+                            <i class="bi bi-twitter-x" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="footer-social-link" aria-label="LinkedIn">
+                            <i class="bi bi-linkedin" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="footer-social-link" aria-label="YouTube">
+                            <i class="bi bi-youtube" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="footer-social-link" aria-label="Discord Community">
+                            <i class="bi bi-discord" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <span class="badge rounded-pill px-3 py-1.5 extra-small fw-semibold"
+                        style="background: rgba(16, 185, 129, 0.12); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.25);">
+                        <i class="bi bi-shield-check me-1" aria-hidden="true"></i> 100% Kid-Safe &amp; Ad-Free Platform
+                    </span>
                 </div>
-                <div class="col-lg-5">
-                    <nav class="footer-nav" aria-label="Footer navigation">
-                        <ul class="nav justify-content-center justify-content-lg-center gap-2 gap-md-3">
-                            <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                            <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
-                            <li class="nav-item"><a href="courses.html" class="nav-link">Courses</a></li>
-                            <li class="nav-item"><a href="quiz.html" class="nav-link">Quiz</a></li>
-                            <li class="nav-item"><a href="coding_lab.html" class="nav-link">Coding Lab</a></li>
-                            <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
-                        </ul>
-                    </nav>
+
+                <!-- Col 2: Quick Links Navigation -->
+                <div class="col-lg-2 col-6">
+                    <h4 class="footer-widget-title mb-3">Navigation</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="index.html" class="footer-link"><i
+                                    class="bi bi-chevron-right extra-small text-primary" aria-hidden="true"></i>
+                                Home</a></li>
+                        <li><a href="about.html" class="footer-link"><i
+                                    class="bi bi-chevron-right extra-small text-primary" aria-hidden="true"></i> About
+                                Us</a></li>
+                        <li><a href="courses.html" class="footer-link"><i
+                                    class="bi bi-chevron-right extra-small text-primary" aria-hidden="true"></i>
+                                Courses</a></li>
+                        <li><a href="quiz.html" class="footer-link"><i
+                                    class="bi bi-chevron-right extra-small text-primary" aria-hidden="true"></i>
+                                Quiz</a></li>
+                        <li><a href="coding_lab.html" class="footer-link"><i
+                                    class="bi bi-chevron-right extra-small text-primary" aria-hidden="true"></i> Coding
+                                Lab</a></li>
+                        <li><a href="contact.html" class="footer-link"><i
+                                    class="bi bi-chevron-right extra-small text-primary" aria-hidden="true"></i> Contact
+                                Us</a></li>
+                    </ul>
                 </div>
-                <div class="col-lg-3 text-center text-lg-end">
-                    <p class="copyright-text mb-0">
-                        &copy; 2026 CodeSpark. All rights reserved.
+
+                <!-- Col 3: Explore Courses & Labs -->
+                <div class="col-lg-3 col-6">
+                    <h4 class="footer-widget-title mb-3">Explore Curriculum</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="courses.html" class="footer-link"><i class="bi bi-journal-code text-primary"
+                                    aria-hidden="true"></i> HTML5 &amp; CSS3 Web Basics</a></li>
+                        <li><a href="courses.html" class="footer-link"><i class="bi bi-filetype-js text-warning"
+                                    aria-hidden="true"></i> JavaScript Magic &amp; DOM</a></li>
+                        <li><a href="courses.html" class="footer-link"><i class="bi bi-cpu text-info"
+                                    aria-hidden="true"></i> Python Fundamentals</a></li>
+                        <li><a href="coding_lab.html" class="footer-link"><i class="bi bi-puzzle-fill text-danger"
+                                    aria-hidden="true"></i> Visual Block Coding</a></li>
+                        <li><a href="quiz.html" class="footer-link"><i class="bi bi-question-circle text-success"
+                                    aria-hidden="true"></i> Topic Quiz Challenges</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Newsletter Box -->
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="footer-widget-title mb-3">Stay Connected ⚡</h4>
+                    <p class="text-muted extra-small mb-3">
+                        Subscribe to get new coding guides, fun trivia questions, and feature updates directly in your
+                        inbox.
                     </p>
+                    <form id="footer-newsletter-form" class="mb-2">
+                        <div class="input-group">
+                            <input type="email" class="form-control footer-newsletter-input"
+                                placeholder="Enter student/parent email..." aria-label="Email address" required>
+                            <button class="btn btn-primary footer-newsletter-btn px-3" type="submit"
+                                aria-label="Subscribe to newsletter">
+                                <i class="bi bi-send-fill" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </form>
+                    <span class="text-muted extra-small d-block">
+                        <i class="bi bi-lock me-1" aria-hidden="true"></i> Zero spam. Unsubscribe at any time.
+                    </span>
+                </div>
+            </div>
+
+            <!-- Bottom Sub-Footer Bar -->
+            <div
+                class="pt-4 border-top border-color-subtle d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
+                <p class="copyright-text mb-0 text-center text-md-start">
+                    &copy; 2026 <strong>CodeSpark</strong>. Built with <i class="bi bi-heart-fill text-danger mx-1"
+                        aria-hidden="true"></i> for future coders by <a href="https://github.com/pandeyatul1022"
+                        target="_blank" class="text-decoration-underline text-muted">Atul Pandey</a>.
+                </p>
+                <div class="d-flex align-items-center gap-3">
+                    <a href="#" class="text-muted extra-small text-decoration-none">Privacy Policy</a>
+                    <span class="text-muted extra-small">•</span>
+                    <a href="#" class="text-muted extra-small text-decoration-none">Terms of Service</a>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- Floating Back to Top Button -->
+    <button id="backToTopBtn" type="button" class="back-to-top-floating" title="Back to top"
+        aria-label="Scroll to top of page">
+        <i class="bi bi-arrow-up-short" aria-hidden="true"></i>
+    </button>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>

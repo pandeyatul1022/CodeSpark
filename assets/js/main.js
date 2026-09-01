@@ -2156,6 +2156,58 @@ if (typeof AOS !== "undefined") {
 }
 
 
+const initFooterFeatures = () => {
+    const newsletterForm = document.querySelector("#footer-newsletter-form");
+    if (newsletterForm) {
+        newsletterForm.addEventListener("submit", event => {
+            event.preventDefault();
+            const emailInput = newsletterForm.querySelector("input[type='email']");
+            const email = emailInput ? emailInput.value.trim() : "";
+
+            if (!email) {
+                if (typeof Swal !== "undefined") {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Email Required",
+                        text: "Please enter a valid email address.",
+                        confirmButtonColor: "#4f46e5"
+                    });
+                }
+                return;
+            }
+
+            if (emailInput) emailInput.value = "";
+
+            if (typeof Swal !== "undefined") {
+                Swal.fire({
+                    icon: "success",
+                    title: "Welcome to CodeSpark! 🚀",
+                    text: "Thank you for subscribing to our coding updates and quiz challenges.",
+                    confirmButtonColor: "#4f46e5"
+                });
+            }
+        });
+    }
+
+    const backToTopBtn = document.querySelector("#backToTopBtn");
+    if (backToTopBtn) {
+        const toggleBackToTop = () => {
+            if (window.scrollY > 250) {
+                backToTopBtn.classList.add("show");
+            } else {
+                backToTopBtn.classList.remove("show");
+            }
+        };
+
+        toggleBackToTop();
+        window.addEventListener("scroll", toggleBackToTop, { passive: true });
+
+        backToTopBtn.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    }
+};
+
 initThemeToggle();
 initNavbar();
 initLoginButtonNotice();
@@ -2167,5 +2219,7 @@ initContactPage();
 initCoursesPage();
 initQuizPage();
 initCodingLabPage();
+initFooterFeatures();
+
 
 
