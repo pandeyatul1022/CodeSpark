@@ -46,170 +46,124 @@
   </nav>
 
   <!-- Profile Content -->
-  <main class="main-content container" style="margin-top: calc(var(--navbar-height) + 2rem); margin-bottom: 4rem;">
-
-    <!-- Profile Hero Card -->
-    <div class="profile-hero">
+  <main class="main-content container profile-page">
+    <header class="profile-hero">
       <div class="profile-hero-content">
         <div class="profile-avatar-container">
-          <div class="profile-avatar-large" id="profileAvatarLarge">A</div>
-          <button type="button" class="avatar-upload-btn" id="uploadAvatarBtn" title="Upload Profile Picture">
-            <i class="bi bi-camera"></i>
+          <div class="profile-avatar-large" id="profileAvatarLarge" aria-label="Profile picture">A</div>
+          <button type="button" class="avatar-upload-btn" id="uploadAvatarBtn" title="Upload profile picture" aria-label="Upload profile picture">
+            <i class="bi bi-camera" aria-hidden="true"></i>
           </button>
-          <input type="file" id="avatarFileInput" accept="image/*" style="display: none;">
+          <input type="file" id="avatarFileInput" accept="image/*" hidden>
         </div>
         <div class="profile-details">
-          <h1 id="profileUsername">atul <span class="profile-tag"><i class="bi bi-shield-lock"></i> Master Coder</span></h1>
-          <p class="profile-subtitle" id="profileBio">Passionate block programmer & game creator 🚀 Learning logic step-by-step!</p>
-          <div class="profile-joined">
-            <i class="bi bi-calendar3"></i> Joined CodeSpark in October 2026 &bull; <i class="bi bi-fire text-gradient"></i> 7-Day Active Streak
+          <span class="profile-eyebrow">YOUR ACCOUNT</span>
+          <h1 id="profileUsername">atul <span class="profile-tag"><i class="bi bi-person-check" aria-hidden="true"></i> CodeSpark member</span></h1>
+          <p class="profile-subtitle" id="profileBio">Manage your profile and keep learning at your own pace.</p>
+        </div>
+        <div class="profile-hero-actions">
+          <a href="editor.html" class="btn btn-primary"><i class="bi bi-code-slash" aria-hidden="true"></i> Open editor</a>
+          <a href="tutorials.html" class="btn btn-secondary"><i class="bi bi-journal-code" aria-hidden="true"></i> Explore lessons</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="profile-dashboard">
+      <section class="profile-main-column" aria-label="Profile and learning">
+        <section class="card-box profile-panel" aria-labelledby="profileSettingsTitle">
+          <div class="profile-panel-heading">
+            <div class="profile-panel-icon"><i class="bi bi-person-gear" aria-hidden="true"></i></div>
+            <div>
+              <h2 id="profileSettingsTitle">Profile settings</h2>
+              <p>Keep your account details up to date.</p>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Quick Stats Cards -->
-    <div class="stats-grid-4">
-      <div class="profile-stat-card">
-        <div class="profile-stat-icon stat-icon-purple">
-          <i class="bi bi-boxes"></i>
-        </div>
-        <div class="profile-stat-info">
-          <h3 id="statProjects">12</h3>
-          <p>Projects Built</p>
-        </div>
-      </div>
-      <div class="profile-stat-card">
-        <div class="profile-stat-icon stat-icon-cyan">
-          <i class="bi bi-mortarboard-fill"></i>
-        </div>
-        <div class="profile-stat-info">
-          <h3 id="statTutorials">8</h3>
-          <p>Tutorials Done</p>
-        </div>
-      </div>
-      <div class="profile-stat-card">
-        <div class="profile-stat-icon stat-icon-pink">
-          <i class="bi bi-award-fill"></i>
-        </div>
-        <div class="profile-stat-info">
-          <h3 id="statQuizzes">15</h3>
-          <p>Quizzes Passed</p>
-        </div>
-      </div>
-      <div class="profile-stat-card">
-        <div class="profile-stat-icon stat-icon-amber">
-          <i class="bi bi-lightning-charge"></i>
-        </div>
-        <div class="profile-stat-info">
-          <h3 id="statBlocks">1,450</h3>
-          <p>Blocks Snapped</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- 2 Column Layout -->
-    <div class="profile-two-col">
-      <!-- Left Column: Settings & Projects -->
-      <div>
-        <!-- Account Settings Card -->
-        <div class="card-box">
-          <h2><i class="bi bi-person-gear text-gradient"></i> Account Settings</h2>
-          <form id="profileSettingsForm">
-            <div class="form-group" style="margin-bottom: var(--space-md);">
-              <label><i class="bi bi-image"></i> Profile Picture</label>
-              <div style="display: flex; gap: var(--space-sm); align-items: center;">
+          <form id="profileSettingsForm" class="profile-settings-form">
+            <div class="profile-avatar-settings">
+              <div>
+                <strong>Profile photo</strong>
+                <p>Choose an image to personalize your account.</p>
+              </div>
+              <div class="profile-avatar-actions">
                 <button type="button" class="btn btn-secondary btn-sm" id="formUploadAvatarBtn">
-                  <i class="bi bi-upload"></i> Upload Photo
+                  <i class="bi bi-upload" aria-hidden="true"></i> Upload photo
                 </button>
-                <button type="button" class="btn btn-danger btn-sm" id="removeAvatarBtn" style="display: none;">
-                  <i class="bi bi-trash"></i> Remove
+                <button type="button" class="btn btn-danger btn-sm" id="removeAvatarBtn" hidden>
+                  <i class="bi bi-trash" aria-hidden="true"></i> Remove
                 </button>
               </div>
             </div>
-            <div class="form-group" style="margin-bottom: var(--space-md);">
-              <label for="settingsName"><i class="bi bi-person"></i> Display Name</label>
-              <input type="text" id="settingsName" class="modal-input" value="atul" required>
+            <div class="profile-field">
+              <label for="settingsName">Display name</label>
+              <input type="text" id="settingsName" class="modal-input" placeholder="Enter your name" required autocomplete="name">
             </div>
-            <div class="form-group" style="margin-bottom: var(--space-md);">
-              <label for="settingsBio"><i class="bi bi-pen"></i> Bio / Tagline</label>
-              <input type="text" id="settingsBio" class="modal-input" value="Passionate block programmer & game creator 🚀">
+            <div class="profile-field">
+              <label for="settingsBio">About you <span>Optional</span></label>
+              <textarea id="settingsBio" class="modal-input" rows="3" maxlength="180" placeholder="Share a little about what you enjoy creating."></textarea>
             </div>
-
-            <button type="submit" class="btn btn-primary btn-sm">
-              <i class="bi bi-floppy"></i> Save Profile
-            </button>
+            <div class="profile-form-footer">
+              <p><i class="bi bi-lock" aria-hidden="true"></i> Your profile details are saved on this device.</p>
+              <button type="submit" class="btn btn-primary btn-sm">
+                <i class="bi bi-check2" aria-hidden="true"></i> Save changes
+              </button>
+            </div>
           </form>
-        </div>
+        </section>
 
-        <!-- Saved Projects -->
-        <div class="card-box">
-          <h2><i class="bi bi-folder2-open text-gradient"></i> My Saved Projects</h2>
-          <div style="display: flex; flex-direction: column; gap: var(--space-md);">
-            <div style="display: flex; align-items: center; justify-content: space-between; padding: var(--space-md); background: var(--bg-secondary); border-radius: var(--radius-md);">
-              <div>
-                <strong style="display: block; font-size: 1rem;"><i class="bi bi-controller text-gradient"></i> Bouncing Sprite Game</strong>
-                <small style="color: var(--text-muted);">Edited 2 hours ago &bull; 42 blocks</small>
-              </div>
-              <a href="editor.html" class="btn btn-secondary btn-sm"><i class="bi bi-folder2-open"></i> Open</a>
-            </div>
-            <div style="display: flex; align-items: center; justify-content: space-between; padding: var(--space-md); background: var(--bg-secondary); border-radius: var(--radius-md);">
-              <div>
-                <strong style="display: block; font-size: 1rem;"><i class="bi bi-magic text-gradient"></i> Rainbow Color Loop</strong>
-                <small style="color: var(--text-muted);">Edited Yesterday &bull; 18 blocks</small>
-              </div>
-              <a href="editor.html" class="btn btn-secondary btn-sm"><i class="bi bi-folder2-open"></i> Open</a>
+        <section class="profile-quick-section" aria-labelledby="profileExploreTitle">
+          <div class="profile-section-heading">
+            <div>
+              <span class="profile-eyebrow">KEEP GOING</span>
+              <h2 id="profileExploreTitle">Pick your next step</h2>
             </div>
           </div>
-        </div>
-      </div>
+          <div class="profile-quick-grid">
+            <a class="profile-quick-card" href="editor.html">
+              <span class="profile-quick-icon profile-quick-icon-purple"><i class="bi bi-braces-asterisk" aria-hidden="true"></i></span>
+              <span class="profile-quick-copy"><strong>Build a project</strong><span>Turn an idea into something interactive.</span></span>
+              <i class="bi bi-arrow-up-right profile-quick-arrow" aria-hidden="true"></i>
+            </a>
+            <a class="profile-quick-card" href="tutorials.html">
+              <span class="profile-quick-icon profile-quick-icon-cyan"><i class="bi bi-journal-code" aria-hidden="true"></i></span>
+              <span class="profile-quick-copy"><strong>Explore lessons</strong><span>Learn coding one step at a time.</span></span>
+              <i class="bi bi-arrow-up-right profile-quick-arrow" aria-hidden="true"></i>
+            </a>
+            <a class="profile-quick-card" href="quiz.html">
+              <span class="profile-quick-icon profile-quick-icon-amber"><i class="bi bi-lightbulb" aria-hidden="true"></i></span>
+              <span class="profile-quick-copy"><strong>Try a quiz</strong><span>Practice what you have learned.</span></span>
+              <i class="bi bi-arrow-up-right profile-quick-arrow" aria-hidden="true"></i>
+            </a>
+          </div>
+        </section>
+      </section>
 
-      <!-- Right Column: Recent Activity & Achievements Link -->
-      <div>
-        <!-- Achievements Shortcut Box -->
-        <div class="card-box" style="background: var(--gradient-card);">
-          <h2><i class="bi bi-trophy-fill text-gradient"></i> Badges Unlocked</h2>
-          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: var(--space-md);">
-            You have unlocked <strong>9 of 15</strong> achievements badges!
-          </p>
-          <a href="achievements.html" class="btn btn-primary btn-sm" style="width: 100%; justify-content: center; margin-bottom: var(--space-md);">
-            <i class="bi bi-award-fill"></i> View All Achievements
+      <aside class="profile-side-column" aria-label="Achievements and resources">
+        <section class="card-box profile-achievements-card" aria-labelledby="profileAchievementsTitle">
+          <div class="profile-achievement-art" aria-hidden="true"><i class="bi bi-trophy-fill"></i></div>
+          <span class="profile-eyebrow">YOUR MILESTONES</span>
+          <h2 id="profileAchievementsTitle">Celebrate your progress</h2>
+          <p>Explore your achievements and keep building new skills.</p>
+          <a href="achievements.html" class="btn btn-primary profile-wide-button">
+            <i class="bi bi-award" aria-hidden="true"></i> View achievements
           </a>
-          <a href="certificate.html" target="_blank" class="btn btn-secondary btn-sm" style="width: 100%; justify-content: center;">
-            <i class="bi bi-file-earmark-text"></i> View Official Certificate
+          <a href="certificate.html" target="_blank" rel="noopener noreferrer" class="profile-certificate-link">
+            <i class="bi bi-patch-check" aria-hidden="true"></i> View your certificate
+            <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
           </a>
-        </div>
+        </section>
 
-        <!-- Activity Timeline -->
-        <div class="card-box">
-          <h2><i class="bi bi-clock-history text-gradient"></i> Recent Activity</h2>
-          <div class="activity-list">
-            <div class="activity-item">
-              <div class="activity-badge-icon"><i class="bi bi-check"></i></div>
-              <div>
-                <div class="activity-title">Passed Quiz #3 on Loops</div>
-                <div class="activity-time">Today, 2:15 PM</div>
-              </div>
-            </div>
-            <div class="activity-item">
-              <div class="activity-badge-icon"><i class="bi bi-award-fill"></i></div>
-              <div>
-                <div class="activity-title">Unlocked "Rocket Launcher" Badge</div>
-                <div class="activity-time">Yesterday, 6:40 PM</div>
-              </div>
-            </div>
-            <div class="activity-item">
-              <div class="activity-badge-icon"><i class="bi bi-code-slash"></i></div>
-              <div>
-                <div class="activity-title">Created new project "Bouncing Sprite"</div>
-                <div class="activity-time">2 days ago</div>
-              </div>
+        <section class="card-box profile-projects-card" aria-labelledby="profileProjectsTitle">
+          <div class="profile-projects-heading">
+            <div class="profile-panel-icon"><i class="bi bi-folder2-open" aria-hidden="true"></i></div>
+            <div>
+              <h2 id="profileProjectsTitle">Saved projects</h2>
+              <p>Your projects saved from the editor.</p>
             </div>
           </div>
-        </div>
-      </div>
+          <div class="profile-saved-projects" id="profileSavedProjects" aria-live="polite"></div>
+        </section>
+      </aside>
     </div>
-
   </main>
 
   <!-- Footer -->
@@ -259,7 +213,6 @@
   <!-- Toast Container -->
   <div class="achievements-panel" id="achievementsPanel"></div>
 
-  <script src="assets/js/vendor/bootstrap.bundle.min.js"></script>
   <script src="assets/js/app.js"></script>
   <script src="assets/js/features/profile/profile.js"></script>
 </body>

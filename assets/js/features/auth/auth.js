@@ -1,47 +1,64 @@
+function parseProviderJwt(token) {
+  try {
+    const base64 = token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
+    const json = decodeURIComponent(atob(base64).split('').map((character) =>
+      `%${(`00${character.charCodeAt(0).toString(16)}`).slice(-2)}`
+    ).join(''));
+    return JSON.parse(json);
+  } catch (error) {
+    console.error('Unable to read identity provider credentials:', error);
+    return null;
+  }
+}
+
+function showProviderMessage(alert, message, type = 'error') {
+  alert.textContent = message;
+  alert.className = `auth-alert ${type}`;
+}
+
+function completeProviderSignIn(alert, { name, email, picture, provider }) {
+  if (!email) {
+    throw new Error(`${provider} did not return an email address.`);
+  }
+
+  const username = name || email.split('@')[0];
+  const userData = {
+    username,
+    email,
+    provider,
+    loggedInAt: new Date().toISOString()
+  };
+
+  if (picture) localStorage.setItem('codespark_avatar', picture);
+  localStorage.setItem('codespark-logged-user', JSON.stringify(userData));
+  localStorage.setItem('codespark_user', JSON.stringify(userData));
+  showProviderMessage(alert, `Signed in with ${provider}. Redirecting...`, 'success');
+  setTimeout(() => {
+    window.location.href = 'index.html';
+  }, 600);
+}
+
 if (document.getElementById('pageLoginForm')) {
-// ── Official Google JWT Token Decoder ──
-    function parseGoogleJwt(token) {
-      try {
-        const base64Url = token.split('.')[1];
-        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-        const jsonPayload = decodeURIComponent(atob(base64).split('').map(c =>
-          '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
-        ).join(''));
-        return JSON.parse(jsonPayload);
-      } catch (e) {
-        return null;
-      }
-    }
-
-    // Google Identity Callback
     function handleGoogleCredentialResponse(response) {
-      if (response && response.credential) {
-        const payload = parseGoogleJwt(response.credential);
-        const name = payload ? payload.name : 'Google User';
-        const email = payload ? payload.email : 'user@gmail.com';
-        const picture = payload ? payload.picture : null;
+      const payload = response && response.credential
+        ? parseProviderJwt(response.credential)
+        : null;
 
-        if (picture) localStorage.setItem('codespark_avatar', picture);
+      if (!payload || !payload.email) {
+        showProviderMessage(document.getElementById('loginAlert'), 'Google sign-in could not verify your account. Please try again.');
+        return;
+      }
 
-        const userData = {
-          username: name,
-          email: email,
-          provider: 'Google Official OAuth',
-          loggedInAt: new Date().toISOString()
-        };
-
-        localStorage.setItem('codespark-logged-user', JSON.stringify(userData));
-        localStorage.setItem('codespark_user', JSON.stringify(userData));
-
-        const loginAlert = document.getElementById('loginAlert');
-        if (loginAlert) {
-          loginAlert.textContent = `Official Google Token Verified! Welcome ${name}...`;
-          loginAlert.className = 'auth-alert success';
-        }
-
-        setTimeout(() => {
-          window.location.href = 'index.html';
-        }, 600);
+      try {
+        completeProviderSignIn(document.getElementById('loginAlert'), {
+          name: payload.name,
+          email: payload.email,
+          picture: payload.picture,
+          provider: 'Google'
+        });
+      } catch (error) {
+        console.error('Google sign-in could not be completed:', error);
+        showProviderMessage(document.getElementById('loginAlert'), 'Google sign-in could not be completed. Please try again.');
       }
     }
 
@@ -50,145 +67,75 @@ if (document.getElementById('pageLoginForm')) {
       const loginAlert = document.getElementById('loginAlert');
       const googleBtn = document.getElementById('googleLoginBtn');
       const appleBtn = document.getElementById('appleLoginBtn');
-
-      const googleModal = document.getElementById('googleModalOverlay');
-      const appleModal = document.getElementById('appleModalOverlay');
-
-      // Initialize Official Google Identity Services SDK if online & client configured
-      try {
-        if (window.google && window.google.accounts) {
-          window.google.accounts.id.initialize({
-            client_id: '1084282498263-codesparkexample.apps.googleusercontent.com',
-            callback: handleGoogleCredentialResponse,
-            auto_select: false
-          });
-        }
-      } catch(e) {}
-
-      // Initialize Official Apple Auth SDK if loaded
-      try {
-        if (window.AppleID) {
-          window.AppleID.auth.init({
-            clientId: 'com.codespark.web.service',
-            scope: 'name email',
-            redirectURI: window.location.href,
-            state: 'origin:web',
-            usePopup: true
-          });
-        }
-      } catch(e) {}
+      let googleInitialized = false;
+      let appleInitialized = false;
 
       if (googleBtn) {
         googleBtn.addEventListener('click', () => {
-          // Attempt official Google GSI SDK prompt first
-          if (window.google && window.google.accounts) {
-            try {
-              window.google.accounts.id.prompt((notification) => {
-                if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
-                  googleModal.classList.add('active');
-                }
+          if (!window.google || !window.google.accounts) {
+            showProviderMessage(loginAlert, 'Google sign-in is unavailable. Please use your username and password.');
+            return;
+          }
+
+          try {
+            if (!googleInitialized) {
+              window.google.accounts.id.initialize({
+                client_id: '1084282498263-codesparkexample.apps.googleusercontent.com',
+                callback: handleGoogleCredentialResponse,
+                auto_select: false
               });
-            } catch(err) {
-              googleModal.classList.add('active');
+              googleInitialized = true;
             }
-          } else {
-            googleModal.classList.add('active');
+            window.google.accounts.id.prompt((notification) => {
+              if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+                showProviderMessage(loginAlert, 'Google sign-in could not be opened. Please use your username and password.');
+              }
+            });
+          } catch (error) {
+            console.error('Google sign-in could not be initialized:', error);
+            showProviderMessage(loginAlert, 'Google sign-in could not be opened. Please use your username and password.');
           }
         });
       }
 
       if (appleBtn) {
-        appleBtn.addEventListener('click', () => {
-          if (window.AppleID) {
-            window.AppleID.auth.signIn().then((res) => {
-              const email = res.user ? res.user.email : 'user@icloud.com';
-              const name = res.user ? (res.user.name.firstName + ' ' + res.user.name.lastName) : 'Apple User';
+        appleBtn.addEventListener('click', async () => {
+          if (!window.AppleID) {
+            showProviderMessage(loginAlert, 'Apple sign-in is unavailable. Please use your username and password.');
+            return;
+          }
 
-              const userData = {
-                username: name,
-                email: email,
-                provider: 'Apple ID Official',
-                loggedInAt: new Date().toISOString()
-              };
+          try {
+            if (!appleInitialized) {
+              window.AppleID.auth.init({
+                clientId: 'com.codespark.web.service',
+                scope: 'name email',
+                redirectURI: window.location.href,
+                state: 'origin:web',
+                usePopup: true
+              });
+              appleInitialized = true;
+            }
+            const response = await window.AppleID.auth.signIn();
+            const user = response.user || {};
+            const payload = response.authorization && response.authorization.id_token
+              ? parseProviderJwt(response.authorization.id_token)
+              : null;
+            const name = user.name
+              ? [user.name.firstName, user.name.lastName].filter(Boolean).join(' ')
+              : (payload && payload.name);
 
-              localStorage.setItem('codespark-logged-user', JSON.stringify(userData));
-              localStorage.setItem('codespark_user', JSON.stringify(userData));
-
-              loginAlert.textContent = `Signed in successfully with Apple ID! Redirecting...`;
-              loginAlert.className = 'auth-alert success';
-
-              setTimeout(() => { window.location.href = 'index.html'; }, 600);
-            }).catch(() => {
-              appleModal.classList.add('active');
+            completeProviderSignIn(loginAlert, {
+              name,
+              email: user.email || (payload && payload.email),
+              provider: 'Apple'
             });
-          } else {
-            appleModal.classList.add('active');
+          } catch (error) {
+            console.error('Apple sign-in could not be completed:', error);
+            showProviderMessage(loginAlert, 'Apple sign-in was cancelled or could not be completed. Please try again.');
           }
         });
       }
-
-      window.closeGoogleOAuth = function() {
-        googleModal.classList.remove('active');
-      };
-
-      window.closeAppleOAuth = function() {
-        appleModal.classList.remove('active');
-      };
-
-      window.submitGoogleOAuth = function(name, email) {
-        googleModal.classList.remove('active');
-        loginAlert.textContent = `Authenticating with Google Account (${email})...`;
-        loginAlert.className = 'auth-alert success';
-
-        setTimeout(() => {
-          const userData = {
-            username: name,
-            email: email,
-            provider: 'Google',
-            loggedInAt: new Date().toISOString()
-          };
-
-          localStorage.setItem('codespark-logged-user', JSON.stringify(userData));
-          localStorage.setItem('codespark_user', JSON.stringify(userData));
-
-          loginAlert.textContent = `Signed in successfully as ${name}! Redirecting...`;
-          loginAlert.className = 'auth-alert success';
-
-          setTimeout(() => {
-            window.location.href = 'index.html';
-          }, 600);
-        }, 500);
-      };
-
-      window.submitAppleOAuth = function() {
-        const emailInput = document.getElementById('appleEmailInput');
-        const hideEmail = document.getElementById('hideEmail').checked;
-        const email = hideEmail ? 'privaterelay@appleid.com' : (emailInput ? emailInput.value : 'user@icloud.com');
-        const username = hideEmail ? 'Apple ID User' : email.split('@')[0];
-
-        appleModal.classList.remove('active');
-        loginAlert.textContent = `Authenticating with Apple ID...`;
-        loginAlert.className = 'auth-alert success';
-
-        setTimeout(() => {
-          const userData = {
-            username: username,
-            email: email,
-            provider: 'Apple ID',
-            loggedInAt: new Date().toISOString()
-          };
-
-          localStorage.setItem('codespark-logged-user', JSON.stringify(userData));
-          localStorage.setItem('codespark_user', JSON.stringify(userData));
-
-          loginAlert.textContent = `Signed in successfully with Apple ID! Redirecting...`;
-          loginAlert.className = 'auth-alert success';
-
-          setTimeout(() => {
-            window.location.href = 'index.html';
-          }, 600);
-        }, 500);
-      };
 
       if (loginForm) {
         loginForm.addEventListener('submit', (e) => {
@@ -245,48 +192,26 @@ if (document.getElementById('pageLoginForm')) {
 }
 
 if (document.getElementById('pageRegisterForm')) {
-// ── Official Google JWT Token Decoder ──
-    function parseGoogleJwt(token) {
-      try {
-        const base64Url = token.split('.')[1];
-        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-        const jsonPayload = decodeURIComponent(atob(base64).split('').map(c =>
-          '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
-        ).join(''));
-        return JSON.parse(jsonPayload);
-      } catch (e) {
-        return null;
-      }
-    }
-
     function handleGoogleCredentialResponse(response) {
-      if (response && response.credential) {
-        const payload = parseGoogleJwt(response.credential);
-        const name = payload ? payload.name : 'Google User';
-        const email = payload ? payload.email : 'user@gmail.com';
-        const picture = payload ? payload.picture : null;
+      const payload = response && response.credential
+        ? parseProviderJwt(response.credential)
+        : null;
 
-        if (picture) localStorage.setItem('codespark_avatar', picture);
+      if (!payload || !payload.email) {
+        showProviderMessage(document.getElementById('registerAlert'), 'Google sign-in could not verify your account. Please try again.');
+        return;
+      }
 
-        const userData = {
-          username: name,
-          email: email,
-          provider: 'Google Official OAuth',
-          loggedInAt: new Date().toISOString()
-        };
-
-        localStorage.setItem('codespark-logged-user', JSON.stringify(userData));
-        localStorage.setItem('codespark_user', JSON.stringify(userData));
-
-        const registerAlert = document.getElementById('registerAlert');
-        if (registerAlert) {
-          registerAlert.textContent = `Official Google Token Verified! Registered ${name}...`;
-          registerAlert.className = 'auth-alert success';
-        }
-
-        setTimeout(() => {
-          window.location.href = 'index.html';
-        }, 600);
+      try {
+        completeProviderSignIn(document.getElementById('registerAlert'), {
+          name: payload.name,
+          email: payload.email,
+          picture: payload.picture,
+          provider: 'Google'
+        });
+      } catch (error) {
+        console.error('Google registration could not be completed:', error);
+        showProviderMessage(document.getElementById('registerAlert'), 'Google sign-in could not be completed. Please try again.');
       }
     }
 
@@ -295,144 +220,75 @@ if (document.getElementById('pageRegisterForm')) {
       const registerAlert = document.getElementById('registerAlert');
       const googleBtn = document.getElementById('googleRegBtn');
       const appleBtn = document.getElementById('appleRegBtn');
-
-      const googleModal = document.getElementById('googleModalOverlay');
-      const appleModal = document.getElementById('appleModalOverlay');
-
-      // Initialize Official Google Identity Services SDK if online
-      try {
-        if (window.google && window.google.accounts) {
-          window.google.accounts.id.initialize({
-            client_id: '1084282498263-codesparkexample.apps.googleusercontent.com',
-            callback: handleGoogleCredentialResponse,
-            auto_select: false
-          });
-        }
-      } catch(e) {}
-
-      // Initialize Official Apple Auth SDK if loaded
-      try {
-        if (window.AppleID) {
-          window.AppleID.auth.init({
-            clientId: 'com.codespark.web.service',
-            scope: 'name email',
-            redirectURI: window.location.href,
-            state: 'origin:web',
-            usePopup: true
-          });
-        }
-      } catch(e) {}
+      let googleInitialized = false;
+      let appleInitialized = false;
 
       if (googleBtn) {
         googleBtn.addEventListener('click', () => {
-          if (window.google && window.google.accounts) {
-            try {
-              window.google.accounts.id.prompt((notification) => {
-                if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
-                  googleModal.classList.add('active');
-                }
+          if (!window.google || !window.google.accounts) {
+            showProviderMessage(registerAlert, 'Google sign-in is unavailable. Please create an account with the form below.');
+            return;
+          }
+
+          try {
+            if (!googleInitialized) {
+              window.google.accounts.id.initialize({
+                client_id: '1084282498263-codesparkexample.apps.googleusercontent.com',
+                callback: handleGoogleCredentialResponse,
+                auto_select: false
               });
-            } catch(err) {
-              googleModal.classList.add('active');
+              googleInitialized = true;
             }
-          } else {
-            googleModal.classList.add('active');
+            window.google.accounts.id.prompt((notification) => {
+              if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+                showProviderMessage(registerAlert, 'Google sign-in could not be opened. Please use the form below.');
+              }
+            });
+          } catch (error) {
+            console.error('Google sign-in could not be initialized:', error);
+            showProviderMessage(registerAlert, 'Google sign-in could not be opened. Please use the form below.');
           }
         });
       }
 
       if (appleBtn) {
-        appleBtn.addEventListener('click', () => {
-          if (window.AppleID) {
-            window.AppleID.auth.signIn().then((res) => {
-              const email = res.user ? res.user.email : 'user@icloud.com';
-              const name = res.user ? (res.user.name.firstName + ' ' + res.user.name.lastName) : 'Apple User';
+        appleBtn.addEventListener('click', async () => {
+          if (!window.AppleID) {
+            showProviderMessage(registerAlert, 'Apple sign-in is unavailable. Please create an account with the form below.');
+            return;
+          }
 
-              const userData = {
-                username: name,
-                email: email,
-                provider: 'Apple ID Official',
-                loggedInAt: new Date().toISOString()
-              };
+          try {
+            if (!appleInitialized) {
+              window.AppleID.auth.init({
+                clientId: 'com.codespark.web.service',
+                scope: 'name email',
+                redirectURI: window.location.href,
+                state: 'origin:web',
+                usePopup: true
+              });
+              appleInitialized = true;
+            }
+            const response = await window.AppleID.auth.signIn();
+            const user = response.user || {};
+            const payload = response.authorization && response.authorization.id_token
+              ? parseProviderJwt(response.authorization.id_token)
+              : null;
+            const name = user.name
+              ? [user.name.firstName, user.name.lastName].filter(Boolean).join(' ')
+              : (payload && payload.name);
 
-              localStorage.setItem('codespark-logged-user', JSON.stringify(userData));
-              localStorage.setItem('codespark_user', JSON.stringify(userData));
-
-              registerAlert.textContent = `Registered successfully with Apple ID! Redirecting...`;
-              registerAlert.className = 'auth-alert success';
-
-              setTimeout(() => { window.location.href = 'index.html'; }, 600);
-            }).catch(() => {
-              appleModal.classList.add('active');
+            completeProviderSignIn(registerAlert, {
+              name,
+              email: user.email || (payload && payload.email),
+              provider: 'Apple'
             });
-          } else {
-            appleModal.classList.add('active');
+          } catch (error) {
+            console.error('Apple sign-in could not be completed:', error);
+            showProviderMessage(registerAlert, 'Apple sign-in was cancelled or could not be completed. Please try again.');
           }
         });
       }
-
-      window.closeGoogleOAuth = function() {
-        googleModal.classList.remove('active');
-      };
-
-      window.closeAppleOAuth = function() {
-        appleModal.classList.remove('active');
-      };
-
-      window.submitGoogleOAuth = function(name, email) {
-        googleModal.classList.remove('active');
-        registerAlert.textContent = `Creating account via Google (${email})...`;
-        registerAlert.className = 'auth-alert success';
-
-        setTimeout(() => {
-          const userData = {
-            username: name,
-            email: email,
-            provider: 'Google',
-            loggedInAt: new Date().toISOString()
-          };
-
-          localStorage.setItem('codespark-logged-user', JSON.stringify(userData));
-          localStorage.setItem('codespark_user', JSON.stringify(userData));
-
-          registerAlert.textContent = `Registered successfully as ${name}! Redirecting...`;
-          registerAlert.className = 'auth-alert success';
-
-          setTimeout(() => {
-            window.location.href = 'index.html';
-          }, 600);
-        }, 500);
-      };
-
-      window.submitAppleOAuth = function() {
-        const emailInput = document.getElementById('appleEmailInput');
-        const hideEmail = document.getElementById('hideEmail').checked;
-        const email = hideEmail ? 'privaterelay@appleid.com' : (emailInput ? emailInput.value : 'user@icloud.com');
-        const username = hideEmail ? 'Apple ID User' : email.split('@')[0];
-
-        appleModal.classList.remove('active');
-        registerAlert.textContent = `Creating account via Apple ID...`;
-        registerAlert.className = 'auth-alert success';
-
-        setTimeout(() => {
-          const userData = {
-            username: username,
-            email: email,
-            provider: 'Apple ID',
-            loggedInAt: new Date().toISOString()
-          };
-
-          localStorage.setItem('codespark-logged-user', JSON.stringify(userData));
-          localStorage.setItem('codespark_user', JSON.stringify(userData));
-
-          registerAlert.textContent = `Registered successfully with Apple ID! Redirecting...`;
-          registerAlert.className = 'auth-alert success';
-
-          setTimeout(() => {
-            window.location.href = 'index.html';
-          }, 600);
-        }, 500);
-      };
 
       if (registerForm) {
         registerForm.addEventListener('submit', (e) => {

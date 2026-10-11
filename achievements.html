@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
-    content="CodeSpark Achievements — Unlock coding badges, level up your programming skills, and earn XP rewards!">
+    content="Explore your CodeSpark milestones, track unlocked achievements, and discover your next coding challenge.">
   <title>Achievements & Badges — CodeSpark</title>
   <link rel="stylesheet" href="assets/vendor/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="assets/vendor/bootstrap-icons/bootstrap-icons.min.css">
@@ -45,163 +45,58 @@
     </div>
   </nav>
 
-  <!-- Achievements Content -->
-  <main class="main-content container" style="margin-top: calc(var(--navbar-height) + 2rem); margin-bottom: 4rem;">
+  <main class="main-content container achievements-page">
+    <header class="achievements-hero">
+      <div class="achievements-hero-icon" aria-hidden="true"><i class="bi bi-trophy-fill"></i></div>
+      <span class="achievements-eyebrow">YOUR CODING JOURNEY</span>
+      <h1>Achievements</h1>
+      <p>Every small step counts. Explore the milestones you have unlocked and find your next challenge.</p>
 
-    <!-- Achievements Hero Card -->
-    <div class="achievements-hero">
-      <h1><i class="bi bi-trophy-fill text-gradient"></i> Coding Achievements</h1>
-      <p style="color: var(--text-secondary); max-width: 600px; margin: 0.5rem auto 0 auto;">
-        Complete block coding challenges, pass quizzes, and maintain streaks to earn shiny badges & level up your coder rank!
-      </p>
-
-      <div class="level-progress-container">
-        <div class="level-labels">
-          <span><i class="bi bi-star-fill text-gradient"></i> Level 5: Code Explorer</span>
-          <span><strong>2,450 / 3,000 XP</strong></span>
+      <div class="achievements-progress" aria-live="polite">
+        <div class="achievements-progress-copy">
+          <span id="achievementProgressLabel">Your progress</span>
+          <strong id="achievementProgressCount">0 of 0 unlocked</strong>
         </div>
-        <div class="level-bar-bg">
-          <div class="level-bar-fill" style="width: 81%;"></div>
-        </div>
-        <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">
-          Only 550 XP left until <strong>Level 6: Logic Master</strong>!
+        <div
+          class="achievements-progress-track"
+          id="achievementProgressTrack"
+          role="progressbar"
+          aria-label="Achievements unlocked"
+          aria-valuemin="0"
+          aria-valuemax="0"
+          aria-valuenow="0"
+        >
+          <span class="achievements-progress-fill" id="achievementProgressFill"></span>
         </div>
       </div>
-    </div>
+    </header>
 
-    <!-- Filter Tabs -->
-    <div class="badge-tabs">
-      <button class="badge-tab active" data-filter="all"><i class="bi bi-grid-3x3"></i> All Badges (12)</button>
-      <button class="badge-tab" data-filter="unlocked"><i class="bi bi-unlock-fill"></i> Unlocked (9)</button>
-      <button class="badge-tab" data-filter="locked"><i class="bi bi-lock-fill"></i> Locked (3)</button>
-      <button class="badge-tab" data-filter="coding"><i class="bi bi-code-slash"></i> Coding</button>
-      <button class="badge-tab" data-filter="quiz"><i class="bi bi-cpu-fill"></i> Quizzes</button>
-    </div>
-
-    <!-- Badges Grid -->
-    <div class="badges-grid" id="badgesGrid">
-
-      <!-- Badge 1 -->
-      <div class="badge-card" data-category="coding" data-status="unlocked">
-        <div class="badge-icon-box stat-icon-purple">
-          <i class="bi bi-puzzle"></i>
+    <section class="achievements-collection" aria-labelledby="achievementCollectionTitle">
+      <div class="achievements-collection-heading">
+        <div>
+          <span class="achievements-eyebrow">MILESTONES</span>
+          <h2 id="achievementCollectionTitle">Your badges</h2>
         </div>
-        <h3>First Block</h3>
-        <p>Snapped your very first code block together in the editor.</p>
-        <span class="badge-status-pill badge-status-unlocked"><i class="bi bi-check"></i> Unlocked &bull; +100 XP</span>
+        <a href="profile.html" class="achievements-back-link"><i class="bi bi-person-circle" aria-hidden="true"></i> Back to profile</a>
       </div>
 
-      <!-- Badge 2 -->
-      <div class="badge-card" data-category="coding" data-status="unlocked">
-        <div class="badge-icon-box stat-icon-cyan">
-          <i class="bi bi-rocket-takeoff"></i>
-        </div>
-        <h3>Rocket Launcher</h3>
-        <p>Executed 10 interactive programs on the canvas stage.</p>
-        <span class="badge-status-pill badge-status-unlocked"><i class="bi bi-check"></i> Unlocked &bull; +250 XP</span>
+      <div class="badge-tabs" role="group" aria-label="Filter achievements">
+        <button class="badge-tab active" type="button" data-filter="all" aria-pressed="true">All <span data-count="all">0</span></button>
+        <button class="badge-tab" type="button" data-filter="unlocked" aria-pressed="false">Unlocked <span data-count="unlocked">0</span></button>
+        <button class="badge-tab" type="button" data-filter="locked" aria-pressed="false">Locked <span data-count="locked">0</span></button>
+        <button class="badge-tab" type="button" data-filter="coding" aria-pressed="false">Coding</button>
+        <button class="badge-tab" type="button" data-filter="learning" aria-pressed="false">Learning</button>
+        <button class="badge-tab" type="button" data-filter="quiz" aria-pressed="false">Quizzes</button>
+        <button class="badge-tab" type="button" data-filter="account" aria-pressed="false">Account</button>
       </div>
 
-      <!-- Badge 3 -->
-      <div class="badge-card" data-category="quiz" data-status="unlocked">
-        <div class="badge-icon-box stat-icon-pink">
-          <i class="bi bi-bullseye"></i>
-        </div>
-        <h3>Quiz Master</h3>
-        <p>Scored 100% on any programming concept quiz.</p>
-        <span class="badge-status-pill badge-status-unlocked"><i class="bi bi-check"></i> Unlocked &bull; +300 XP</span>
+      <p class="achievements-error" id="achievementsError" role="alert" hidden></p>
+      <div class="badges-grid achievements-grid" id="achievementCardsGrid" aria-live="polite"></div>
+      <div class="achievements-empty" id="achievementsEmpty" hidden>
+        <i class="bi bi-search" aria-hidden="true"></i>
+        <p>No achievements match this filter.</p>
       </div>
-
-      <!-- Badge 4 -->
-      <div class="badge-card" data-category="coding" data-status="unlocked">
-        <div class="badge-icon-box stat-icon-amber">
-          <i class="bi bi-arrow-repeat"></i>
-        </div>
-        <h3>Loop Legend</h3>
-        <p>Mastered repeat blocks and loops in 3 different projects.</p>
-        <span class="badge-status-pill badge-status-unlocked"><i class="bi bi-check"></i> Unlocked &bull; +200 XP</span>
-      </div>
-
-      <!-- Badge 5 -->
-      <div class="badge-card" data-category="streak" data-status="unlocked">
-        <div class="badge-icon-box stat-icon-purple">
-          <i class="bi bi-fire"></i>
-        </div>
-        <h3>7-Day Streak</h3>
-        <p>Logged in and coded for 7 consecutive days!</p>
-        <span class="badge-status-pill badge-status-unlocked"><i class="bi bi-check"></i> Unlocked &bull; +500 XP</span>
-      </div>
-
-      <!-- Badge 6 -->
-      <div class="badge-card" data-category="coding" data-status="unlocked">
-        <div class="badge-icon-box stat-icon-cyan">
-          <i class="bi bi-palette"></i>
-        </div>
-        <h3>Artist Coder</h3>
-        <p>Used the pen drawing block to create colorful geometric art.</p>
-        <span class="badge-status-pill badge-status-unlocked"><i class="bi bi-check"></i> Unlocked &bull; +150 XP</span>
-      </div>
-
-      <!-- Badge 7 -->
-      <div class="badge-card" data-category="quiz" data-status="unlocked">
-        <div class="badge-icon-box stat-icon-pink">
-          <i class="bi bi-cpu-fill"></i>
-        </div>
-        <h3>Logic Genius</h3>
-        <p>Answered 15 quiz questions correctly without any hints.</p>
-        <span class="badge-status-pill badge-status-unlocked"><i class="bi bi-check"></i> Unlocked &bull; +350 XP</span>
-      </div>
-
-      <!-- Badge 8 -->
-      <div class="badge-card" data-category="coding" data-status="unlocked">
-        <div class="badge-icon-box stat-icon-amber">
-          <i class="bi bi-robot"></i>
-        </div>
-        <h3>Bot Animator</h3>
-        <p>Created an animated sprite sequence with costumes.</p>
-        <span class="badge-status-pill badge-status-unlocked"><i class="bi bi-check"></i> Unlocked &bull; +200 XP</span>
-      </div>
-
-      <!-- Badge 9 -->
-      <div class="badge-card" data-category="coding" data-status="unlocked">
-        <div class="badge-icon-box stat-icon-purple">
-          <i class="bi bi-mortarboard-fill"></i>
-        </div>
-        <h3>Fast Learner</h3>
-        <p>Completed 5 step-by-step coding tutorials.</p>
-        <span class="badge-status-pill badge-status-unlocked"><i class="bi bi-check"></i> Unlocked &bull; +400 XP</span>
-      </div>
-
-      <!-- Badge 10 (Locked) -->
-      <div class="badge-card locked" data-category="coding" data-status="locked">
-        <div class="badge-icon-box" style="background: #64748b;">
-          <i class="bi bi-award-fill"></i>
-        </div>
-        <h3>Block Master</h3>
-        <p>Build 25 projects and reach Coder Level 10.</p>
-        <span class="badge-status-pill badge-status-locked"><i class="bi bi-lock-fill"></i> Locked &bull; +1,000 XP</span>
-      </div>
-
-      <!-- Badge 11 (Locked) -->
-      <div class="badge-card locked" data-category="streak" data-status="locked">
-        <div class="badge-icon-box" style="background: #64748b;">
-          <i class="bi bi-stars"></i>
-        </div>
-        <h3>30-Day Streak</h3>
-        <p>Maintain an active daily coding streak for 30 full days.</p>
-        <span class="badge-status-pill badge-status-locked"><i class="bi bi-lock-fill"></i> Locked &bull; +1,500 XP</span>
-      </div>
-
-      <!-- Badge 12 (Locked) -->
-      <div class="badge-card locked" data-category="quiz" data-status="locked">
-        <div class="badge-icon-box" style="background: #64748b;">
-          <i class="bi bi-trophy-fill"></i>
-        </div>
-        <h3>Grand Champion</h3>
-        <p>Complete all tutorials & get 100% score on all quiz levels.</p>
-        <span class="badge-status-pill badge-status-locked"><i class="bi bi-lock-fill"></i> Locked &bull; +2,000 XP</span>
-      </div>
-
-    </div>
+    </section>
   </main>
 
   <!-- Footer -->
@@ -251,8 +146,8 @@
   <!-- Toast Container -->
   <div class="achievements-panel" id="achievementsPanel"></div>
 
-  <script src="assets/js/vendor/bootstrap.bundle.min.js"></script>
   <script src="assets/js/app.js"></script>
+  <script src="assets/js/features/achievements/achievements.js"></script>
   <script src="assets/js/features/achievements/page.js"></script>
 </body>
 

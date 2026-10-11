@@ -134,6 +134,106 @@
       margin-bottom: 0.35rem;
     }
 
+    @media (max-width: 600px) {
+      body {
+        justify-content: flex-start;
+        padding: 1rem 0.75rem;
+      }
+
+      .certificate-actions {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.65rem;
+        margin-bottom: 1rem;
+      }
+
+      .certificate-actions .btn {
+        flex: 1 1 145px;
+        justify-content: center;
+      }
+
+      .certificate-wrapper {
+        padding: clamp(0.65rem, 3vw, 1rem);
+        border-width: 7px;
+      }
+
+      .certificate-inner {
+        padding: clamp(1rem, 5vw, 1.5rem) clamp(0.65rem, 3vw, 1rem);
+      }
+
+      .cert-logo {
+        font-size: 1.7rem;
+      }
+
+      .cert-header {
+        font-size: clamp(1.45rem, 7vw, 2rem);
+        letter-spacing: 0.06em;
+      }
+
+      .cert-present {
+        font-size: 0.82rem;
+      }
+
+      .cert-name {
+        box-sizing: border-box;
+        max-width: 100%;
+        padding-right: 0.5rem;
+        padding-left: 0.5rem;
+        overflow-wrap: anywhere;
+        font-size: clamp(1.5rem, 8vw, 2.2rem);
+      }
+
+      .cert-reason {
+        margin-bottom: 1.5rem;
+        font-size: 0.95rem;
+      }
+
+      .cert-footer {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 1rem 0.5rem;
+      }
+
+      .cert-seal {
+        width: 68px;
+        height: 68px;
+        font-size: 0.62rem;
+      }
+
+      .cert-seal i {
+        font-size: 1.35rem;
+      }
+
+      .cert-footer > div:last-child {
+        grid-column: 1 / -1;
+        text-align: center !important;
+        overflow-wrap: anywhere;
+      }
+
+      .cert-sig-line {
+        width: min(160px, 100%);
+      }
+    }
+
+    @media (max-width: 360px) {
+      body {
+        padding-right: 0.5rem;
+        padding-left: 0.5rem;
+      }
+
+      .certificate-actions .btn {
+        flex-basis: 130px;
+        padding-inline: 0.55rem;
+        font-size: 0.78rem;
+      }
+
+      .cert-footer {
+        grid-template-columns: minmax(0, 1fr) 60px;
+      }
+    }
+
     /* Print Styles */
     @media print {
       body {
@@ -211,7 +311,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/vendor/bootstrap.bundle.min.js"></script>
   <script src="assets/js/features/certificate/certificate.js"></script>
 </body>
 
