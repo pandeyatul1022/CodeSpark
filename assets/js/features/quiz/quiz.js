@@ -1,6 +1,6 @@
 /**
  * CodeSpark — Quiz Engine
- * Interactive coding awareness quiz with 15 questions
+ * Tutorial-progress quiz with randomized questions and a per-question timer
  */
 
 (function () {
@@ -219,13 +219,18 @@
   ];
 
   const isFoundationQuiz = new URLSearchParams(window.location.search).get('course') === 'html-foundations';
-  const questions = isFoundationQuiz ? foundationQuestions : generalQuestions;
+  let questions = isFoundationQuiz ? foundationQuestions.slice() : [];
   const foundationPassMark = 35;
+  const questionTimeLimit = 30;
+  const previousQuestionTypes = new Map();
+  let previousFoundationSequence = '';
 
   // ── Quiz State ──────────────────────────────────────────────────
   let currentQuestion = 0;
   let score = 0;
   let answered = false;
+  let questionTimer = null;
+  let secondsRemaining = questionTimeLimit;
 
   // ── DOM References ──────────────────────────────────────────────
   const progressFill = document.getElementById('quizProgressFill');
@@ -238,6 +243,8 @@
   const startBtn = document.getElementById('startQuizBtn');
   const retryBtn = document.getElementById('retryQuizBtn');
   const foundationNextLevel = document.getElementById('foundationNextLevel');
+  const timerDisplay = document.getElementById('quizTimer');
+  const progressNotice = document.getElementById('quizProgressNotice');
 
   if (isFoundationQuiz) {
     const startTitle = document.getElementById('quizStartTitle');
@@ -248,10 +255,35 @@
       startDescription.textContent = 'Check your understanding of HTML, its full form and uses, how HTML differs from CSS and JavaScript, and the meaning of tags, elements, and attributes. Score at least 35% to unlock the next HTML level.';
     }
     if (questionCount) questionCount.textContent = String(questions.length);
+    if (startDescription) {
+      startDescription.textContent = 'Answer five HTML foundation questions. Each question has a 30-second timer. Score at least 35% to unlock the next HTML level.';
+    }
+    if (progressNotice) progressNotice.textContent = '';
+  } else {
+    updateTutorialQuizAvailability();
   }
 
   // ── Start Quiz ──────────────────────────────────────────────────
   function startQuiz() {
+    if (isFoundationQuiz) {
+      questions = shuffleFoundationQuestions();
+    } else {
+      try {
+        questions = buildTutorialQuestions();
+      } catch (error) {
+        if (progressNotice) progressNotice.textContent = error.message;
+        if (startBtn) startBtn.disabled = true;
+        console.error('Unable to prepare tutorial quiz.', error);
+        return;
+      }
+      if (!questions.length) {
+        updateTutorialQuizAvailability();
+        return;
+      }
+    }
+
+    const questionCount = document.getElementById('quizStartQuestionCount');
+    if (questionCount) questionCount.textContent = String(questions.length);
     currentQuestion = 0;
     score = 0;
     answered = false;
@@ -266,6 +298,7 @@
 
   // ── Render Question ─────────────────────────────────────────────
   function renderQuestion() {
+    clearQuestionTimer();
     answered = false;
     const q = questions[currentQuestion];
     const total = questions.length;
@@ -280,26 +313,29 @@
     // Render options
     if (optionsContainer) {
       const letters = ['A', 'B', 'C', 'D'];
-      optionsContainer.innerHTML = q.options
-        .map(
-          (opt, i) => `
-        <div class="quiz-option" data-index="${i}" role="button" tabindex="0">
-          <div class="quiz-option-letter">${letters[i]}</div>
-          <span>${opt}</span>
-        </div>
-      `
-        )
-        .join('');
+      optionsContainer.replaceChildren();
+      q.options.forEach((opt, i) => {
+        const option = document.createElement('div');
+        option.className = 'quiz-option';
+        option.dataset.index = String(i);
+        option.setAttribute('role', 'button');
+        option.tabIndex = 0;
 
-      // Add click listeners
-      optionsContainer.querySelectorAll('.quiz-option').forEach((el) => {
-        el.addEventListener('click', () => selectAnswer(parseInt(el.dataset.index)));
-        el.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            selectAnswer(parseInt(el.dataset.index));
+        const letter = document.createElement('div');
+        letter.className = 'quiz-option-letter';
+        letter.textContent = letters[i];
+        const label = document.createElement('span');
+        label.textContent = opt;
+        option.append(letter, label);
+
+        option.addEventListener('click', () => selectAnswer(i));
+        option.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            selectAnswer(i);
           }
         });
+        optionsContainer.appendChild(option);
       });
     }
 
@@ -317,32 +353,35 @@
       void card.offsetHeight;
       card.style.animation = 'fadeInUp 0.4s ease';
     }
+
+    startQuestionTimer();
   }
 
   // ── Select Answer ───────────────────────────────────────────────
-  function selectAnswer(index) {
+  function selectAnswer(index, timedOut = false) {
     if (answered) return;
     answered = true;
+    clearQuestionTimer();
 
     const q = questions[currentQuestion];
     const options = optionsContainer.querySelectorAll('.quiz-option');
 
     // Mark selected
-    options[index].classList.add('selected');
+    if (!timedOut && options[index]) options[index].classList.add('selected');
 
     // Check correctness
-    if (index === q.correct) {
+    if (!timedOut && index === q.correct) {
       score++;
       options[index].classList.add('correct');
       if (feedback) {
-        feedback.innerHTML = `<i class="bi bi-check-circle-fill"></i> Correct! ${q.explanation}`;
+        feedback.textContent = `Correct! ${q.explanation}`;
         feedback.className = 'quiz-feedback show correct';
       }
     } else {
-      options[index].classList.add('wrong');
+      if (!timedOut && options[index]) options[index].classList.add('wrong');
       options[q.correct].classList.add('correct');
       if (feedback) {
-        feedback.innerHTML = `<i class="bi bi-x-circle-fill"></i> Wrong! ${q.explanation}`;
+        feedback.textContent = `${timedOut ? "Time's up!" : 'Wrong!'} ${q.explanation}`;
         feedback.className = 'quiz-feedback show wrong';
       }
     }
@@ -358,6 +397,165 @@
     options.forEach((opt) => {
       opt.style.pointerEvents = 'none';
     });
+  }
+
+  function startQuestionTimer() {
+    secondsRemaining = questionTimeLimit;
+    updateTimerDisplay();
+    questionTimer = window.setInterval(() => {
+      secondsRemaining--;
+      updateTimerDisplay();
+      if (secondsRemaining <= 0) selectAnswer(-1, true);
+    }, 1000);
+  }
+
+  function updateTimerDisplay() {
+    if (!timerDisplay) return;
+    timerDisplay.textContent = `${secondsRemaining} sec`;
+    timerDisplay.setAttribute('aria-label', `${secondsRemaining} seconds remaining`);
+    timerDisplay.classList.toggle('is-urgent', secondsRemaining <= 10);
+  }
+
+  function clearQuestionTimer() {
+    if (questionTimer !== null) {
+      window.clearInterval(questionTimer);
+      questionTimer = null;
+    }
+  }
+
+  function shuffle(items) {
+    const shuffled = items.slice();
+    for (let index = shuffled.length - 1; index > 0; index--) {
+      const otherIndex = Math.floor(Math.random() * (index + 1));
+      [shuffled[index], shuffled[otherIndex]] = [shuffled[otherIndex], shuffled[index]];
+    }
+    return shuffled;
+  }
+
+  function shuffleFoundationQuestions() {
+    const shuffled = shuffle(foundationQuestions).map((question) => {
+      const options = shuffle(
+        question.options.map((text, index) => ({ text, correct: index === question.correct }))
+      );
+      return {
+        ...question,
+        options: options.map((option) => option.text),
+        correct: options.findIndex((option) => option.correct),
+      };
+    });
+    const sequence = shuffled.map((question) => question.question).join('|');
+    if (sequence === previousFoundationSequence && shuffled.length > 1) {
+      shuffled.push(shuffled.shift());
+    }
+    previousFoundationSequence = shuffled.map((question) => question.question).join('|');
+    return shuffled;
+  }
+
+  function getCompletedTutorialLevels() {
+    if (!window.CodeSparkRoadmap || typeof window.CodeSparkRoadmap.getTrackLevels !== 'function') {
+      throw new Error('Tutorial data could not be loaded. Refresh the page and try again.');
+    }
+
+    const tracks = window.CodeSparkRoadmap.getTrackLevels();
+    const completedLevels = [];
+    Object.entries(tracks).forEach(([category, levels]) => {
+      let saved;
+      try {
+        saved = localStorage.getItem(`codespark-roadmap-progress-v4-${category}`);
+      } catch (error) {
+        console.error(`Unable to read ${category.toUpperCase()} tutorial progress.`, error);
+        throw new Error('Browser storage is unavailable. Enable local storage to load your completed tutorials.');
+      }
+
+      let completed = [];
+      if (saved !== null) {
+        try {
+          completed = JSON.parse(saved);
+        } catch (error) {
+          console.error(`Invalid saved ${category.toUpperCase()} tutorial progress.`, error);
+          throw new Error(`Saved ${category.toUpperCase()} tutorial progress could not be read. Please review your tutorial progress.`);
+        }
+      }
+      if (!Array.isArray(completed) || completed.some((index) => !Number.isInteger(index) || index < 0 || index >= levels.length)) {
+        throw new Error(`Saved ${category.toUpperCase()} tutorial progress is invalid. Please review your tutorial progress.`);
+      }
+
+      [...new Set(completed)].forEach((index) => {
+        completedLevels.push({
+          category,
+          index,
+          level: levels[index],
+        });
+      });
+    });
+    return { allLevels: Object.entries(tracks).flatMap(([category, levels]) =>
+      levels.map((level, index) => ({ category, index, level }))
+    ), completedLevels };
+  }
+
+  function updateTutorialQuizAvailability() {
+    if (isFoundationQuiz) return;
+    try {
+      const { completedLevels } = getCompletedTutorialLevels();
+      const count = completedLevels.length;
+      const questionCount = document.getElementById('quizStartQuestionCount');
+      if (questionCount) questionCount.textContent = String(count);
+      if (startBtn) startBtn.disabled = count === 0;
+      if (progressNotice) {
+        progressNotice.textContent = count
+          ? `${count} completed tutorial level${count === 1 ? '' : 's'} found. You will get one question from each.`
+          : 'Complete at least one HTML or CSS tutorial level to unlock your personalized quiz.';
+      }
+    } catch (error) {
+      if (startBtn) startBtn.disabled = true;
+      if (progressNotice) progressNotice.textContent = error.message;
+      console.error('Unable to check tutorial progress for the quiz.', error);
+    }
+  }
+
+  function buildTutorialQuestions() {
+    const { allLevels, completedLevels } = getCompletedTutorialLevels();
+    const questionTypes = [
+      {
+        prompt: ({ category }) => `Which tutorial level did you complete in ${category.toUpperCase()}?`,
+        getAnswer: ({ category, level }) => `${category.toUpperCase()} — ${level.title}`,
+        getChoices: ({ category, level }) => allLevels.map((item) => `${item.category.toUpperCase()} — ${item.level.title}`),
+        getExplanation: ({ level }) => level.description,
+      },
+      {
+        prompt: ({ category, level }) => `Which practice activity matches your completed ${category.toUpperCase()} level, "${level.title}"?`,
+        getAnswer: ({ category, level }) => `${category.toUpperCase()} — ${level.task}`,
+        getChoices: () => allLevels.map((item) => `${item.category.toUpperCase()} — ${item.level.task}`),
+        getExplanation: ({ level }) => level.task,
+      },
+      {
+        prompt: ({ category, level }) => `What is the main focus of the completed ${category.toUpperCase()} level, "${level.title}"?`,
+        getAnswer: ({ category, level }) => `${category.toUpperCase()} — ${level.description}`,
+        getChoices: () => allLevels.map((item) => `${item.category.toUpperCase()} — ${item.level.description}`),
+        getExplanation: ({ level }) => level.description,
+      },
+    ];
+
+    return shuffle(completedLevels.map((item) => {
+      const key = `${item.category}-${item.index}`;
+      const previousType = previousQuestionTypes.get(key);
+      const availableTypes = questionTypes
+        .map((type, index) => ({ type, index }))
+        .filter(({ index }) => index !== previousType);
+      const selected = availableTypes[Math.floor(Math.random() * availableTypes.length)];
+      previousQuestionTypes.set(key, selected.index);
+
+      const correctAnswer = selected.type.getAnswer(item);
+      const choices = selected.type.getChoices(item);
+      const incorrectAnswers = shuffle([...new Set(choices.filter((choice) => choice !== correctAnswer))]).slice(0, 3);
+      const options = shuffle([correctAnswer, ...incorrectAnswers]);
+      return {
+        question: selected.type.prompt(item),
+        options,
+        correct: options.indexOf(correctAnswer),
+        explanation: selected.type.getExplanation(item),
+      };
+    }));
   }
 
   // ── Next Question / Show Results ────────────────────────────────

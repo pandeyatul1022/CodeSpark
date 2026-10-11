@@ -1,15 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+  <!-- Character encoding and responsive viewport settings -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="CodeSpark Quiz — Test your coding awareness with fun interactive quizzes. Earn badges and track your progress!">
+
+  <!-- Search and browser metadata -->
+  <meta name="description"
+    content="CodeSpark Quiz — Test your coding awareness with fun interactive quizzes. Earn badges and track your progress!">
   <title>CodeSpark — Coding Quiz</title>
+
+  <!-- Bootstrap framework styles -->
   <link rel="stylesheet" href="assets/vendor/bootstrap/bootstrap.min.css">
+
+  <!-- Bootstrap Icons used across the application -->
   <link rel="stylesheet" href="assets/vendor/bootstrap-icons/bootstrap-icons.min.css">
+
+  <!-- CodeSpark site-wide styles -->
   <link rel="stylesheet" href="assets/css/main.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+
+  <!-- CodeSpark favicon -->
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
 </head>
+
 <body>
   <!-- Navigation -->
   <nav class="navbar" id="navbar">
@@ -42,44 +57,49 @@
   </nav>
 
   <!-- Quiz Page -->
-  <div class="quiz-page">
-    <!-- Hero -->
-    <div class="quiz-hero">
-      <div class="container">
-        <h1><i class="bi bi-cpu-fill"></i> Coding <span class="text-gradient">Quiz</span></h1>
-        <p>Test your coding awareness! Answer questions about programming concepts and earn achievements.</p>
+  <main class="quiz-page">
+    <section class="quiz-hero" aria-labelledby="quizHeroTitle">
+      <div class="container quiz-hero-content">
+        <span class="quiz-hero-kicker"><i class="bi bi-stars" aria-hidden="true"></i> Coding challenge</span>
+        <h1 id="quizHeroTitle"><i class="bi bi-cpu-fill" aria-hidden="true"></i> Coding <span
+            class="text-gradient">Quiz</span></h1>
+        <p class="quiz-hero-description">
+          Test your coding knowledge, explore programming concepts, and celebrate every achievement.
+        </p>
       </div>
-    </div>
+    </section>
 
     <!-- Quiz Container -->
     <div class="quiz-container" id="quizContainer">
       <!-- Start Screen -->
-      <div id="quizStart" class="quiz-question-card" style="text-align: center;">
-        <div style="font-size: 4rem; margin-bottom: var(--space-lg); color: var(--color-primary);">
+      <div id="quizStart" class="quiz-question-card quiz-start-card">
+        <div class="quiz-start-icon">
           <i class="bi bi-cpu-fill"></i>
         </div>
-        <h2 id="quizStartTitle" style="font-family: var(--font-heading); font-size: 1.75rem; font-weight: 800; margin-bottom: var(--space-md);">
+        <h2 id="quizStartTitle" class="quiz-start-title">
           Coding Awareness Quiz
         </h2>
-        <p id="quizStartDescription" style="color: var(--text-secondary); margin-bottom: var(--space-lg); line-height: 1.7;">
-          Test your knowledge about programming concepts, coding history, and computational thinking.
-          There are <strong>15 questions</strong> covering basics to intermediate topics.
+        <p id="quizStartDescription" class="quiz-start-description">
+          Questions are based on the HTML and CSS tutorial levels you have completed.
         </p>
-        <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap; margin-bottom: var(--space-xl);">
-          <div style="padding: var(--space-md) var(--space-lg); background: var(--gradient-card); border-radius: var(--radius-lg); text-align: center;">
-            <div id="quizStartQuestionCount" style="font-size: 1.5rem; font-weight: 800; color: var(--color-primary);">15</div>
-            <div style="font-size: 0.8rem; color: var(--text-muted);">Questions</div>
+        <p id="quizProgressNotice" class="quiz-progress-notice" role="status"></p>
+        <div class="quiz-start-stats">
+          <div class="quiz-stat-card">
+            <div class="quiz-stat-value" id="quizStartQuestionCount">15</div>
+            <div class="quiz-stat-label">Questions</div>
           </div>
-          <div style="padding: var(--space-md) var(--space-lg); background: var(--gradient-card); border-radius: var(--radius-lg); text-align: center;">
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--color-secondary);"><i class="bi bi-clock"></i></div>
-            <div style="font-size: 0.8rem; color: var(--text-muted);">No Time Limit</div>
+          <div class="quiz-stat-card">
+            <div class="quiz-stat-icon quiz-stat-icon--time"><i class="bi bi-clock" aria-hidden="true"></i>
+            </div>
+            <div class="quiz-stat-label">30 sec / question</div>
           </div>
-          <div style="padding: var(--space-md) var(--space-lg); background: var(--gradient-card); border-radius: var(--radius-lg); text-align: center;">
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--color-accent);"><i class="bi bi-trophy-fill"></i></div>
-            <div style="font-size: 0.8rem; color: var(--text-muted);">Earn Badges</div>
+          <div class="quiz-stat-card">
+            <div class="quiz-stat-icon quiz-stat-icon--badge"><i class="bi bi-trophy-fill" aria-hidden="true"></i></div>
+            <div class="quiz-stat-label">Earn Badges</div>
           </div>
         </div>
-        <button class="btn btn-primary btn-lg" id="startQuizBtn"><i class="bi bi-rocket-takeoff"></i> Start Quiz</button>
+        <button class="btn btn-primary btn-lg" id="startQuizBtn"><i class="bi bi-rocket-takeoff"></i> Start
+          Quiz</button>
       </div>
 
       <!-- Quiz Question (hidden initially) -->
@@ -93,6 +113,7 @@
 
         <div class="quiz-question-card" id="quizQuestionCard">
           <div class="quiz-question-number" id="quizQuestionNumber">Question 1</div>
+          <div class="quiz-timer" id="quizTimer" role="timer" aria-live="off">30 sec</div>
           <div class="quiz-question-text" id="quizQuestionText"></div>
           <div class="quiz-options" id="quizOptions">
             <!-- Options rendered dynamically -->
@@ -115,17 +136,17 @@
           </div>
           <h2 id="resultTitle">Great Job!</h2>
           <p id="resultMessage">You've completed the coding awareness quiz.</p>
-          <div style="display: flex; gap: var(--space-md); justify-content: center; margin-bottom: var(--space-xl); flex-wrap: wrap;">
-            <div style="padding: var(--space-md) var(--space-lg); background: var(--gradient-card); border-radius: var(--radius-lg); text-align: center;">
-              <div style="font-size: 1.5rem; font-weight: 800; color: var(--color-success);" id="correctCount">0</div>
-              <div style="font-size: 0.8rem; color: var(--text-muted);"><i class="bi bi-check"></i> Correct</div>
+          <div class="quiz-result-stats">
+            <div class="quiz-stat-card">
+              <div class="quiz-stat-value quiz-stat-value--correct" id="correctCount">0</div>
+              <div class="quiz-stat-label"><i class="bi bi-check" aria-hidden="true"></i> Correct</div>
             </div>
-            <div style="padding: var(--space-md) var(--space-lg); background: var(--gradient-card); border-radius: var(--radius-lg); text-align: center;">
-              <div style="font-size: 1.5rem; font-weight: 800; color: var(--color-danger);" id="wrongCount">0</div>
-              <div style="font-size: 0.8rem; color: var(--text-muted);"><i class="bi bi-x-lg"></i> Wrong</div>
+            <div class="quiz-stat-card">
+              <div class="quiz-stat-value quiz-stat-value--wrong" id="wrongCount">0</div>
+              <div class="quiz-stat-label"><i class="bi bi-x-lg" aria-hidden="true"></i> Wrong</div>
             </div>
           </div>
-          <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
+          <div class="quiz-result-actions">
             <a href="tutorials.html" class="btn btn-primary" id="foundationNextLevel" hidden>Continue to tutorials</a>
             <button class="btn btn-primary" id="retryQuizBtn"><i class="bi bi-arrow-clockwise"></i> Try Again</button>
             <a href="editor.html" class="btn btn-secondary"><i class="bi bi-rocket-takeoff"></i> Go to Editor</a>
@@ -133,7 +154,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </main>
 
   <!-- Footer -->
   <footer class="footer home-footer">
@@ -161,16 +182,19 @@
       <form id="loginForm">
         <div class="form-group">
           <label for="loginUsername"><i class="bi bi-person"></i> Username</label>
-          <input type="text" id="loginUsername" class="modal-input" placeholder="Enter your username..." required autocomplete="username">
+          <input type="text" id="loginUsername" class="modal-input" placeholder="Enter your username..." required
+            autocomplete="username">
         </div>
         <div class="form-group" style="margin-top: var(--space-md);">
           <label for="loginPassword"><i class="bi bi-key"></i> Password</label>
-          <input type="password" id="loginPassword" class="modal-input" placeholder="Enter your password..." required autocomplete="current-password">
+          <input type="password" id="loginPassword" class="modal-input" placeholder="Enter your password..." required
+            autocomplete="current-password">
         </div>
         <div class="auth-status" id="loginStatusMsg"></div>
         <div class="modal-actions auth-actions">
           <button type="button" class="btn btn-secondary btn-sm" id="cancelLoginBtn">Cancel</button>
-          <button type="submit" class="btn btn-primary btn-sm" id="submitLoginBtn"><i class="bi bi-person-fill"></i> Login</button>
+          <button type="submit" class="btn btn-primary btn-sm" id="submitLoginBtn"><i class="bi bi-person-fill"></i>
+            Login</button>
         </div>
       </form>
     </div>
@@ -181,7 +205,9 @@
 
   <script src="assets/js/vendor/bootstrap.bundle.min.js"></script>
   <script src="assets/js/app.js"></script>
+  <script src="assets/js/features/tutorials/roadmap.js"></script>
   <script src="assets/js/features/quiz/quiz.js"></script>
   <script src="assets/js/features/achievements/achievements.js"></script>
 </body>
+
 </html>

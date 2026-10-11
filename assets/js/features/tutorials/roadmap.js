@@ -1137,7 +1137,19 @@
   };
 
   const progressPrefix = 'codespark-roadmap-progress-v4-';
+  window.CodeSparkRoadmap = {
+    getTrackLevels() {
+      return Object.fromEntries(
+        Object.entries(tracks).map(([category, track]) => [
+          category,
+          track.levels.map(([title, description, task]) => ({ title, description, task })),
+        ])
+      );
+    },
+  };
+
   const roadmap = document.getElementById('tutorialRoadmap');
+  if (!roadmap) return;
   const tabs = Array.from(document.querySelectorAll('.tutorial-category-btn'));
   const dialog = document.getElementById('roadmapLessonDialog');
   const standardLesson = document.getElementById('roadmapStandardLesson');
