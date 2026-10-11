@@ -97,38 +97,61 @@
         <button class="roadmap-lesson-close" id="roadmapLessonClose" type="button" aria-label="Close lesson">
           <i class="bi bi-x-lg" aria-hidden="true"></i>
         </button>
-        <span class="roadmap-lesson-label" id="roadmapLessonLabel"></span>
-        <h2 id="roadmapLessonTitle"></h2>
-        <p id="roadmapLessonDescription"></p>
-        <section class="roadmap-learning-steps" id="roadmapLearningSteps" aria-label="Lesson steps" hidden>
-          <h3>Learn the foundations</h3>
-          <ol id="roadmapLearningStepList"></ol>
-        </section>
-        <section class="roadmap-example" aria-labelledby="roadmapExampleTitle">
-          <h3 id="roadmapExampleTitle">Example</h3>
-          <pre><code id="roadmapLessonExample"></code></pre>
-        </section>
-        <div class="roadmap-challenge">
-          <strong>Your practice</strong>
-          <p id="roadmapLessonTask"></p>
+        <div id="roadmapStandardLesson">
+          <span class="roadmap-lesson-label" id="roadmapLessonLabel"></span>
+          <h2 id="roadmapLessonTitle"></h2>
+          <p id="roadmapLessonDescription"></p>
+          <section class="roadmap-example" aria-labelledby="roadmapExampleTitle">
+            <h3 id="roadmapExampleTitle">Example</h3>
+            <pre><code id="roadmapLessonExample"></code></pre>
+          </section>
+          <div class="roadmap-challenge">
+            <strong>Your practice</strong>
+            <p id="roadmapLessonTask"></p>
+          </div>
+          <div class="roadmap-lesson-actions" id="roadmapLessonActions">
+            <a class="btn btn-secondary btn-sm" href="editor.html">Open Editor</a>
+            <button class="btn btn-primary btn-sm" id="roadmapStartQuiz" type="button">Take level quiz</button>
+          </div>
+          <section class="roadmap-quiz" id="roadmapQuiz" aria-labelledby="roadmapQuizTitle" hidden>
+            <h3 id="roadmapQuizTitle">Level quiz</h3>
+            <p class="roadmap-quiz-intro">Answer all four questions. Score at least 70% to pass and unlock the next
+              level.
+            </p>
+            <form id="roadmapQuizForm">
+              <div id="roadmapQuizQuestions"></div>
+              <p class="roadmap-quiz-feedback" id="roadmapQuizFeedback" role="status" aria-live="polite"></p>
+              <div class="roadmap-quiz-actions">
+                <button class="btn btn-secondary btn-sm" id="roadmapBackToLesson" type="button">Back to lesson</button>
+                <button class="btn btn-primary btn-sm" id="roadmapSubmitQuiz" type="submit">Submit quiz</button>
+                <button class="btn btn-primary btn-sm" id="roadmapRetryQuiz" type="button" hidden>Try again</button>
+              </div>
+            </form>
+          </section>
         </div>
-        <div class="roadmap-lesson-actions" id="roadmapLessonActions">
-          <a class="btn btn-secondary btn-sm" href="editor.html">Open Editor</a>
-          <button class="btn btn-primary btn-sm" id="roadmapStartQuiz" type="button">Take level quiz</button>
-        </div>
-        <section class="roadmap-quiz" id="roadmapQuiz" aria-labelledby="roadmapQuizTitle" hidden>
-          <h3 id="roadmapQuizTitle">Level quiz</h3>
-          <p class="roadmap-quiz-intro">Answer all four questions. Score at least 70% to pass and unlock the next level.
-          </p>
-          <form id="roadmapQuizForm">
-            <div id="roadmapQuizQuestions"></div>
-            <p class="roadmap-quiz-feedback" id="roadmapQuizFeedback" role="status" aria-live="polite"></p>
-            <div class="roadmap-quiz-actions">
-              <button class="btn btn-secondary btn-sm" id="roadmapBackToLesson" type="button">Back to lesson</button>
-              <button class="btn btn-primary btn-sm" id="roadmapSubmitQuiz" type="submit">Submit quiz</button>
-              <button class="btn btn-primary btn-sm" id="roadmapRetryQuiz" type="button" hidden>Try again</button>
+        <section class="roadmap-slides" id="roadmapSlides" aria-labelledby="roadmapSlideTitle" hidden>
+          <div class="roadmap-slide-progress">
+            <span id="roadmapSlideCounter" aria-live="polite"></span>
+            <progress id="roadmapSlideProgress" max="8" value="1" aria-label="Lesson progress"></progress>
+          </div>
+          <article class="roadmap-slide">
+            <h2 id="roadmapSlideTitle" tabindex="-1"></h2>
+            <p id="roadmapSlideDescription"></p>
+            <div class="roadmap-slide-example">
+              <h3>Example</h3>
+              <pre><code id="roadmapSlideExample"></code></pre>
             </div>
-          </form>
+          </article>
+          <p class="roadmap-slide-feedback" id="roadmapSlideFeedback" role="status" aria-live="polite"></p>
+          <div class="roadmap-slide-navigation" id="roadmapSlideNavigation">
+            <button class="btn btn-secondary btn-sm" id="roadmapSlideBack" type="button">Back</button>
+            <button class="btn btn-primary btn-sm" id="roadmapSlideNext" type="button">Next</button>
+          </div>
+          <div class="roadmap-slide-completion" id="roadmapSlideCompletion" hidden>
+            <a class="btn btn-secondary btn-sm" href="editor.html">Open Editor</a>
+            <button class="btn btn-primary btn-sm" id="roadmapCompleteSlideLesson" type="button">Complete &amp; Next
+              Level</button>
+          </div>
         </section>
       </div>
     </dialog>

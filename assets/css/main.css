@@ -3002,19 +3002,17 @@ select {
 
 .roadmap-level-number,
 .roadmap-level-state,
-.roadmap-priority-label,
-.roadmap-level-summary,
-.roadmap-level-name {
+.roadmap-priority-label {
   display: none;
 }
 
-.roadmap-stop:first-child .roadmap-level-number,
-.roadmap-stop:first-child .roadmap-level-name,
-.roadmap-stop:first-child .roadmap-level-summary {
+.roadmap-level-number,
+.roadmap-level-name,
+.roadmap-level-summary {
   display: block;
 }
 
-.roadmap-stop:first-child .roadmap-level-number {
+.roadmap-level-number {
   color: var(--text-muted);
   font-size: 0.68rem;
   font-weight: 700;
@@ -3022,18 +3020,19 @@ select {
   text-transform: uppercase;
 }
 
-.roadmap-stop:first-child .roadmap-level-name {
+.roadmap-level-name {
   color: var(--text-primary);
   font-size: 0.95rem;
   line-height: 1.3;
   font-weight: 700;
 }
 
-.roadmap-stop:first-child .roadmap-level-summary {
+.roadmap-level-summary {
   color: var(--text-secondary);
   font-size: 0.78rem;
   line-height: 1.45;
   font-style: normal;
+  overflow-wrap: anywhere;
 }
 
 .roadmap-stop:first-child .roadmap-level-button {
@@ -3122,63 +3121,98 @@ select {
   line-height: 1.65;
 }
 
-.roadmap-learning-steps {
-  margin-top: 1.25rem;
+.roadmap-slides {
+  margin-top: 1rem;
 }
 
-.roadmap-learning-steps > h3 {
-  margin: 0 0 0.75rem;
-  color: var(--text-primary);
-  font-size: 1rem;
+.roadmap-slide-progress {
+  display: grid;
+  gap: 0.45rem;
+  margin-bottom: 1.25rem;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
   font-weight: 700;
 }
 
-.roadmap-learning-steps ol {
-  display: grid;
-  gap: 0.75rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  counter-reset: foundation-step;
+.roadmap-slide-progress progress {
+  display: block;
+  width: 100%;
+  height: 0.45rem;
+  accent-color: var(--color-primary);
 }
 
-.roadmap-learning-steps li {
-  padding: 0.85rem;
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  background: var(--bg-secondary);
-  counter-increment: foundation-step;
-}
-
-.roadmap-learning-steps h4 {
-  margin: 0 0 0.35rem;
+.roadmap-slide h2 {
+  margin: 0 0 0.65rem;
   color: var(--text-primary);
-  font-size: 0.9rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.2rem, 4vw, 1.55rem);
+  line-height: 1.3;
 }
 
-.roadmap-learning-steps h4::before {
-  content: counter(foundation-step) ". ";
-  color: var(--color-primary);
-}
-
-.roadmap-learning-steps li p {
+.roadmap-slide > p {
   margin: 0;
   color: var(--text-secondary);
-  font-size: 0.85rem;
-  line-height: 1.55;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
 }
 
-.roadmap-learning-steps pre {
-  margin: 0.65rem 0 0;
-  padding: 0.65rem;
-  overflow-x: auto;
-  border-radius: var(--radius-sm);
+.roadmap-slide-example {
+  margin-top: 1.25rem;
+}
+
+.roadmap-slide-example h3 {
+  margin: 0 0 0.5rem;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.roadmap-slide-example pre {
+  max-height: 15rem;
+  overflow: auto;
+  margin: 0;
+  padding: 0.9rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
   background: var(--bg-code);
   color: #e2e8f0;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.78rem;
+  line-height: 1.55;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
+}
+
+.roadmap-slide-navigation,
+.roadmap-slide-completion {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.roadmap-slide-completion {
+  justify-content: flex-end;
+}
+
+.roadmap-slide-navigation button,
+.roadmap-slide-completion a,
+.roadmap-slide-completion button {
+  min-height: 2.75rem;
+}
+
+.roadmap-slide-navigation button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.roadmap-slide-feedback {
+  min-height: 1.4em;
+  margin: 0.75rem 0 0;
+  color: var(--color-danger);
+  font-size: 0.85rem;
+  line-height: 1.5;
 }
 
 .roadmap-example {
@@ -3310,6 +3344,9 @@ select {
 #roadmapQuiz[hidden],
 #roadmapLessonActions[hidden],
 #roadmapRetryQuiz[hidden],
+#roadmapSlides[hidden],
+#roadmapSlideNavigation[hidden],
+#roadmapSlideCompletion[hidden],
 #foundationNextLevel[hidden] {
   display: none !important;
 }
@@ -3429,6 +3466,20 @@ select {
   .roadmap-priority-note {
     padding: 0 0.5rem;
     font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .roadmap-slide-navigation,
+  .roadmap-slide-completion {
+    gap: 0.5rem;
+  }
+
+  .roadmap-slide-navigation .btn,
+  .roadmap-slide-completion .btn {
+    flex: 1 1 auto;
+    padding-inline: 0.75rem;
+    font-size: 0.78rem;
   }
 }
 
