@@ -26,7 +26,7 @@
 - **HTML5 & Vanilla CSS3**: Custom responsive styling with glassmorphism effects and CSS variables.
 - **JavaScript (ES6+)**: Modular client-side architecture.
 - **Google Blockly**: Visual programming blocks interface.
-- **FontAwesome 6.5**: Rich icons system.
+- **Bootstrap Icons**: Locally hosted icon font used across the interface.
 
 ---
 
@@ -34,21 +34,30 @@
 
 ```text
 CodeSpark/
-├── css/
-│   └── main.css            # Complete design system & custom UI components
-├── js/
-│   ├── app.js              # Core setup, themes & toast notifications
-│   ├── editor.js           # Blockly setup, custom blocks & code generators
-│   ├── canvas.js           # HTML5 Canvas 2D engine & sprite animation controller
-│   ├── tutorials.js        # Interactive learning modules & viewer
-│   ├── quiz.js             # 15-question quiz engine & scoring system
-│   ├── storage.js          # Project save/load manager
-│   └── achievements.js     # Badge unlock tracker (15 badges)
-├── editor.html             # Block Editor & Live Stage workspace
-├── index.html              # Landing page
-├── quiz.html               # Coding Awareness Quiz
-└── tutorials.html          # Interactive Tutorials & Badge Showcase
+├── assets/
+│   ├── css/                # Global styles and auth-page styles
+│   ├── fonts/              # Application webfonts
+│   ├── js/
+│   │   ├── app.js           # Shared navigation and site behavior
+│   │   ├── features/        # Auth, editor, tutorials, quiz, profile, and achievements
+│   │   └── vendor/          # Blockly and Bootstrap JavaScript
+│   └── vendor/              # Bootstrap and Bootstrap Icons stylesheets/fonts
+├── index.html               # Landing page
+├── editor.html              # Blockly HTML/CSS editor
+├── tutorials.html           # Interactive tutorials
+├── quiz.html                # Coding awareness quiz
+├── achievements.html        # Achievement catalog
+├── login.html
+├── register.html
+├── profile.html
+└── certificate.html
 ```
+
+The project is a static HTML/CSS/JavaScript site and currently has no build step, backend, database, or automated test suite.
+
+Bootstrap Icons are vendored in `assets/vendor/bootstrap-icons/`; application markup uses the `bi` and `bi-*` classes.
+
+The landing-page hero carousel uses Storyset SVG illustrations stored locally in `assets/images/hero/`. They are credited in the page footer in accordance with Storyset's free-use attribution requirement.
 
 ---
 

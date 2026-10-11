@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="CodeSpark Profile — View your coding stats, manage account settings, and track your learning progress.">
+  <title>User Profile — CodeSpark</title>
+  <link rel="stylesheet" href="assets/vendor/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/vendor/bootstrap-icons/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">
+        CodeSpark
+      </a>
+      <div class="navbar-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="editor.html">Editor</a>
+        <a href="tutorials.html">Tutorials</a>
+        <a href="quiz.html">Quiz</a>
+      </div>
+      <div class="navbar-actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark theme"
+          title="Switch to dark theme">
+          <i class="bi bi-moon-stars-fill" aria-hidden="true"></i>
+        </button>
+        <div id="authContainer" class="auth-container">
+          <a href="login.html" class="btn btn-primary btn-sm login-btn" id="loginBtn">
+            <i class="bi bi-person-fill" aria-hidden="true"></i> Login
+          </a>
+        </div>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-label="Open menu"
+          aria-controls="navLinks" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Profile Content -->
+  <main class="main-content container" style="margin-top: calc(var(--navbar-height) + 2rem); margin-bottom: 4rem;">
+
+    <!-- Profile Hero Card -->
+    <div class="profile-hero">
+      <div class="profile-hero-content">
+        <div class="profile-avatar-container">
+          <div class="profile-avatar-large" id="profileAvatarLarge">A</div>
+          <button type="button" class="avatar-upload-btn" id="uploadAvatarBtn" title="Upload Profile Picture">
+            <i class="bi bi-camera"></i>
+          </button>
+          <input type="file" id="avatarFileInput" accept="image/*" style="display: none;">
+        </div>
+        <div class="profile-details">
+          <h1 id="profileUsername">atul <span class="profile-tag"><i class="bi bi-shield-lock"></i> Master Coder</span></h1>
+          <p class="profile-subtitle" id="profileBio">Passionate block programmer & game creator 🚀 Learning logic step-by-step!</p>
+          <div class="profile-joined">
+            <i class="bi bi-calendar3"></i> Joined CodeSpark in October 2026 &bull; <i class="bi bi-fire text-gradient"></i> 7-Day Active Streak
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Stats Cards -->
+    <div class="stats-grid-4">
+      <div class="profile-stat-card">
+        <div class="profile-stat-icon stat-icon-purple">
+          <i class="bi bi-boxes"></i>
+        </div>
+        <div class="profile-stat-info">
+          <h3 id="statProjects">12</h3>
+          <p>Projects Built</p>
+        </div>
+      </div>
+      <div class="profile-stat-card">
+        <div class="profile-stat-icon stat-icon-cyan">
+          <i class="bi bi-mortarboard-fill"></i>
+        </div>
+        <div class="profile-stat-info">
+          <h3 id="statTutorials">8</h3>
+          <p>Tutorials Done</p>
+        </div>
+      </div>
+      <div class="profile-stat-card">
+        <div class="profile-stat-icon stat-icon-pink">
+          <i class="bi bi-award-fill"></i>
+        </div>
+        <div class="profile-stat-info">
+          <h3 id="statQuizzes">15</h3>
+          <p>Quizzes Passed</p>
+        </div>
+      </div>
+      <div class="profile-stat-card">
+        <div class="profile-stat-icon stat-icon-amber">
+          <i class="bi bi-lightning-charge"></i>
+        </div>
+        <div class="profile-stat-info">
+          <h3 id="statBlocks">1,450</h3>
+          <p>Blocks Snapped</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 Column Layout -->
+    <div class="profile-two-col">
+      <!-- Left Column: Settings & Projects -->
+      <div>
+        <!-- Account Settings Card -->
+        <div class="card-box">
+          <h2><i class="bi bi-person-gear text-gradient"></i> Account Settings</h2>
+          <form id="profileSettingsForm">
+            <div class="form-group" style="margin-bottom: var(--space-md);">
+              <label><i class="bi bi-image"></i> Profile Picture</label>
+              <div style="display: flex; gap: var(--space-sm); align-items: center;">
+                <button type="button" class="btn btn-secondary btn-sm" id="formUploadAvatarBtn">
+                  <i class="bi bi-upload"></i> Upload Photo
+                </button>
+                <button type="button" class="btn btn-danger btn-sm" id="removeAvatarBtn" style="display: none;">
+                  <i class="bi bi-trash"></i> Remove
+                </button>
+              </div>
+            </div>
+            <div class="form-group" style="margin-bottom: var(--space-md);">
+              <label for="settingsName"><i class="bi bi-person"></i> Display Name</label>
+              <input type="text" id="settingsName" class="modal-input" value="atul" required>
+            </div>
+            <div class="form-group" style="margin-bottom: var(--space-md);">
+              <label for="settingsBio"><i class="bi bi-pen"></i> Bio / Tagline</label>
+              <input type="text" id="settingsBio" class="modal-input" value="Passionate block programmer & game creator 🚀">
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-sm">
+              <i class="bi bi-floppy"></i> Save Profile
+            </button>
+          </form>
+        </div>
+
+        <!-- Saved Projects -->
+        <div class="card-box">
+          <h2><i class="bi bi-folder2-open text-gradient"></i> My Saved Projects</h2>
+          <div style="display: flex; flex-direction: column; gap: var(--space-md);">
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: var(--space-md); background: var(--bg-secondary); border-radius: var(--radius-md);">
+              <div>
+                <strong style="display: block; font-size: 1rem;"><i class="bi bi-controller text-gradient"></i> Bouncing Sprite Game</strong>
+                <small style="color: var(--text-muted);">Edited 2 hours ago &bull; 42 blocks</small>
+              </div>
+              <a href="editor.html" class="btn btn-secondary btn-sm"><i class="bi bi-folder2-open"></i> Open</a>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: var(--space-md); background: var(--bg-secondary); border-radius: var(--radius-md);">
+              <div>
+                <strong style="display: block; font-size: 1rem;"><i class="bi bi-magic text-gradient"></i> Rainbow Color Loop</strong>
+                <small style="color: var(--text-muted);">Edited Yesterday &bull; 18 blocks</small>
+              </div>
+              <a href="editor.html" class="btn btn-secondary btn-sm"><i class="bi bi-folder2-open"></i> Open</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Recent Activity & Achievements Link -->
+      <div>
+        <!-- Achievements Shortcut Box -->
+        <div class="card-box" style="background: var(--gradient-card);">
+          <h2><i class="bi bi-trophy-fill text-gradient"></i> Badges Unlocked</h2>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: var(--space-md);">
+            You have unlocked <strong>9 of 15</strong> achievements badges!
+          </p>
+          <a href="achievements.html" class="btn btn-primary btn-sm" style="width: 100%; justify-content: center; margin-bottom: var(--space-md);">
+            <i class="bi bi-award-fill"></i> View All Achievements
+          </a>
+          <a href="certificate.html" target="_blank" class="btn btn-secondary btn-sm" style="width: 100%; justify-content: center;">
+            <i class="bi bi-file-earmark-text"></i> View Official Certificate
+          </a>
+        </div>
+
+        <!-- Activity Timeline -->
+        <div class="card-box">
+          <h2><i class="bi bi-clock-history text-gradient"></i> Recent Activity</h2>
+          <div class="activity-list">
+            <div class="activity-item">
+              <div class="activity-badge-icon"><i class="bi bi-check"></i></div>
+              <div>
+                <div class="activity-title">Passed Quiz #3 on Loops</div>
+                <div class="activity-time">Today, 2:15 PM</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-badge-icon"><i class="bi bi-award-fill"></i></div>
+              <div>
+                <div class="activity-title">Unlocked "Rocket Launcher" Badge</div>
+                <div class="activity-time">Yesterday, 6:40 PM</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-badge-icon"><i class="bi bi-code-slash"></i></div>
+              <div>
+                <div class="activity-title">Created new project "Bouncing Sprite"</div>
+                <div class="activity-time">2 days ago</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer home-footer">
+    <div class="container">
+      <div class="home-footer-bottom">
+        <p>
+          © 2026 <a href="index.html" aria-label="CodeSpark home page">CodeSpark</a>. All rights reserved.
+          <span aria-hidden="true">·</span>
+          Designed by
+          <!-- Replace the placeholder URL with Payal Dubey's portfolio URL. -->
+          <a href="https://example.com" target="_blank" rel="noopener noreferrer">Payal Dubey</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Login Modal -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal auth-modal">
+      <div class="auth-header">
+        <div class="auth-icon"><i class="bi bi-person-lock"></i></div>
+        <h2>Welcome to <span class="text-gradient">CodeSpark</span></h2>
+        <p>Log in to save your progress, unlock achievements & sync projects.</p>
+      </div>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="loginUsername"><i class="bi bi-person"></i> Username</label>
+          <input type="text" id="loginUsername" class="modal-input" placeholder="Enter your username..." required
+            autocomplete="username">
+        </div>
+        <div class="form-group" style="margin-top: var(--space-md);">
+          <label for="loginPassword"><i class="bi bi-key"></i> Password</label>
+          <input type="password" id="loginPassword" class="modal-input" placeholder="Enter your password..." required
+            autocomplete="current-password">
+        </div>
+        <div class="auth-status" id="loginStatusMsg"></div>
+        <div class="modal-actions auth-actions">
+          <button type="button" class="btn btn-secondary btn-sm" id="cancelLoginBtn">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm" id="submitLoginBtn"><i
+              class="bi bi-person-fill"></i> Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="achievements-panel" id="achievementsPanel"></div>
+
+  <script src="assets/js/vendor/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/features/profile/profile.js"></script>
+</body>
+
+</html>

@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="CodeSpark Quiz — Test your coding awareness with fun interactive quizzes. Earn badges and track your progress!">
   <title>CodeSpark — Coding Quiz</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="assets/vendor/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/vendor/bootstrap-icons/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/main.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
 </head>
 <body>
@@ -14,20 +15,26 @@
   <nav class="navbar" id="navbar">
     <div class="container">
       <a href="index.html" class="navbar-brand">
-        <div class="logo-icon"><i class="fa-solid fa-bolt"></i></div>
-        <span>Code<span class="text-gradient">Spark</span></span>
+        CodeSpark
       </a>
       <div class="navbar-links" id="navLinks">
-        <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
-        <a href="editor.html"><i class="fa-solid fa-code"></i> Editor</a>
-        <a href="tutorials.html"><i class="fa-solid fa-book-open"></i> Tutorials</a>
-        <a href="quiz.html" class="active"><i class="fa-solid fa-brain"></i> Quiz</a>
+        <a href="index.html">Home</a>
+        <a href="editor.html">Editor</a>
+        <a href="tutorials.html">Tutorials</a>
+        <a href="quiz.html" class="active">Quiz</a>
       </div>
       <div class="navbar-actions">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-          <i class="fa-solid fa-moon" id="themeIcon"></i>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark theme"
+          title="Switch to dark theme">
+          <i class="bi bi-moon-stars-fill" aria-hidden="true"></i>
         </button>
-        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+        <div id="authContainer" class="auth-container">
+          <a href="login.html" class="btn btn-primary btn-sm login-btn" id="loginBtn">
+            <i class="bi bi-person-fill" aria-hidden="true"></i> Login
+          </a>
+        </div>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-label="Open menu"
+          aria-controls="navLinks" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -39,7 +46,7 @@
     <!-- Hero -->
     <div class="quiz-hero">
       <div class="container">
-        <h1><i class="fa-solid fa-brain"></i> Coding <span class="text-gradient">Quiz</span></h1>
+        <h1><i class="bi bi-cpu-fill"></i> Coding <span class="text-gradient">Quiz</span></h1>
         <p>Test your coding awareness! Answer questions about programming concepts and earn achievements.</p>
       </div>
     </div>
@@ -49,30 +56,30 @@
       <!-- Start Screen -->
       <div id="quizStart" class="quiz-question-card" style="text-align: center;">
         <div style="font-size: 4rem; margin-bottom: var(--space-lg); color: var(--color-primary);">
-          <i class="fa-solid fa-brain"></i>
+          <i class="bi bi-cpu-fill"></i>
         </div>
-        <h2 style="font-family: var(--font-heading); font-size: 1.75rem; font-weight: 800; margin-bottom: var(--space-md);">
+        <h2 id="quizStartTitle" style="font-family: var(--font-heading); font-size: 1.75rem; font-weight: 800; margin-bottom: var(--space-md);">
           Coding Awareness Quiz
         </h2>
-        <p style="color: var(--text-secondary); margin-bottom: var(--space-lg); line-height: 1.7;">
+        <p id="quizStartDescription" style="color: var(--text-secondary); margin-bottom: var(--space-lg); line-height: 1.7;">
           Test your knowledge about programming concepts, coding history, and computational thinking.
           There are <strong>15 questions</strong> covering basics to intermediate topics.
         </p>
         <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap; margin-bottom: var(--space-xl);">
           <div style="padding: var(--space-md) var(--space-lg); background: var(--gradient-card); border-radius: var(--radius-lg); text-align: center;">
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--color-primary);">15</div>
+            <div id="quizStartQuestionCount" style="font-size: 1.5rem; font-weight: 800; color: var(--color-primary);">15</div>
             <div style="font-size: 0.8rem; color: var(--text-muted);">Questions</div>
           </div>
           <div style="padding: var(--space-md) var(--space-lg); background: var(--gradient-card); border-radius: var(--radius-lg); text-align: center;">
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--color-secondary);"><i class="fa-solid fa-clock"></i></div>
+            <div style="font-size: 1.5rem; font-weight: 800; color: var(--color-secondary);"><i class="bi bi-clock"></i></div>
             <div style="font-size: 0.8rem; color: var(--text-muted);">No Time Limit</div>
           </div>
           <div style="padding: var(--space-md) var(--space-lg); background: var(--gradient-card); border-radius: var(--radius-lg); text-align: center;">
-            <div style="font-size: 1.5rem; font-weight: 800; color: var(--color-accent);"><i class="fa-solid fa-trophy"></i></div>
+            <div style="font-size: 1.5rem; font-weight: 800; color: var(--color-accent);"><i class="bi bi-trophy-fill"></i></div>
             <div style="font-size: 0.8rem; color: var(--text-muted);">Earn Badges</div>
           </div>
         </div>
-        <button class="btn btn-primary btn-lg" id="startQuizBtn"><i class="fa-solid fa-rocket"></i> Start Quiz</button>
+        <button class="btn btn-primary btn-lg" id="startQuizBtn"><i class="bi bi-rocket-takeoff"></i> Start Quiz</button>
       </div>
 
       <!-- Quiz Question (hidden initially) -->
@@ -93,7 +100,7 @@
           <div class="quiz-feedback" id="quizFeedback"></div>
           <div class="quiz-actions">
             <button class="btn btn-primary" id="nextQuestionBtn" style="display: none;">
-              Next Question <i class="fa-solid fa-arrow-right"></i>
+              Next Question <i class="bi bi-arrow-right"></i>
             </button>
           </div>
         </div>
@@ -111,16 +118,17 @@
           <div style="display: flex; gap: var(--space-md); justify-content: center; margin-bottom: var(--space-xl); flex-wrap: wrap;">
             <div style="padding: var(--space-md) var(--space-lg); background: var(--gradient-card); border-radius: var(--radius-lg); text-align: center;">
               <div style="font-size: 1.5rem; font-weight: 800; color: var(--color-success);" id="correctCount">0</div>
-              <div style="font-size: 0.8rem; color: var(--text-muted);"><i class="fa-solid fa-check"></i> Correct</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);"><i class="bi bi-check"></i> Correct</div>
             </div>
             <div style="padding: var(--space-md) var(--space-lg); background: var(--gradient-card); border-radius: var(--radius-lg); text-align: center;">
               <div style="font-size: 1.5rem; font-weight: 800; color: var(--color-danger);" id="wrongCount">0</div>
-              <div style="font-size: 0.8rem; color: var(--text-muted);"><i class="fa-solid fa-xmark"></i> Wrong</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);"><i class="bi bi-x-lg"></i> Wrong</div>
             </div>
           </div>
           <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
-            <button class="btn btn-primary" id="retryQuizBtn"><i class="fa-solid fa-rotate"></i> Try Again</button>
-            <a href="editor.html" class="btn btn-secondary"><i class="fa-solid fa-rocket"></i> Go to Editor</a>
+            <a href="tutorials.html" class="btn btn-primary" id="foundationNextLevel" hidden>Continue to tutorials</a>
+            <button class="btn btn-primary" id="retryQuizBtn"><i class="bi bi-arrow-clockwise"></i> Try Again</button>
+            <a href="editor.html" class="btn btn-secondary"><i class="bi bi-rocket-takeoff"></i> Go to Editor</a>
           </div>
         </div>
       </div>
@@ -128,23 +136,52 @@
   </div>
 
   <!-- Footer -->
-  <footer class="footer">
+  <footer class="footer home-footer">
     <div class="container">
-      <div class="footer-links">
-        <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
-        <a href="editor.html"><i class="fa-solid fa-code"></i> Editor</a>
-        <a href="tutorials.html"><i class="fa-solid fa-book-open"></i> Tutorials</a>
-        <a href="quiz.html"><i class="fa-solid fa-brain"></i> Quiz</a>
+      <div class="home-footer-bottom">
+        <p>
+          © 2026 <a href="index.html" aria-label="CodeSpark home page">CodeSpark</a>. All rights reserved.
+          <span aria-hidden="true">·</span>
+          Designed by
+          <!-- Replace the placeholder URL with Payal Dubey's portfolio URL. -->
+          <a href="https://example.com" target="_blank" rel="noopener noreferrer">Payal Dubey</a>
+        </p>
       </div>
-      <p><i class="fa-solid fa-bolt"></i> CodeSpark — Coding Awareness Program | CEP Project © 2026</p>
     </div>
   </footer>
+
+  <!-- Login Modal -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal auth-modal">
+      <div class="auth-header">
+        <div class="auth-icon"><i class="bi bi-person-lock"></i></div>
+        <h2>Welcome to <span class="text-gradient">CodeSpark</span></h2>
+        <p>Log in to save your progress, unlock achievements & sync projects.</p>
+      </div>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="loginUsername"><i class="bi bi-person"></i> Username</label>
+          <input type="text" id="loginUsername" class="modal-input" placeholder="Enter your username..." required autocomplete="username">
+        </div>
+        <div class="form-group" style="margin-top: var(--space-md);">
+          <label for="loginPassword"><i class="bi bi-key"></i> Password</label>
+          <input type="password" id="loginPassword" class="modal-input" placeholder="Enter your password..." required autocomplete="current-password">
+        </div>
+        <div class="auth-status" id="loginStatusMsg"></div>
+        <div class="modal-actions auth-actions">
+          <button type="button" class="btn btn-secondary btn-sm" id="cancelLoginBtn">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm" id="submitLoginBtn"><i class="bi bi-person-fill"></i> Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <!-- Achievement Toast Container -->
   <div class="achievements-panel" id="achievementsPanel"></div>
 
-  <script src="js/app.js"></script>
-  <script src="js/quiz.js"></script>
-  <script src="js/achievements.js"></script>
+  <script src="assets/js/vendor/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/features/quiz/quiz.js"></script>
+  <script src="assets/js/features/achievements/achievements.js"></script>
 </body>
 </html>

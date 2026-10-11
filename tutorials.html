@@ -1,33 +1,53 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="CodeSpark Tutorials — Step-by-step coding lessons for beginners. Learn programming concepts through fun, interactive guides.">
+  <meta name="description"
+    content="Explore CodeSpark's HTML and CSS visual editor and start building your own web page with blocks.">
   <title>CodeSpark — Tutorials</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+
+  <!-- Bootstrap framework styles -->
+  <link rel="stylesheet" href="assets/vendor/bootstrap/bootstrap.min.css">
+
+  <!-- Bootstrap Icons used across the application -->
+  <link rel="stylesheet" href="assets/vendor/bootstrap-icons/bootstrap-icons.min.css">
+
+  <!-- CodeSpark site-wide styles -->
+  <link rel="stylesheet" href="assets/css/main.css">
+
+  <!-- CodeSpark favicon -->
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
 </head>
+
 <body>
   <!-- Navigation -->
   <nav class="navbar" id="navbar">
     <div class="container">
       <a href="index.html" class="navbar-brand">
-        <div class="logo-icon"><i class="fa-solid fa-bolt"></i></div>
-        <span>Code<span class="text-gradient">Spark</span></span>
+        CodeSpark
       </a>
       <div class="navbar-links" id="navLinks">
-        <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
-        <a href="editor.html"><i class="fa-solid fa-code"></i> Editor</a>
-        <a href="tutorials.html" class="active"><i class="fa-solid fa-book-open"></i> Tutorials</a>
-        <a href="quiz.html"><i class="fa-solid fa-brain"></i> Quiz</a>
+        <a href="index.html">Home</a>
+        <a href="editor.html">Editor</a>
+        <a href="tutorials.html" class="active">Tutorials</a>
+        <a href="quiz.html">Quiz</a>
       </div>
       <div class="navbar-actions">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-          <i class="fa-solid fa-moon" id="themeIcon"></i>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark theme"
+          title="Switch to dark theme">
+          <i class="bi bi-moon-stars-fill" aria-hidden="true"></i>
         </button>
-        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+        <div id="authContainer" class="auth-container">
+          <a href="login.html" class="btn btn-primary btn-sm login-btn" id="loginBtn">
+            <i class="bi bi-person-fill" aria-hidden="true"></i> Login
+          </a>
+        </div>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-label="Open menu"
+          aria-controls="navLinks" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -38,61 +58,133 @@
   <div class="tutorials-page">
     <!-- Hero -->
     <div class="tutorials-hero">
-      <div class="container">
-        <h1><i class="fa-solid fa-book-open"></i> Interactive <span class="text-gradient">Tutorials</span></h1>
-        <p>Follow step-by-step lessons to master block-based coding. Start from basics and build up to amazing projects!</p>
+      <div class="container tutorials-hero-content">
+        <span class="tutorials-hero-kicker">HTML &amp; CSS VISUAL EDITOR</span>
+        <h1><i class="bi bi-book-half" aria-hidden="true"></i> Interactive <span class="text-gradient">Tutorials</span>
+        </h1>
+        <p>Learn HTML and CSS one level at a time. Complete a level to unlock the next step on your learning path.</p>
+        <a class="btn btn-primary tutorials-hero-cta" href="editor.html">
+          <i class="bi bi-code-slash" aria-hidden="true"></i> Open the Editor
+        </a>
       </div>
     </div>
 
-    <!-- Tutorials Grid -->
-    <div class="container">
-      <div class="tutorials-grid" id="tutorialsGrid">
-        <!-- Tutorials will be dynamically generated -->
+    <div class="container tutorials-category-wrap">
+      <div class="section-header tutorial-category-header">
+        <span class="how-it-works-kicker">Your first program</span>
+        <h2>Choose a <span class="text-gradient">topic</span></h2>
+        <p>Select HTML or CSS to get started</p>
       </div>
+      <div class="tutorials-category-filter" role="tablist" aria-label="Tutorial categories">
+        <button class="tutorial-category-btn active" type="button" data-category="html" role="tab" aria-selected="true"
+          aria-pressed="true">
+          <i class="bi bi-filetype-html" aria-hidden="true"></i> HTML
+        </button>
+        <button class="tutorial-category-btn" type="button" data-category="css" role="tab" aria-selected="false"
+          aria-pressed="false">
+          <i class="bi bi-filetype-css" aria-hidden="true"></i> CSS
+        </button>
+      </div>
+      <p class="roadmap-priority-note">
+        Complete the core path first. Specialist topics unlock afterward and can be studied when a project calls for
+        them.
+      </p>
+      <div class="tutorial-roadmap" id="tutorialRoadmap" aria-live="polite"></div>
     </div>
 
-    <!-- Achievements Section -->
-    <section class="section" id="achievementsSection">
-      <div class="container">
-        <div class="section-header">
-          <h2><i class="fa-solid fa-trophy"></i> Your <span class="text-gradient">Achievements</span></h2>
-          <p>Earn badges by completing tutorials, quizzes, and coding challenges</p>
+    <dialog class="roadmap-lesson-dialog" id="roadmapLessonDialog" aria-labelledby="roadmapLessonTitle">
+      <div class="roadmap-lesson-content">
+        <button class="roadmap-lesson-close" id="roadmapLessonClose" type="button" aria-label="Close lesson">
+          <i class="bi bi-x-lg" aria-hidden="true"></i>
+        </button>
+        <span class="roadmap-lesson-label" id="roadmapLessonLabel"></span>
+        <h2 id="roadmapLessonTitle"></h2>
+        <p id="roadmapLessonDescription"></p>
+        <section class="roadmap-learning-steps" id="roadmapLearningSteps" aria-label="Lesson steps" hidden>
+          <h3>Learn the foundations</h3>
+          <ol id="roadmapLearningStepList"></ol>
+        </section>
+        <section class="roadmap-example" aria-labelledby="roadmapExampleTitle">
+          <h3 id="roadmapExampleTitle">Example</h3>
+          <pre><code id="roadmapLessonExample"></code></pre>
+        </section>
+        <div class="roadmap-challenge">
+          <strong>Your practice</strong>
+          <p id="roadmapLessonTask"></p>
         </div>
-        <div class="achievements-grid" id="achievementsGrid">
-          <!-- Badges will be dynamically generated -->
+        <div class="roadmap-lesson-actions" id="roadmapLessonActions">
+          <a class="btn btn-secondary btn-sm" href="editor.html">Open Editor</a>
+          <button class="btn btn-primary btn-sm" id="roadmapStartQuiz" type="button">Take level quiz</button>
         </div>
+        <section class="roadmap-quiz" id="roadmapQuiz" aria-labelledby="roadmapQuizTitle" hidden>
+          <h3 id="roadmapQuizTitle">Level quiz</h3>
+          <p class="roadmap-quiz-intro">Answer all four questions. Score at least 70% to pass and unlock the next level.
+          </p>
+          <form id="roadmapQuizForm">
+            <div id="roadmapQuizQuestions"></div>
+            <p class="roadmap-quiz-feedback" id="roadmapQuizFeedback" role="status" aria-live="polite"></p>
+            <div class="roadmap-quiz-actions">
+              <button class="btn btn-secondary btn-sm" id="roadmapBackToLesson" type="button">Back to lesson</button>
+              <button class="btn btn-primary btn-sm" id="roadmapSubmitQuiz" type="submit">Submit quiz</button>
+              <button class="btn btn-primary btn-sm" id="roadmapRetryQuiz" type="button" hidden>Try again</button>
+            </div>
+          </form>
+        </section>
       </div>
-    </section>
-  </div>
-
-  <!-- Tutorial Viewer Modal -->
-  <div class="tutorial-viewer" id="tutorialViewer">
-    <div class="tutorial-content" id="tutorialContent">
-      <button class="tutorial-close" id="tutorialClose" aria-label="Close tutorial"><i class="fa-solid fa-xmark"></i></button>
-      <div id="tutorialBody">
-        <!-- Tutorial steps rendered here -->
-      </div>
-    </div>
+    </dialog>
   </div>
 
   <!-- Footer -->
-  <footer class="footer">
+  <footer class="footer home-footer">
     <div class="container">
-      <div class="footer-links">
-        <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
-        <a href="editor.html"><i class="fa-solid fa-code"></i> Editor</a>
-        <a href="tutorials.html"><i class="fa-solid fa-book-open"></i> Tutorials</a>
-        <a href="quiz.html"><i class="fa-solid fa-brain"></i> Quiz</a>
+      <div class="home-footer-bottom">
+        <p>
+          © 2026 <a href="index.html" aria-label="CodeSpark home page">CodeSpark</a>. All rights reserved.
+          <span aria-hidden="true">·</span>
+          Designed by
+          <!-- Replace the placeholder URL with Payal Dubey's portfolio URL. -->
+          <a href="https://example.com" target="_blank" rel="noopener noreferrer">Payal Dubey</a>
+        </p>
       </div>
-      <p><i class="fa-solid fa-bolt"></i> CodeSpark — Coding Awareness Program | CEP Project © 2026</p>
     </div>
   </footer>
+
+  <!-- Login Modal -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal auth-modal">
+      <div class="auth-header">
+        <div class="auth-icon"><i class="bi bi-person-lock"></i></div>
+        <h2>Welcome to <span class="text-gradient">CodeSpark</span></h2>
+        <p>Log in to save your progress, unlock achievements & sync projects.</p>
+      </div>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="loginUsername"><i class="bi bi-person"></i> Username</label>
+          <input type="text" id="loginUsername" class="modal-input" placeholder="Enter your username..." required
+            autocomplete="username">
+        </div>
+        <div class="form-group" style="margin-top: var(--space-md);">
+          <label for="loginPassword"><i class="bi bi-key"></i> Password</label>
+          <input type="password" id="loginPassword" class="modal-input" placeholder="Enter your password..." required
+            autocomplete="current-password">
+        </div>
+        <div class="auth-status" id="loginStatusMsg"></div>
+        <div class="modal-actions auth-actions">
+          <button type="button" class="btn btn-secondary btn-sm" id="cancelLoginBtn">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm" id="submitLoginBtn"><i class="bi bi-person-fill"></i>
+            Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <!-- Achievement Toast Container -->
   <div class="achievements-panel" id="achievementsPanel"></div>
 
-  <script src="js/app.js"></script>
-  <script src="js/tutorials.js"></script>
-  <script src="js/achievements.js"></script>
+  <script src="assets/js/vendor/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/features/achievements/achievements.js"></script>
+  <script src="assets/js/features/tutorials/roadmap.js"></script>
 </body>
+
 </html>

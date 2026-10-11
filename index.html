@@ -1,33 +1,52 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="CodeSpark — A fun, interactive block-based coding platform to teach school children programming concepts. Learn coding through drag-and-drop blocks, tutorials, and quizzes.">
+  <meta name="description"
+    content="CodeSpark — A fun, interactive block-based coding platform to teach school children programming concepts. Learn coding through drag-and-drop blocks, tutorials, and quizzes.">
   <title>CodeSpark — Learn Coding Through Play</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+
+  <!-- Bootstrap framework styles -->
+  <link rel="stylesheet" href="assets/vendor/bootstrap/bootstrap.min.css">
+
+  <!-- Bootstrap Icons used across the application -->
+  <link rel="stylesheet" href="assets/vendor/bootstrap-icons/bootstrap-icons.min.css">
+
+  <!-- CodeSpark site-wide styles -->
+  <link rel="stylesheet" href="assets/css/main.css">
+
+  <!-- CodeSpark favicon -->
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
 </head>
+
 <body>
   <!-- Navigation -->
   <nav class="navbar" id="navbar">
     <div class="container">
       <a href="index.html" class="navbar-brand">
-        <div class="logo-icon"><i class="fa-solid fa-bolt"></i></div>
-        <span>Code<span class="text-gradient">Spark</span></span>
+        CodeSpark
       </a>
       <div class="navbar-links" id="navLinks">
-        <a href="index.html" class="active"><i class="fa-solid fa-house"></i> Home</a>
-        <a href="editor.html"><i class="fa-solid fa-code"></i> Editor</a>
-        <a href="tutorials.html"><i class="fa-solid fa-book-open"></i> Tutorials</a>
-        <a href="quiz.html"><i class="fa-solid fa-brain"></i> Quiz</a>
+        <a href="index.html" class="active">Home</a>
+        <a href="editor.html">Editor</a>
+        <a href="tutorials.html">Tutorials</a>
+        <a href="quiz.html">Quiz</a>
       </div>
       <div class="navbar-actions">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-          <i class="fa-solid fa-moon" id="themeIcon"></i>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark theme"
+          title="Switch to dark theme">
+          <i class="bi bi-moon-stars-fill" aria-hidden="true"></i>
         </button>
-        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+        <div id="authContainer" class="auth-container">
+          <a href="login.html" class="btn btn-primary btn-sm login-btn" id="loginBtn">
+            <i class="bi bi-person-fill" aria-hidden="true"></i> Login
+          </a>
+        </div>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-label="Open menu"
+          aria-controls="navLinks" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -38,165 +57,328 @@
   <section class="hero" id="hero">
     <div class="particles" id="particles"></div>
     <div class="hero-content">
-      <div class="hero-badge">
-        <i class="fa-solid fa-graduation-cap"></i> Coding Awareness Program for School Children
+      <div class="hero-carousel" id="heroCarousel" role="region" aria-roledescription="carousel"
+        aria-label="Explore CodeSpark">
+        <div class="hero-slides" id="heroSlides">
+          <article class="hero-slide hero-slide--welcome" role="group" aria-roledescription="slide" aria-label="1 of 4">
+            <div class="hero-slide-inner">
+              <div class="hero-copy">
+                <div class="hero-badge">
+                  <i class="bi bi-mortarboard-fill" aria-hidden="true"></i> Coding Awareness Program for School Children
+                </div>
+                <h1>
+                  Learn to Code<br>
+                  with <span class="highlight">Block Magic</span>
+                </h1>
+                <p>
+                  Build games, create animations, and learn programming concepts through
+                  fun drag-and-drop blocks. No typing needed — just snap, code, and play!
+                </p>
+                <div class="hero-actions">
+                  <a href="editor.html" class="btn btn-primary btn-lg">
+                    <i class="bi bi-rocket-takeoff" aria-hidden="true"></i> Start Coding
+                  </a>
+                  <a href="tutorials.html" class="btn btn-secondary btn-lg">
+                    <i class="bi bi-book-half" aria-hidden="true"></i> View Tutorials
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="hero-slide hero-slide--editor" role="group" aria-roledescription="slide" aria-label="2 of 4"
+            hidden>
+            <div class="hero-slide-inner">
+              <div class="hero-copy">
+                <div class="hero-badge">
+                  <i class="bi bi-code-slash" aria-hidden="true"></i> The CodeSpark Editor
+                </div>
+                <h1>Make ideas <span class="highlight">move</span></h1>
+                <p>
+                  Put colorful coding blocks together and see your program come to life
+                  right in the browser.
+                </p>
+                <div class="hero-actions">
+                  <a href="editor.html" class="btn btn-primary btn-lg">
+                    <i class="bi bi-code-slash" aria-hidden="true"></i> Explore the Editor
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="hero-slide hero-slide--tutorials" role="group" aria-roledescription="slide"
+            aria-label="3 of 4" hidden>
+            <div class="hero-slide-inner">
+              <div class="hero-copy">
+                <div class="hero-badge">
+                  <i class="bi bi-book-half" aria-hidden="true"></i> Step-by-step Tutorials
+                </div>
+                <h1>Learn at your <span class="highlight">own pace</span></h1>
+                <p>
+                  Follow friendly lessons that introduce coding ideas one small step
+                  at a time.
+                </p>
+                <div class="hero-actions">
+                  <a href="tutorials.html" class="btn btn-primary btn-lg">
+                    <i class="bi bi-book-half" aria-hidden="true"></i> Browse Tutorials
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="hero-slide hero-slide--quiz" role="group" aria-roledescription="slide" aria-label="4 of 4"
+            hidden>
+            <div class="hero-slide-inner">
+              <div class="hero-copy">
+                <div class="hero-badge">
+                  <i class="bi bi-patch-question" aria-hidden="true"></i> Quick Coding Quizzes
+                </div>
+                <h1>Ready for a <span class="highlight">challenge?</span></h1>
+                <p>
+                  Check what you know with short quizzes and build confidence as you
+                  learn.
+                </p>
+                <div class="hero-actions">
+                  <a href="quiz.html" class="btn btn-primary btn-lg">
+                    <i class="bi bi-play-circle" aria-hidden="true"></i> Try a Quiz
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+          <div class="hero-carousel-arrows" role="group" aria-label="Slide navigation">
+            <button class="hero-carousel-arrow" id="heroPrevious" type="button" aria-label="Previous slide">
+              <i class="bi bi-chevron-left" aria-hidden="true"></i>
+            </button>
+            <button class="hero-carousel-arrow" id="heroNext" type="button" aria-label="Next slide">
+              <i class="bi bi-chevron-right" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="hero-carousel-controls" role="group" aria-label="Carousel controls">
+          <div class="hero-carousel-indicators" role="group" aria-label="Choose a slide">
+            <button type="button" aria-label="Show slide 1" aria-current="true"></button>
+            <button type="button" aria-label="Show slide 2"></button>
+            <button type="button" aria-label="Show slide 3"></button>
+            <button type="button" aria-label="Show slide 4"></button>
+          </div>
+        </div>
+        <p class="visually-hidden" id="heroSlideAnnouncement" aria-live="polite" aria-atomic="true"></p>
       </div>
-      <h1>
-        Learn to Code<br>
-        with <span class="highlight">Block Magic</span>
-      </h1>
-      <p>
-        Build games, create animations, and learn programming concepts through 
-        fun drag-and-drop blocks. No typing needed — just snap, code, and play!
-      </p>
-      <div class="hero-actions">
-        <a href="editor.html" class="btn btn-primary btn-lg">
-          <i class="fa-solid fa-rocket"></i> Start Coding
-        </a>
-        <a href="tutorials.html" class="btn btn-secondary btn-lg">
-          <i class="fa-solid fa-book-open"></i> View Tutorials
-        </a>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="features section how-it-works" id="howItWorks">
+    <div class="container">
+      <div class="section-header">
+        <span class="how-it-works-kicker">Your first program</span>
+        <h2>How It <span class="text-gradient">Works</span></h2>
+        <p>Three simple steps to start your coding adventure</p>
+      </div>
+      <div class="how-process-layout">
+        <ol class="how-process-steps">
+          <li class="how-process-step">
+            <span class="how-process-number" aria-hidden="true">01</span>
+            <div>
+              <h3>Pick your blocks</h3>
+              <p>Choose motion, looks, sound, or control blocks from the toolbox.</p>
+            </div>
+          </li>
+          <li class="how-process-step">
+            <span class="how-process-number" aria-hidden="true">02</span>
+            <div>
+              <h3>Snap them together</h3>
+              <p>Connect blocks in the workspace to build a simple set of instructions.</p>
+            </div>
+          </li>
+          <li class="how-process-step">
+            <span class="how-process-number" aria-hidden="true">03</span>
+            <div>
+              <h3>Press play and see</h3>
+              <p>Run your program and watch your sprite bring your idea to life.</p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="how-editor-illustration" role="img"
+          aria-label="Illustration of colorful coding blocks connected in a workspace, ready to run a sprite">
+          <div class="how-editor-window">
+            <div class="how-editor-toolbar">
+              <span class="how-editor-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="how-editor-title">My first project</span>
+              <span class="how-editor-run" aria-hidden="true"><i class="bi bi-play-fill"></i> Run</span>
+            </div>
+            <div class="how-editor-body">
+              <div class="how-editor-toolbox" aria-hidden="true">
+                <span class="how-toolbox-label">BLOCKS</span>
+                <span class="how-toolbox-category"><i></i> Motion</span>
+                <span class="how-toolbox-category"><i></i> Looks</span>
+                <span class="how-toolbox-category"><i></i> Sound</span>
+                <span class="how-toolbox-category"><i></i> Control</span>
+              </div>
+              <div class="how-block-workspace" aria-hidden="true">
+                <span class="how-code-block how-code-block--event"><i class="bi bi-flag-fill"></i> when play
+                  clicked</span>
+                <span class="how-code-block how-code-block--motion"><i class="bi bi-arrow-right-short"></i> move 10
+                  steps</span>
+                <span class="how-code-block how-code-block--looks"><i class="bi bi-chat-fill"></i> say “Hello!”</span>
+                <span class="how-code-connector"></span>
+              </div>
+              <div class="how-sprite-stage" aria-hidden="true">
+                <span class="how-sprite-spark how-sprite-spark--one">✦</span>
+                <span class="how-sprite"><i class="bi bi-emoji-smile-fill"></i></span>
+                <span class="how-sprite-spark how-sprite-spark--two">✦</span>
+                <span class="how-sprite-caption">Your sprite</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Features Section -->
-  <section class="features section" id="features">
+  <section class="features section home-features" id="features">
     <div class="container">
-      <div class="section-header">
-        <h2>Why <span class="text-gradient">CodeSpark</span>?</h2>
-        <p>Everything you need to start your coding journey, designed especially for young learners</p>
-      </div>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon"><i class="fa-solid fa-puzzle-piece"></i></div>
-          <h3>Block-Based Coding</h3>
-          <p>Drag and drop colorful blocks to create programs. No typing errors, no syntax worries — just pure logic and creativity!</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"><i class="fa-solid fa-gamepad"></i></div>
-          <h3>Interactive Canvas</h3>
-          <p>Watch your sprite come alive! Move, spin, draw, and animate characters on an interactive stage.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"><i class="fa-solid fa-book-open"></i></div>
-          <h3>Step-by-Step Tutorials</h3>
-          <p>Follow guided lessons from basics to advanced. Each tutorial builds on the previous one.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"><i class="fa-solid fa-brain"></i></div>
-          <h3>Fun Quizzes</h3>
-          <p>Test your coding knowledge with interactive quizzes. Track your progress and earn badges!</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"><i class="fa-solid fa-trophy"></i></div>
-          <h3>Achievements & Badges</h3>
-          <p>Earn cool badges as you learn! Collect achievements for completing tutorials, quizzes, and projects.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"><i class="fa-solid fa-circle-half-stroke"></i></div>
-          <h3>Dark & Light Mode</h3>
-          <p>Code in your preferred style. Switch between dark and light themes with a single click.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"><i class="fa-solid fa-floppy-disk"></i></div>
-          <h3>Save Your Projects</h3>
-          <p>Save your block programs and load them later. Never lose your creative work!</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"><i class="fa-solid fa-laptop-code"></i></div>
-          <h3>Multi-Language Output</h3>
-          <p>See your blocks as real JavaScript or Python code. Bridge the gap between blocks and text coding.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"><i class="fa-solid fa-volume-high"></i></div>
-          <h3>Sound Effects</h3>
-          <p>Add sounds and music to your programs. Make your creations come alive with audio!</p>
+      <div class="home-features-layout">
+        <header class="home-features-intro">
+          <span class="home-features-kicker">THE CODESPARK EXPERIENCE</span>
+          <h2>Curiosity turns into <span>creation.</span></h2>
+          <p>A friendly place to try coding, make something of your own, and discover what you can do.</p>
+          <a href="editor.html" class="btn btn-primary home-features-cta">
+            <i class="bi bi-rocket-takeoff" aria-hidden="true"></i> Explore the Editor
+          </a>
+        </header>
+        <div class="features-grid">
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true"><i class="bi bi-puzzle-fill"></i></div>
+            <h3>Build with blocks</h3>
+            <p>Snap colorful blocks together and learn programming logic without syntax getting in the way.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true"><i class="bi bi-display"></i></div>
+            <h3>See it come to life</h3>
+            <p>Run your program, explore the live preview, and see the HTML and CSS behind your creation.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true"><i class="bi bi-book-half"></i></div>
+            <h3>Learn at your pace</h3>
+            <p>Follow approachable tutorials, then check your understanding with quick coding quizzes.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true"><i class="bi bi-floppy"></i></div>
+            <h3>Pick up where you left off</h3>
+            <p>Save your block projects in your browser and come back to keep creating.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true"><i class="bi bi-volume-up"></i></div>
+            <h3>Add sound and movement</h3>
+            <p>Animate your sprite, draw on the stage, and add sounds to make each project yours.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true"><i class="bi bi-trophy"></i></div>
+            <h3>Celebrate your progress</h3>
+            <p>Earn achievements as you learn and see your activity come together in your profile.</p>
+          </article>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Stats Section -->
-  <section class="stats" id="stats">
+  <section class="stats home-stats" id="stats" aria-labelledby="statsHeading">
     <div class="container">
+      <h2 class="visually-hidden" id="statsHeading">CodeSpark by the numbers</h2>
       <div class="stats-grid">
         <div class="stat-card">
-          <div class="stat-number" data-target="50">0</div>
-          <div class="stat-label"><i class="fa-solid fa-cubes"></i> Coding Blocks</div>
+          <div class="stat-number" data-target="60">0</div>
+          <div class="stat-label">Coding blocks</div>
         </div>
         <div class="stat-card">
           <div class="stat-number" data-target="10">0</div>
-          <div class="stat-label"><i class="fa-solid fa-chalkboard-user"></i> Interactive Tutorials</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number" data-target="30">0</div>
-          <div class="stat-label"><i class="fa-solid fa-circle-question"></i> Quiz Questions</div>
+          <div class="stat-label">Tutorials</div>
         </div>
         <div class="stat-card">
           <div class="stat-number" data-target="15">0</div>
-          <div class="stat-label"><i class="fa-solid fa-award"></i> Achievements</div>
+          <div class="stat-label">Quiz questions</div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- How It Works Section -->
-  <section class="section" id="howItWorks">
-    <div class="container">
-      <div class="section-header">
-        <h2>How It <span class="text-gradient">Works</span></h2>
-        <p>Three simple steps to start your coding adventure</p>
-      </div>
-      <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
-        <div class="feature-card" style="border-top: 3px solid var(--color-primary);">
-          <div class="feature-icon step-number">1</div>
-          <h3>Pick Your Blocks</h3>
-          <p>Choose from motion, looks, sound, and control blocks. Drag them onto the workspace.</p>
-        </div>
-        <div class="feature-card" style="border-top: 3px solid var(--color-secondary);">
-          <div class="feature-icon step-number">2</div>
-          <h3>Snap & Build</h3>
-          <p>Snap blocks together to create instructions. Your program takes shape as blocks connect.</p>
-        </div>
-        <div class="feature-card" style="border-top: 3px solid var(--color-accent);">
-          <div class="feature-icon step-number">3</div>
-          <h3>Run & Watch</h3>
-          <p>Click the play button and watch your sprite follow your instructions on the stage!</p>
+        <div class="stat-card">
+          <div class="stat-number" data-target="15">0</div>
+          <div class="stat-label">Achievements</div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- CTA Section -->
-  <section class="stats" id="cta">
-    <div class="container" style="text-align: center; padding: var(--space-3xl) 0;">
-      <h2 style="font-family: var(--font-heading); font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: white; margin-bottom: var(--space-md);">
-        Ready to Start Your <span class="text-gradient">Coding Journey</span>?
-      </h2>
-      <p style="color: rgba(255,255,255,0.7); font-size: 1.125rem; margin-bottom: var(--space-2xl); max-width: 500px; margin-left: auto; margin-right: auto;">
-        Jump into the editor and create your first program in minutes. No installation needed!
-      </p>
-      <a href="editor.html" class="btn btn-accent btn-lg"><i class="fa-solid fa-bolt"></i> Launch Editor Now</a>
+  <section class="cta-section home-cta-section" id="cta">
+    <div class="container">
+      <div class="cta-card home-cta-card">
+        <div class="home-cta-copy">
+          <span class="home-cta-kicker">READY WHEN YOU ARE</span>
+          <h2>Your first idea can <span class="highlight">start here.</span></h2>
+          <p>Open the editor, put a few blocks together, and see what you can make.</p>
+        </div>
+        <div class="home-cta-action">
+          <a href="editor.html" class="btn btn-primary btn-lg">
+            Open the Editor <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
+          </a>
+          <span><i class="bi bi-check2" aria-hidden="true"></i> Free to explore · No download needed</span>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="footer">
+  <footer class="footer home-footer">
     <div class="container">
-      <div class="footer-links">
-        <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
-        <a href="editor.html"><i class="fa-solid fa-code"></i> Editor</a>
-        <a href="tutorials.html"><i class="fa-solid fa-book-open"></i> Tutorials</a>
-        <a href="quiz.html"><i class="fa-solid fa-brain"></i> Quiz</a>
+      <div class="home-footer-bottom">
+        <p>
+          © 2026 <a href="index.html" aria-label="CodeSpark home page">CodeSpark</a>. All rights reserved.
+          <span aria-hidden="true">·</span>
+          Designed by
+          <!-- Replace the placeholder URL with Payal Dubey's portfolio URL. -->
+          <a href="https://example.com" target="_blank" rel="noopener noreferrer">Payal Dubey</a>
+        </p>
       </div>
-      <p><i class="fa-solid fa-bolt"></i> CodeSpark — Coding Awareness Program | CEP Project © 2026</p>
     </div>
   </footer>
+
+  <!-- Login Modal -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal auth-modal">
+      <div class="auth-header">
+        <div class="auth-icon"><i class="bi bi-person-lock"></i></div>
+        <h2>Welcome to <span class="text-gradient">CodeSpark</span></h2>
+        <p>Log in to save your progress, unlock achievements & sync projects.</p>
+      </div>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="loginUsername"><i class="bi bi-person"></i> Username</label>
+          <input type="text" id="loginUsername" class="modal-input" placeholder="Enter your username..." required
+            autocomplete="username">
+        </div>
+        <div class="form-group" style="margin-top: var(--space-md);">
+          <label for="loginPassword"><i class="bi bi-key"></i> Password</label>
+          <input type="password" id="loginPassword" class="modal-input" placeholder="Enter your password..." required
+            autocomplete="current-password">
+        </div>
+        <div class="auth-status" id="loginStatusMsg"></div>
+        <div class="modal-actions auth-actions">
+          <button type="button" class="btn btn-secondary btn-sm" id="cancelLoginBtn">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm" id="submitLoginBtn"><i class="bi bi-person-fill"></i>
+            Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <!-- Achievement Toast Container -->
   <div class="achievements-panel" id="achievementsPanel"></div>
 
-  <script src="js/app.js"></script>
+  <script src="assets/js/vendor/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/app.js"></script>
 </body>
+
 </html>

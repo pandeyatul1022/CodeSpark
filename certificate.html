@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Official Certificate of Achievement — CodeSpark</title>
+  <link rel="stylesheet" href="assets/vendor/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/vendor/bootstrap-icons/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <style>
+    body {
+      background: var(--bg-primary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .certificate-actions {
+      margin-bottom: 2rem;
+      display: flex;
+      gap: 1rem;
+    }
+
+    /* Certificate Outer Frame */
+    .certificate-wrapper {
+      width: 100%;
+      max-width: 900px;
+      background: #ffffff;
+      padding: 2.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      border: 12px solid #7c3aed;
+      position: relative;
+      color: #0f172a;
+      box-sizing: border-box;
+    }
+
+    .certificate-inner {
+      border: 2px dashed #a78bfa;
+      padding: 3rem 2rem;
+      text-align: center;
+      border-radius: 0.5rem;
+      background: radial-gradient(circle at center, #faf8ff 0%, #ffffff 100%);
+      position: relative;
+    }
+
+    .cert-logo {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #7c3aed;
+      margin-bottom: 0.5rem;
+    }
+
+    .cert-header {
+      font-family: var(--font-heading);
+      font-size: 2.8rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #1e1b4b;
+      margin-bottom: 1.5rem;
+    }
+
+    .cert-present {
+      font-size: 1.1rem;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .cert-name {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      font-weight: 800;
+      color: #7c3aed;
+      margin: 0.5rem 0 1.5rem 0;
+      border-bottom: 3px solid #06b6d4;
+      display: inline-block;
+      padding: 0 2rem 0.5rem 2rem;
+    }
+
+    .cert-reason {
+      font-size: 1.15rem;
+      line-height: 1.6;
+      color: #334155;
+      max-width: 650px;
+      margin: 0 auto 2.5rem auto;
+    }
+
+    .cert-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .cert-seal {
+      width: 90px;
+      height: 90px;
+      background: linear-gradient(135deg, #f59e0b, #fbbf24);
+      border-radius: 50%;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.75rem;
+      box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+      border: 4px solid #ffffff;
+      text-transform: uppercase;
+    }
+
+    .cert-seal i {
+      font-size: 1.8rem;
+      margin-bottom: 2px;
+    }
+
+    .cert-signature {
+      text-align: center;
+    }
+
+    .cert-sig-line {
+      width: 160px;
+      border-bottom: 2px solid #94a3b8;
+      margin-bottom: 0.35rem;
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+
+      .certificate-actions {
+        display: none !important;
+      }
+
+      .home-footer {
+        display: none !important;
+      }
+
+      .certificate-wrapper {
+        box-shadow: none;
+        border-width: 8px;
+        max-width: 100%;
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="certificate-actions">
+    <a href="profile.html" class="btn btn-secondary btn-sm"><i class="bi bi-arrow-left"></i> Back to Profile</a>
+    <button onclick="window.print()" class="btn btn-primary btn-sm"><i class="bi bi-printer"></i> Print / Save PDF</button>
+  </div>
+
+  <div class="certificate-wrapper">
+    <div class="certificate-inner">
+      <div class="cert-logo">⚡ CodeSpark</div>
+      <div class="cert-header">Certificate of Achievement</div>
+      <div class="cert-present">This is proudly awarded to</div>
+      <div class="cert-name" id="certStudentName">Student Coder</div>
+      <div class="cert-reason">
+        For successfully completing the <strong>Block-Based Programming & Computational Thinking Course</strong>, demonstrating outstanding creativity, logic design, and problem-solving skills on the CodeSpark platform.
+      </div>
+
+      <div class="cert-footer">
+        <div class="cert-signature">
+          <div style="font-family: 'Brush Script MT', cursive; font-size: 1.5rem; color: #7c3aed; margin-bottom: 2px;">CodeSpark Team</div>
+          <div class="cert-sig-line"></div>
+          <small style="color: #64748b; font-weight: 600;">Program Director</small>
+        </div>
+
+        <div class="cert-seal">
+          <i class="bi bi-award-fill"></i>
+          <span>Verified</span>
+        </div>
+
+        <div style="text-align: right;">
+          <div style="font-weight: 700; color: #1e293b;" id="certDate">October 2026</div>
+          <small style="color: #94a3b8;" id="certID">ID: CS-2026-9842</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer home-footer">
+    <div class="container">
+      <div class="home-footer-bottom">
+        <p>
+          © 2026 <a href="index.html" aria-label="CodeSpark home page">CodeSpark</a>. All rights reserved.
+          <span aria-hidden="true">·</span>
+          Designed by
+          <!-- Replace the placeholder URL with Payal Dubey's portfolio URL. -->
+          <a href="https://example.com" target="_blank" rel="noopener noreferrer">Payal Dubey</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/vendor/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/features/certificate/certificate.js"></script>
+</body>
+
+</html>
