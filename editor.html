@@ -2,17 +2,29 @@
 <html lang="en">
 
 <head>
+  <!-- Character encoding and responsive viewport settings -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Search and browser metadata -->
   <meta name="description"
     content="CodeSpark Block Editor — Drag-and-drop coding environment with live canvas, code preview, and sprite animations.">
   <title>CodeSpark — Block Editor</title>
+
+  <!-- Bootstrap framework styles -->
   <link rel="stylesheet" href="assets/vendor/bootstrap/bootstrap.min.css">
+
+  <!-- Bootstrap Icons used across the application -->
   <link rel="stylesheet" href="assets/vendor/bootstrap-icons/bootstrap-icons.min.css">
+
+  <!-- CodeSpark site-wide styles -->
   <link rel="stylesheet" href="assets/css/main.css">
+
+  <!-- CodeSpark favicon -->
   <link rel="icon"
     href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
-  <!-- Blockly Library -->
+
+  <!-- Blockly library required by the block editor -->
   <script src="assets/js/vendor/blockly.min.js"></script>
 </head>
 
@@ -48,88 +60,115 @@
   </nav>
 
   <!-- Editor Page -->
-  <div class="editor-page">
+  <main class="editor-page">
     <!-- Toolbar -->
-    <div class="editor-toolbar">
-      <div class="toolbar-group">
-        <button class="toolbar-btn run-btn" id="runBtn" title="Run program (Ctrl+Enter)">
-          <i class="bi bi-play-fill"></i> Run
+    <div class="editor-toolbar" role="toolbar" aria-label="Block editor tools">
+      <div class="toolbar-group toolbar-group--execution" role="group" aria-label="Program controls">
+        <button class="toolbar-btn run-btn" id="runBtn" type="button" title="Run program (Ctrl+Enter)">
+          <i class="bi bi-play-fill" aria-hidden="true"></i><span class="toolbar-label">Run</span>
         </button>
-        <button class="toolbar-btn stop-btn" id="stopBtn" title="Stop program (Esc)">
-          <i class="bi bi-stop-fill"></i> Stop
+        <button class="toolbar-btn stop-btn" id="stopBtn" type="button" title="Stop program (Esc)">
+          <i class="bi bi-stop-fill" aria-hidden="true"></i><span class="toolbar-label">Stop</span>
         </button>
-        <div class="toolbar-separator"></div>
-        <button class="toolbar-btn" id="resetSpriteBtn" title="Reset sprite position">
-          <i class="bi bi-arrow-clockwise"></i> Reset
+        <span class="toolbar-separator" aria-hidden="true"></span>
+        <button class="toolbar-btn" id="resetSpriteBtn" type="button" title="Reset preview" aria-label="Reset preview">
+          <i class="bi bi-arrow-clockwise" aria-hidden="true"></i><span class="toolbar-label">Reset</span>
         </button>
-        <button class="toolbar-btn" id="clearCanvasBtn" title="Clear canvas drawings">
-          <i class="bi bi-brush"></i> Clear
+        <button class="toolbar-btn" id="clearCanvasBtn" type="button" title="Clear workspace"
+          aria-label="Clear workspace">
+          <i class="bi bi-brush" aria-hidden="true"></i><span class="toolbar-label">Clear</span>
         </button>
       </div>
-      <div class="toolbar-group">
-        <div class="lang-selector" id="langSelector">
-          <button class="active" data-lang="html"><i class="bi bi-filetype-html"></i> HTML</button>
-          <button data-lang="css"><i class="bi bi-filetype-css"></i> CSS</button>
+      <div class="toolbar-group toolbar-group--project" role="group" aria-label="Project tools">
+        <div class="lang-selector" id="langSelector" role="group" aria-label="Select code language">
+          <button class="active" type="button" data-lang="html" aria-pressed="true">
+            <i class="bi bi-filetype-html" aria-hidden="true"></i><span class="toolbar-label">HTML</span>
+          </button>
+          <button type="button" data-lang="css" aria-pressed="false">
+            <i class="bi bi-filetype-css" aria-hidden="true"></i><span class="toolbar-label">CSS</span>
+          </button>
         </div>
-        <div class="toolbar-separator"></div>
-        <button class="toolbar-btn" id="saveBtn" title="Save project (Ctrl+S)">
-          <i class="bi bi-floppy"></i> Save
+        <span class="toolbar-separator" aria-hidden="true"></span>
+        <button class="toolbar-btn" id="saveBtn" type="button" title="Save project (Ctrl+S)" aria-label="Save project">
+          <i class="bi bi-floppy" aria-hidden="true"></i><span class="toolbar-label">Save</span>
         </button>
-        <button class="toolbar-btn" id="loadBtn" title="Load project">
-          <i class="bi bi-folder2-open"></i> Load
+        <button class="toolbar-btn" id="loadBtn" type="button" title="Load project" aria-label="Load project">
+          <i class="bi bi-folder2-open" aria-hidden="true"></i><span class="toolbar-label">Load</span>
         </button>
-        <div class="toolbar-separator"></div>
-        <button class="toolbar-btn" id="undoBtn" title="Undo"><i class="bi bi-arrow-counterclockwise"></i></button>
-        <button class="toolbar-btn" id="redoBtn" title="Redo"><i class="bi bi-arrow-90deg-right"></i></button>
+        <span class="toolbar-separator" aria-hidden="true"></span>
+        <button class="toolbar-btn toolbar-icon-btn" id="undoBtn" type="button" title="Undo" aria-label="Undo">
+          <i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i>
+        </button>
+        <button class="toolbar-btn toolbar-icon-btn" id="redoBtn" type="button" title="Redo" aria-label="Redo">
+          <i class="bi bi-arrow-90deg-right" aria-hidden="true"></i>
+        </button>
       </div>
     </div>
 
     <!-- Main Editor Area -->
     <div class="editor-main">
       <!-- Blockly Workspace -->
-      <div class="blockly-panel" id="blocklyPanel">
+      <section class="blockly-panel" id="blocklyPanel" aria-label="Block workspace">
         <div id="blocklyDiv"></div>
-      </div>
+      </section>
 
       <!-- Right Side Panels -->
-      <div class="right-panels">
+      <aside class="right-panels" aria-label="Preview and code">
         <!-- Live Output Preview -->
-        <div class="canvas-panel">
+        <section class="canvas-panel" id="canvasPanel" aria-label="Live preview">
           <div class="canvas-header">
-            <span><i class="bi bi-eye"></i> Live Output</span>
-            <button class="toolbar-btn btn-sm" id="refreshPreviewBtn" title="Refresh preview"
-              style="font-size: 0.7rem; padding: 0.2rem 0.5rem;">
-              <i class="bi bi-arrow-repeat"></i> Refresh
-            </button>
+            <h2><i class="bi bi-eye" aria-hidden="true"></i> Live preview</h2>
+            <div class="canvas-actions">
+              <button class="toolbar-btn panel-action-btn" id="fullscreenPreviewBtn" type="button"
+                aria-label="Open preview fullscreen" title="Open preview fullscreen" aria-pressed="false">
+                <i class="bi bi-arrows-fullscreen" aria-hidden="true"></i><span>Fullscreen</span>
+              </button>
+              <button class="toolbar-btn panel-action-btn" id="refreshPreviewBtn" type="button" title="Refresh preview">
+                <i class="bi bi-arrow-repeat" aria-hidden="true"></i><span>Refresh</span>
+              </button>
+            </div>
           </div>
           <div class="canvas-wrapper">
             <iframe id="livePreviewIframe" title="Live Preview"
-              style="width:100%; height:100%; border:none; background:#ffffff; border-radius:var(--radius-md);"></iframe>
+              loading="lazy"></iframe>
           </div>
-        </div>
+        </section>
 
         <!-- Code Preview -->
-        <div class="code-panel">
+        <section class="code-panel" aria-label="Generated code">
           <div class="code-header">
-            <div class="code-tabs">
-              <button class="code-tab active" data-lang="html"><i class="bi bi-filetype-html"></i> HTML</button>
-              <button class="code-tab" data-lang="css"><i class="bi bi-filetype-css"></i> CSS</button>
+            <div class="code-tabs" role="group" aria-label="Code preview language">
+              <button class="code-tab active" type="button" data-lang="html" aria-pressed="true">
+                <i class="bi bi-filetype-html" aria-hidden="true"></i> HTML
+              </button>
+              <button class="code-tab" type="button" data-lang="css" aria-pressed="false">
+                <i class="bi bi-filetype-css" aria-hidden="true"></i> CSS
+              </button>
             </div>
-            <button class="toolbar-btn btn-sm" id="copyCodeBtn" title="Copy code"
-              style="font-size: 0.7rem; padding: 0.2rem 0.5rem;">
-              <i class="bi bi-copy"></i> Copy
+            <button class="toolbar-btn panel-action-btn" id="copyCodeBtn" type="button" title="Copy code">
+              <i class="bi bi-copy" aria-hidden="true"></i><span aria-live="polite">Copy</span>
             </button>
           </div>
-          <pre
-            id="codeOutput">// Your generated code will appear here...\n// Drag blocks to the workspace to start coding!</pre>
+          <pre id="codeOutput" aria-live="polite" tabindex="0"></pre>
           <div class="console-panel" id="consolePanel">
-            <div class="console-line info"><i class="bi bi-check-circle-fill"></i> Console ready. Run your program to
-              see output.</div>
+            <div class="console-header">
+              <h3><i class="bi bi-terminal" aria-hidden="true"></i> Console</h3>
+              <button class="console-clear-btn" id="clearConsoleBtn" type="button" title="Clear console"
+                aria-label="Clear console">
+                <i class="bi bi-trash3" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div class="console-output" id="consoleOutput" role="log" aria-live="polite" aria-relevant="additions text">
+              <div class="console-line info">
+                <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                <span>Console ready. Run your program to see output.</span>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </section>
+      </aside>
     </div>
-  </div>
+  </main>
 
   <!-- Save Modal -->
   <div class="modal-overlay" id="saveModal">
@@ -180,8 +219,8 @@
         <div class="auth-status" id="loginStatusMsg"></div>
         <div class="modal-actions auth-actions">
           <button type="button" class="btn btn-secondary btn-sm" id="cancelLoginBtn">Cancel</button>
-          <button type="submit" class="btn btn-primary btn-sm" id="submitLoginBtn"><i
-              class="bi bi-person-fill"></i> Login</button>
+          <button type="submit" class="btn btn-primary btn-sm" id="submitLoginBtn"><i class="bi bi-person-fill"></i>
+            Login</button>
         </div>
       </form>
     </div>
@@ -190,23 +229,9 @@
   <!-- Achievement Toast Container -->
   <div class="achievements-panel" id="achievementsPanel"></div>
 
-  <!-- Footer -->
-  <footer class="footer home-footer">
-    <div class="container">
-      <div class="home-footer-bottom">
-        <p>
-          © 2026 <a href="index.html" aria-label="CodeSpark home page">CodeSpark</a>. All rights reserved.
-          <span aria-hidden="true">·</span>
-          Designed by
-          <!-- Replace the placeholder URL with Payal Dubey's portfolio URL. -->
-          <a href="https://example.com" target="_blank" rel="noopener noreferrer">Payal Dubey</a>
-        </p>
-      </div>
-    </div>
-  </footer>
-
   <script src="assets/js/vendor/bootstrap.bundle.min.js"></script>
   <script src="assets/js/app.js"></script>
+  <script src="assets/js/features/tutorials/roadmap.js"></script>
   <script src="assets/js/features/editor/editor.js"></script>
   <script src="assets/js/features/editor/project-storage.js"></script>
   <script src="assets/js/features/achievements/achievements.js"></script>

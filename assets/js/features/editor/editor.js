@@ -989,168 +989,126 @@
     return `// Key event: ${key}\n`;
   };
 
+  const tutorialExamples = {
+    html: new Map(),
+    css: new Map(),
+  };
+
+  const simpleCategoryNames = {
+    'HTML foundations': 'Basics',
+    'HTML Document Structure': 'Structure',
+    'Headings and Text': 'Text',
+    'Links and Images': 'Links',
+    'Lists and Grouping': 'Lists',
+    'HTML Tables': 'Tables',
+    'HTML Forms and Inputs': 'Forms',
+    'Semantic HTML5': 'Semantic',
+    'Media and Embedded Content': 'Media',
+    'Head, Metadata and SEO': 'SEO',
+    'Accessibility and Best Practices': 'Access',
+    'Advanced HTML5 Features': 'Advanced',
+    'HTML Practice Projects': 'Projects',
+    'CSS Fundamentals': 'Basics',
+    'CSS Selectors': 'Selectors',
+    'Colors and Backgrounds': 'Colors',
+    'Text and Typography': 'Text',
+    'CSS Box Model': 'Box Model',
+    'Display and Visibility': 'Display',
+    'CSS Positioning': 'Position',
+    'Flexbox Layout': 'Flexbox',
+    'CSS Grid': 'Grid',
+    'Responsive Web Design': 'Responsive',
+    'Borders, Shadows and UI Styling': 'UI Styles',
+    'Transitions and Animations': 'Motion',
+    'Advanced CSS Concepts': 'Advanced',
+    'CSS Best Practices': 'Best Practices',
+    'CSS Practical Projects': 'Projects',
+  };
+
+  function createTutorialLessonCategories(language) {
+    const roadmap = window.CodeSparkRoadmap;
+    if (!roadmap || typeof roadmap.getBlockLessonLevels !== 'function') {
+      throw new Error('Tutorial lesson data is unavailable. Load the tutorial roadmap before the editor.');
+    }
+
+    const levels = roadmap.getBlockLessonLevels(language);
+    if (levels.length === 0 || levels.some((level) => level.lessons.length === 0)) {
+      throw new Error(`Tutorial lesson data is incomplete for ${language.toUpperCase()}.`);
+    }
+
+    const palette = language === 'html'
+      ? ['#e44d26', '#f16529', '#d97706', '#f59e0b', '#0ea5e9', '#0284c7', '#14b8a6', '#10b981', '#65a30d', '#84cc16', '#64748b', '#8b5cf6', '#db2777']
+      : ['#264de4', '#2563eb', '#0891b2', '#0e7490', '#4f46e5', '#6366f1', '#7c3aed', '#9333ea', '#c026d3', '#db2777', '#e11d48', '#c2410c', '#b45309', '#475569', '#334155'];
+
+    const categories = levels.map((level, levelIndex) => {
+      const colour = palette[levelIndex % palette.length];
+      const contents = level.lessons.map((lesson, lessonIndex) => {
+        const type = `codespark_tutorial_${language}_${levelIndex + 1}_${lessonIndex + 1}`;
+        const tooltip = `${level.title} — ${lesson.title}: ${lesson.explanation}`;
+
+        Blockly.Blocks[type] = {
+          init: function () {
+            this.appendDummyInput().appendField(lesson.title);
+            this.setPreviousStatement(true, null);
+            this.setNextStatement(true, null);
+            this.setColour(colour);
+            this.setTooltip(tooltip);
+          },
+        };
+
+        tutorialExamples[language].set(type, lesson.example);
+        return { kind: 'block', type };
+      });
+
+      return {
+        kind: 'category',
+        name: simpleCategoryNames[level.title] || level.title,
+        colour,
+        contents,
+      };
+    });
+
+    return categories;
+  }
+
   // ── HTML Toolbox Definition ─────────────────────────────────────
   const htmlToolbox = {
     kind: 'categoryToolbox',
-    contents: [
-      {
-        kind: 'category',
-        name: 'Document',
-        colour: '#e44d26',
-        contents: [
-          { kind: 'block', type: 'html_doc' },
-          { kind: 'block', type: 'html_heading' },
-          { kind: 'block', type: 'html_paragraph' },
-          { kind: 'block', type: 'html_div' },
-          { kind: 'block', type: 'html_span' }
-        ]
-      },
-      {
-        kind: 'category',
-        name: 'Text & Actions',
-        colour: '#f16529',
-        contents: [
-          { kind: 'block', type: 'html_button' },
-          { kind: 'block', type: 'html_link' },
-          { kind: 'block', type: 'html_bold' },
-          { kind: 'block', type: 'html_italic' },
-          { kind: 'block', type: 'html_break' },
-          { kind: 'block', type: 'html_hr' }
-        ]
-      },
-      {
-        kind: 'category',
-        name: 'Containers',
-        colour: '#ff8c1a',
-        contents: [
-          { kind: 'block', type: 'html_card' },
-          { kind: 'block', type: 'html_list' },
-          { kind: 'block', type: 'html_list_item' }
-        ]
-      },
-      {
-        kind: 'category',
-        name: 'Media',
-        colour: '#2965f1',
-        contents: [
-          { kind: 'block', type: 'html_image' },
-          { kind: 'block', type: 'html_input' }
-        ]
-      },
-      {
-        kind: 'category',
-        name: 'Values',
-        colour: '#ff6680',
-        contents: [
-          { kind: 'block', type: 'text' }
-        ]
-      }
-    ]
+    contents: createTutorialLessonCategories('html'),
   };
 
   // ── CSS Toolbox Definition ──────────────────────────────────────
   const cssToolbox = {
     kind: 'categoryToolbox',
-    contents: [
-      {
-        kind: 'category',
-        name: 'Selectors',
-        colour: '#264de4',
-        contents: [
-          { kind: 'block', type: 'css_rule' }
-        ]
-      },
-      {
-        kind: 'category',
-        name: 'Layout',
-        colour: '#2965f1',
-        contents: [
-          { kind: 'block', type: 'css_display' },
-          { kind: 'block', type: 'css_flex_direction' },
-          { kind: 'block', type: 'css_justify_content' },
-          { kind: 'block', type: 'css_align_items' },
-          { kind: 'block', type: 'css_width_height' }
-        ]
-      },
-      {
-        kind: 'category',
-        name: 'Box Model',
-        colour: '#3b82f6',
-        contents: [
-          { kind: 'block', type: 'css_padding' },
-          { kind: 'block', type: 'css_margin' },
-          { kind: 'block', type: 'css_border' },
-          { kind: 'block', type: 'css_border_radius' }
-        ]
-      },
-      {
-        kind: 'category',
-        name: 'Colors',
-        colour: '#9966ff',
-        contents: [
-          { kind: 'block', type: 'css_color' },
-          { kind: 'block', type: 'css_bg_color' },
-          { kind: 'block', type: 'css_bg_gradient' }
-        ]
-      },
-      {
-        kind: 'category',
-        name: 'Text & Fonts',
-        colour: '#ec4899',
-        contents: [
-          { kind: 'block', type: 'css_font_size' },
-          { kind: 'block', type: 'css_font_family' },
-          { kind: 'block', type: 'css_text_align' }
-        ]
-      },
-      {
-        kind: 'category',
-        name: 'Effects',
-        colour: '#8b5cf6',
-        contents: [
-          { kind: 'block', type: 'css_box_shadow' },
-          { kind: 'block', type: 'css_transition' },
-          { kind: 'block', type: 'css_transform' }
-        ]
-      }
-    ]
+    contents: createTutorialLessonCategories('css'),
   };
 
-  // Category icon names use Bootstrap Icons.
-  const categoryIconMap = {
-    // HTML categories
-    'Document': 'bi bi-file-earmark-code',
-    'Text & Actions': 'bi bi-type',
-    'Containers': 'bi bi-boxes',
-    'Media': 'bi bi-collection-play',
-    'Values': 'bi bi-keyboard',
-    // CSS categories
-    'Selectors': 'bi bi-crosshair',
-    'Layout': 'bi bi-columns',
-    'Box Model': 'bi bi-bounding-box',
-    'Colors': 'bi bi-palette',
-    'Text & Fonts': 'bi bi-text-paragraph',
-    'Effects': 'bi bi-magic',
-  };
-
-  function injectCategoryIcons() {
-    const labels = document.querySelectorAll('.blocklyTreeLabel');
+  function decorateToolboxCategories() {
+    const labels = document.querySelectorAll('.blocklyTreeLabel, .blocklyToolboxCategoryLabel');
     labels.forEach((label) => {
-      const name = label.textContent.trim();
-      const iconClass = categoryIconMap[name];
-      if (iconClass && !label.querySelector('.cat-icon')) {
-        const icon = document.createElement('i');
-        icon.className = iconClass + ' cat-icon';
-        icon.style.cssText = 'margin-right:6px;font-size:12px;opacity:0.85;';
-        label.prepend(icon);
+      const name = Array.from(label.childNodes)
+        .filter((node) => node.nodeType === Node.TEXT_NODE)
+        .map((node) => node.textContent)
+        .join('')
+        .trim();
+      const category = label.closest('.blocklyToolboxCategory');
+      if (!name || !category || !category.style.borderLeftColor) return;
+
+      label.style.setProperty('--category-colour', category.style.borderLeftColor);
+      if (!label.querySelector('.cat-dot')) {
+        const dot = document.createElement('span');
+        dot.className = 'cat-dot';
+        dot.setAttribute('aria-hidden', 'true');
+        label.prepend(dot);
       }
     });
+    Blockly.svgResize(workspace);
   }
 
   // ── Inject Blockly ──────────────────────────────────────────────
   const workspace = Blockly.inject(blocklyDiv, {
     toolbox: htmlToolbox,
-    grid: { spacing: 20, length: 3, colour: '#ccc', snap: true },
+    grid: { spacing: 22, length: 2, colour: '#d5deeb', snap: true },
     zoom: { controls: true, wheel: true, startScale: 0.9, maxScale: 2, minScale: 0.3 },
     trashcan: true,
     move: { scrollbars: true, drag: true, wheel: true },
@@ -1158,8 +1116,56 @@
     renderer: 'zelos',
   });
 
+  const editorThemes = {
+    light: Blockly.Theme.defineTheme('codesparkLight', {
+      base: Blockly.Themes.Classic,
+      componentStyles: {
+        workspaceBackgroundColour: '#f8fafc',
+        toolboxBackgroundColour: '#f0f4f9',
+        toolboxForegroundColour: '#334155',
+        flyoutBackgroundColour: '#e8edf5',
+        flyoutForegroundColour: '#1e293b',
+        flyoutOpacity: 1,
+        scrollbarColour: '#94a3b8',
+        scrollbarOpacity: 0.6,
+        insertionMarkerColour: '#7c3aed',
+        insertionMarkerOpacity: 0.3,
+        cursorColour: '#5b21b6',
+      },
+    }),
+    dark: Blockly.Theme.defineTheme('codesparkDark', {
+      base: Blockly.Themes.Classic,
+      componentStyles: {
+        workspaceBackgroundColour: '#171923',
+        toolboxBackgroundColour: '#20232c',
+        toolboxForegroundColour: '#e2e8f0',
+        flyoutBackgroundColour: '#292d38',
+        flyoutForegroundColour: '#f1f5f9',
+        flyoutOpacity: 1,
+        scrollbarColour: '#788198',
+        scrollbarOpacity: 0.65,
+        insertionMarkerColour: '#c4b5fd',
+        insertionMarkerOpacity: 0.35,
+        cursorColour: '#ddd3ff',
+      },
+    }),
+  };
+
+  function applyEditorTheme() {
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark'
+      ? editorThemes.dark
+      : editorThemes.light;
+    if (workspace.getTheme().name !== theme.name) workspace.setTheme(theme);
+  }
+
+  applyEditorTheme();
+  new MutationObserver(applyEditorTheme).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme'],
+  });
+
   // Inject icons after Blockly renders
-  setTimeout(injectCategoryIcons, 500);
+  setTimeout(decorateToolboxCategories, 500);
 
 
   // ── HTML & CSS Generator Engine ─────────────────────────────────
@@ -1167,17 +1173,45 @@
     return (str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
 
+  function renderHTMLTutorialExample(example) {
+    const source = (example || '').trim();
+    const containsHTML = /<(?:!doctype|!--|\/?[a-z][a-z0-9-]*(?:\s|\/?>))/i.test(source);
+    if (containsHTML) return `${source}\n`;
+    return `<pre class="tutorial-example"><code>${escapeHTML(source)}</code></pre>\n`;
+  }
+
+  function renderCSSTutorialExample(example) {
+    const source = (example || '').trim();
+    const inlineStyles = source.match(/<style\b[^>]*>([\s\S]*?)<\/style>/i);
+    if (inlineStyles) return `${inlineStyles[1].trim()}\n`;
+    if (/[{}]/.test(source) && !/<(?:!doctype|\/?[a-z][a-z0-9-]*\b)/i.test(source)) {
+      return `${source}\n`;
+    }
+    if (/^[\w-]+\s*:/m.test(source) && !/<(?:!doctype|\/?[a-z][a-z0-9-]*\b)/i.test(source)) {
+      return `.tutorial-example {\n${source.split('\n').map((line) => `  ${line}`).join('\n')}\n}\n`;
+    }
+
+    const safeComment = source.replace(/\*\//g, '* /').replace(/\r?\n/g, '\n   ');
+    return `/* Tutorial example:\n   ${safeComment}\n*/\n`;
+  }
+
   function renderHTMLBlock(block) {
     if (!block) return '';
     const type = block.type;
     let code = '';
+    if (type.startsWith('css_') || tutorialExamples.css.has(type)) {
+      return renderHTMLBlock(block.getNextBlock());
+    }
+    const tutorialExample = tutorialExamples.html.get(type);
 
-    if (type === 'html_doc') {
+    if (tutorialExample !== undefined) {
+      code = renderHTMLTutorialExample(tutorialExample);
+    } else if (type === 'html_doc') {
       const head = renderStatement(block, 'HEAD');
       const body = renderStatement(block, 'BODY');
       return `<!DOCTYPE html>\n<html lang="en">\n<head>\n  <meta charset="UTF-8">\n  <title>CodeSpark Web Page</title>\n${head}</head>\n<body>\n${body}</body>\n</html>\n`;
     }
-    if (type === 'html_heading') {
+    else if (type === 'html_heading') {
       const tag = block.getFieldValue('TAG') || 'h1';
       const text = getInputValue(block, 'TEXT') || 'Heading Text';
       code = `<${tag}>${escapeHTML(text)}</${tag}>\n`;
@@ -1251,10 +1285,10 @@
   }
 
   function generateHTMLCode(ws) {
-    const topBlocks = ws.getTopBlocks(true);
-    if (!topBlocks || topBlocks.length === 0) {
-      return `<!-- Drag HTML blocks into workspace to generate code -->\n<div class="codespark-stage">\n  <h1>Hello CodeSpark!</h1>\n  <p>Snap HTML blocks together to build web pages.</p>\n</div>`;
-    }
+    const topBlocks = ws.getTopBlocks(true).filter((block) =>
+      block.type.startsWith('html_') || tutorialExamples.html.has(block.type)
+    );
+    if (topBlocks.length === 0) return '';
 
     let code = '';
     topBlocks.forEach((block) => {
@@ -1265,9 +1299,15 @@
 
   function renderCSSBlock(block) {
     if (!block) return '';
+    if (block.type.startsWith('html_') || tutorialExamples.html.has(block.type)) {
+      return renderCSSBlock(block.getNextBlock());
+    }
     let code = '';
+    const tutorialExample = tutorialExamples.css.get(block.type);
 
-    if (block.type === 'css_rule') {
+    if (tutorialExample !== undefined) {
+      code = renderCSSTutorialExample(tutorialExample);
+    } else if (block.type === 'css_rule') {
       const selector = block.getFieldValue('SELECTOR') || '.container';
       const declarations = renderCSSDeclarations(block.getInputTargetBlock('DECLARATIONS'));
       code = `${selector} {\n${declarations}}\n\n`;
@@ -1316,10 +1356,10 @@
   }
 
   function generateCSSCode(ws) {
-    const topBlocks = ws.getTopBlocks(true);
-    if (!topBlocks || topBlocks.length === 0) {
-      return `/* Drag CSS blocks into workspace to generate styles */\n.card {\n  background: #7c3aed;\n  color: #ffffff;\n  padding: 16px;\n  border-radius: 12px;\n}`;
-    }
+    const topBlocks = ws.getTopBlocks(true).filter((block) =>
+      block.type.startsWith('css_') || tutorialExamples.css.has(block.type)
+    );
+    if (topBlocks.length === 0) return '';
 
     let code = '';
     topBlocks.forEach((block) => {
@@ -1331,17 +1371,25 @@
   // ── Language Mode Switcher ───────────────────────────────────────
   let currentLang = 'html';
   const codeOutput = document.getElementById('codeOutput');
-  const consolePanel = document.getElementById('consolePanel');
+  const consolePanel = document.getElementById('consoleOutput');
 
   function setLanguageMode(lang) {
     currentLang = lang;
 
     // Update active tab buttons in toolbar and preview header
     const langBtns = document.querySelectorAll('#langSelector button');
-    langBtns.forEach((b) => b.classList.toggle('active', b.getAttribute('data-lang') === currentLang));
+    langBtns.forEach((b) => {
+      const isActive = b.getAttribute('data-lang') === currentLang;
+      b.classList.toggle('active', isActive);
+      b.setAttribute('aria-pressed', String(isActive));
+    });
 
     const codeTabs = document.querySelectorAll('.code-tab');
-    codeTabs.forEach((t) => t.classList.toggle('active', t.getAttribute('data-lang') === currentLang));
+    codeTabs.forEach((tab) => {
+      const isActive = tab.getAttribute('data-lang') === currentLang;
+      tab.classList.toggle('active', isActive);
+      tab.setAttribute('aria-pressed', String(isActive));
+    });
 
     // Dynamic Toolbox Switching between HTML and CSS categories!
     try {
@@ -1350,8 +1398,8 @@
       } else if (currentLang === 'css') {
         workspace.updateToolbox(cssToolbox);
       }
-      // Re-inject Bootstrap Icons after toolbox re-renders.
-      setTimeout(injectCategoryIcons, 100);
+      // Reapply category dots after Blockly rebuilds the toolbox.
+      setTimeout(decorateToolboxCategories, 100);
     } catch (e) {
       console.error('[CodeSpark] Toolbox update error:', e);
     }
@@ -1371,7 +1419,7 @@
       code = '<!-- Error generating code preview -->';
     }
     if (codeOutput) {
-      codeOutput.textContent = code || `<!-- Drag blocks to workspace to see code preview -->`;
+      codeOutput.textContent = code;
     }
   }
 
@@ -1391,12 +1439,25 @@
   });
 
   // ── Console Logging ─────────────────────────────────────────────
+  const clearConsoleBtn = document.getElementById('clearConsoleBtn');
+
   function logToConsole(message, type) {
     if (!consolePanel) return;
     const line = document.createElement('div');
     line.className = `console-line ${type || ''}`;
-    const prefix = type === 'error' ? '❌' : type === 'success' ? '✅' : type === 'info' ? 'ℹ️' : '▸';
-    line.textContent = `${prefix} ${message}`;
+    const icon = document.createElement('i');
+    const iconClass = type === 'error'
+      ? 'bi-exclamation-circle-fill'
+      : type === 'success'
+        ? 'bi-check-circle-fill'
+        : type === 'info'
+          ? 'bi-info-circle-fill'
+          : 'bi-dot';
+    icon.className = `bi ${iconClass}`;
+    icon.setAttribute('aria-hidden', 'true');
+    const text = document.createElement('span');
+    text.textContent = message;
+    line.append(icon, text);
     consolePanel.appendChild(line);
     consolePanel.scrollTop = consolePanel.scrollHeight;
   }
@@ -1406,8 +1467,50 @@
     consolePanel.innerHTML = '';
   }
 
+  if (clearConsoleBtn) {
+    clearConsoleBtn.addEventListener('click', clearConsole);
+  }
+
   // ── Live Preview Rendering ──────────────────────────────────────
   const liveIframe = document.getElementById('livePreviewIframe');
+  const canvasPanel = document.getElementById('canvasPanel');
+  const fullscreenPreviewBtn = document.getElementById('fullscreenPreviewBtn');
+
+  function updateFullscreenPreviewButton() {
+    if (!fullscreenPreviewBtn || !canvasPanel) return;
+
+    const isFullscreen = document.fullscreenElement === canvasPanel;
+    const label = isFullscreen ? 'Exit preview fullscreen' : 'Open preview fullscreen';
+    const icon = fullscreenPreviewBtn.querySelector('i');
+    fullscreenPreviewBtn.setAttribute('aria-label', label);
+    fullscreenPreviewBtn.setAttribute('title', label);
+    fullscreenPreviewBtn.setAttribute('aria-pressed', String(isFullscreen));
+    if (icon) {
+      icon.classList.toggle('bi-arrows-fullscreen', !isFullscreen);
+      icon.classList.toggle('bi-fullscreen-exit', isFullscreen);
+    }
+    const text = fullscreenPreviewBtn.querySelector('span');
+    if (text) text.textContent = isFullscreen ? 'Exit' : 'Fullscreen';
+  }
+
+  if (fullscreenPreviewBtn && canvasPanel) {
+    fullscreenPreviewBtn.addEventListener('click', async () => {
+      try {
+        if (document.fullscreenElement === canvasPanel) {
+          await document.exitFullscreen();
+        } else if (canvasPanel.requestFullscreen) {
+          await canvasPanel.requestFullscreen();
+        } else {
+          logToConsole('Fullscreen is not supported by this browser.', 'error');
+        }
+      } catch (error) {
+        console.error('[CodeSpark] Could not change preview fullscreen:', error);
+        logToConsole('Could not open preview fullscreen. Check browser permissions and try again.', 'error');
+      }
+    });
+
+    document.addEventListener('fullscreenchange', updateFullscreenPreviewButton);
+  }
 
   function renderLivePreview() {
     if (!liveIframe) return;
@@ -1418,6 +1521,7 @@
       const pageContent = `<!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="assets/vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
   <link href="assets/css/fonts.css" rel="stylesheet">
   <style>
@@ -1480,17 +1584,34 @@
     logToConsole('Preview reset.', 'info');
   });
 
+  const clearWorkspaceBtn = document.getElementById('clearCanvasBtn');
+  if (clearWorkspaceBtn) clearWorkspaceBtn.addEventListener('click', () => {
+    workspace.clear();
+    clearConsole();
+    logToConsole('Workspace cleared.', 'info');
+  });
+
   // ── Copy Code ───────────────────────────────────────────────────
   const copyBtn = document.getElementById('copyCodeBtn');
   if (copyBtn) {
-    copyBtn.addEventListener('click', () => {
-      const code = codeOutput.textContent;
-      navigator.clipboard.writeText(code).then(() => {
-        copyBtn.textContent = '✅ Copied!';
-        setTimeout(() => {
-          copyBtn.textContent = '📋 Copy';
-        }, 2000);
-      });
+    copyBtn.addEventListener('click', async () => {
+      const label = copyBtn.querySelector('span');
+      try {
+        if (!navigator.clipboard || typeof navigator.clipboard.writeText !== 'function') {
+          throw new Error('Clipboard access is not available in this browser context.');
+        }
+
+        await navigator.clipboard.writeText(codeOutput ? codeOutput.textContent : '');
+        if (label) label.textContent = 'Copied';
+        copyBtn.setAttribute('aria-label', 'Code copied');
+        window.setTimeout(() => {
+          if (label) label.textContent = 'Copy';
+          copyBtn.removeAttribute('aria-label');
+        }, 1800);
+      } catch (error) {
+        console.error('[CodeSpark] Could not copy code:', error);
+        logToConsole('Could not copy code. Check browser clipboard permissions and try again.', 'error');
+      }
     });
   }
 

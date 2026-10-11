@@ -1146,6 +1146,19 @@
         ])
       );
     },
+    getBlockLessonLevels(category) {
+      const track = tracks[category];
+      if (!track) return [];
+      return track.levels.map(([title, description], index) => ({
+        title,
+        description,
+        lessons: (getSlideLesson(category, index) || []).map(({ title: lessonTitle, explanation, example }) => ({
+          title: lessonTitle,
+          explanation,
+          example,
+        })),
+      }));
+    },
   };
 
   const roadmap = document.getElementById('tutorialRoadmap');
