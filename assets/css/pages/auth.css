@@ -278,6 +278,18 @@ body[data-auth-page="login"] .login-card .auth-header p {
   margin: 0;
 }
 
+body[data-auth-page="login"] .login-card .auth-context-notice {
+  margin-top: 0.85rem;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.7rem;
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  line-height: 1.45;
+  text-align: left;
+}
+
 body[data-auth-page="login"] .login-card .auth-icon-badge {
   width: 52px;
   height: 52px;

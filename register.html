@@ -14,12 +14,6 @@
   <link rel="icon"
     href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
 
-  <!-- Official Google Identity Services SDK -->
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
-  <!-- Official Apple Sign-In SDK -->
-  <script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
-
-
 </head>
 
 <body data-auth-page="register">
@@ -76,19 +70,6 @@
         </div>
 
         <div id="registerAlert" class="auth-alert" role="alert" aria-live="assertive"></div>
-
-        <div class="social-buttons-row" aria-label="Other sign-up options">
-          <button type="button" class="social-btn google-btn" id="googleRegBtn">
-            <i class="bi bi-google" aria-hidden="true"></i><span>Google</span>
-          </button>
-          <button type="button" class="social-btn apple-btn" id="appleRegBtn">
-            <i class="bi bi-apple" aria-hidden="true"></i><span>Apple</span>
-          </button>
-        </div>
-
-        <div class="social-divider">
-          <span>or sign up with email</span>
-        </div>
 
         <form id="pageRegisterForm">
           <div class="row">

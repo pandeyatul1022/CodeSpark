@@ -243,6 +243,8 @@
   const startBtn = document.getElementById('startQuizBtn');
   const retryBtn = document.getElementById('retryQuizBtn');
   const foundationNextLevel = document.getElementById('foundationNextLevel');
+  const saveQuizScoreBtn = document.getElementById('saveQuizScoreBtn');
+  const viewCertificateBtn = document.getElementById('viewCertificateBtn');
   const timerDisplay = document.getElementById('quizTimer');
   const progressNotice = document.getElementById('quizProgressNotice');
 
@@ -571,7 +573,7 @@
   }
 
   // ── Show Results ────────────────────────────────────────────────
-  function showResults() {
+  function showResults(savedDate) {
     activeScreen.style.display = 'none';
     resultsScreen.style.display = 'block';
 
@@ -631,23 +633,66 @@
           "Don't worry! Check out the tutorials and try again. Practice makes perfect!";
     }
 
-    // Save quiz result
-    saveQuizResult(percent);
+    const loggedInUser = getLoggedInUser();
+    const certificatePassMark = isFoundationQuiz ? foundationPassMark : 70;
+    const certificateEligible = percent >= certificatePassMark;
+    if (!loggedInUser && resultMessage) {
+      resultMessage.textContent += ' Your score stays on this screen until you log in to save it.';
+    }
+    if (saveQuizScoreBtn) {
+      saveQuizScoreBtn.hidden = Boolean(loggedInUser);
+      saveQuizScoreBtn.innerHTML = certificateEligible
+        ? '<i class="bi bi-person-check" aria-hidden="true"></i> Log in to save score &amp; get certificate'
+        : '<i class="bi bi-person-check" aria-hidden="true"></i> Log in to save score';
+    }
+    if (viewCertificateBtn) {
+      viewCertificateBtn.hidden = !loggedInUser || !certificateEligible;
+    }
+
+    if (loggedInUser) {
+      try {
+        saveQuizResult(percent, score, questions.length, savedDate);
+      } catch (error) {
+        console.error('Unable to save the quiz result to this account.', error);
+        if (resultMessage) {
+          resultMessage.textContent += ' Your score could not be saved. Check browser storage and try again.';
+        }
+      }
+    }
 
     // Achievements
-    if (window.Achievements) {
-      window.Achievements.unlock('first_quiz');
-      if (percent === 100) {
-        window.Achievements.unlock('perfect_quiz');
-      }
-      if (percent >= 70) {
-        window.Achievements.unlock('quiz_master');
+    if (loggedInUser && window.Achievements) {
+      try {
+        window.Achievements.unlock('first_quiz');
+        if (percent === 100) {
+          window.Achievements.unlock('perfect_quiz');
+        }
+        if (percent >= 70) {
+          window.Achievements.unlock('quiz_master');
+        }
+      } catch (error) {
+        console.error('Unable to save quiz achievements.', error);
       }
     }
   }
 
   // ── Save Quiz Results ───────────────────────────────────────────
   const QUIZ_KEY = 'codespark-quiz-results';
+
+  function getLoggedInUser() {
+    try {
+      const storedUser = localStorage.getItem('codespark-logged-user') || localStorage.getItem('codespark_user');
+      const user = storedUser ? JSON.parse(storedUser) : null;
+      return user && typeof user.username === 'string' && user.username.trim() ? user : null;
+    } catch (error) {
+      console.error('Unable to check the current CodeSpark account.', error);
+      return null;
+    }
+  }
+
+  function getQuizResultsKey(user) {
+    return `${QUIZ_KEY}-${encodeURIComponent(user.username.trim().toLowerCase())}`;
+  }
 
   function unlockHtmlFoundationLevel() {
     const progressKey = 'codespark-roadmap-progress-v4-html';
@@ -666,19 +711,86 @@
     }
   }
 
-  function saveQuizResult(percent) {
-    const results = JSON.parse(localStorage.getItem(QUIZ_KEY) || '[]');
+  function saveQuizResult(percent, correct = score, total = questions.length, date = new Date().toISOString()) {
+    const user = getLoggedInUser();
+    if (!user) return false;
+
+    const key = getQuizResultsKey(user);
+    const saved = localStorage.getItem(key);
+    const results = saved ? JSON.parse(saved) : [];
+    if (!Array.isArray(results)) {
+      throw new Error('Saved quiz results are in an unsupported format.');
+    }
     results.push({
       score: percent,
-      date: new Date().toISOString(),
-      correct: score,
-      total: questions.length,
+      date,
+      correct,
+      total,
     });
-    localStorage.setItem(QUIZ_KEY, JSON.stringify(results));
+    localStorage.setItem(key, JSON.stringify(results));
+    return true;
+  }
+
+  function restorePendingQuizResult() {
+    let pending;
+    try {
+      const stored = sessionStorage.getItem('codespark-pending-quiz-result');
+      if (!stored) return;
+      pending = JSON.parse(stored);
+    } catch (error) {
+      console.error('Unable to restore the pending quiz result.', error);
+      sessionStorage.removeItem('codespark-pending-quiz-result');
+      return;
+    }
+
+    if (!getLoggedInUser() || !pending || pending.isFoundationQuiz !== isFoundationQuiz ||
+      !Number.isInteger(pending.correct) || !Number.isInteger(pending.total) ||
+      pending.total < 1 || pending.correct < 0 || pending.correct > pending.total ||
+      typeof pending.date !== 'string'
+    ) {
+      return;
+    }
+
+    sessionStorage.removeItem('codespark-pending-quiz-result');
+    score = pending.correct;
+    questions = Array(pending.total).fill(null);
+    showResults(pending.date);
+  }
+
+  if (saveQuizScoreBtn) {
+    saveQuizScoreBtn.addEventListener('click', () => {
+      try {
+        sessionStorage.removeItem('codespark-editor-pending-action');
+        sessionStorage.removeItem('codespark-auth-return-to');
+        sessionStorage.setItem('codespark-pending-quiz-result', JSON.stringify({
+          correct: score,
+          total: questions.length,
+          date: new Date().toISOString(),
+          isFoundationQuiz,
+        }));
+        const returnTo = isFoundationQuiz ? 'quiz.html?course=html-foundations' : 'quiz.html';
+        sessionStorage.setItem('codespark-auth-return-to', returnTo);
+      } catch (error) {
+        console.error('Unable to preserve the quiz result while opening login.', error);
+        const resultMessage = document.getElementById('resultMessage');
+        if (resultMessage) {
+          resultMessage.textContent = 'Your score could not be kept for login. Please enable browser session storage and try again.';
+        }
+        return;
+      }
+      window.location.href = 'login.html';
+    });
   }
 
   // ── Expose ──────────────────────────────────────────────────────
   window.Quiz = {
-    getResults: () => JSON.parse(localStorage.getItem(QUIZ_KEY) || '[]'),
+    getResults: () => {
+      const user = getLoggedInUser();
+      if (!user) return [];
+      const results = localStorage.getItem(getQuizResultsKey(user));
+      return results ? JSON.parse(results) : [];
+    },
   };
+
+  document.addEventListener('DOMContentLoaded', restorePendingQuizResult);
 })();
